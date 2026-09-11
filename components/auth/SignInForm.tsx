@@ -15,9 +15,10 @@ export default function SignInForm() {
   const redirectTo = searchParams.get("next") ?? "/dashboard";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberDevice, setRememberDevice] = useState(true);
+  const [remember, setRemember] = useState(true);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [resetSent, setResetSent] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,20 +40,27 @@ export default function SignInForm() {
     router.refresh();
   };
 
+  const handleForgotPassword = async () => {
+    if (!email.trim() || resetSent || status === "submitting") return;
+    const supabase = createClient();
+    const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+      redirectTo: `${process.env.NEXT_PUBLIC_APP_URL ?? ""}/auth/callback?next=/preferences`,
+    });
+    if (!error) setResetSent(true);
+  };
+
   return (
     <form className="space-y-5" onSubmit={handleSubmit}>
       <div className="space-y-1.5">
-        <div className="flex items-center justify-between">
-          <label className="font-caption-bold text-caption-bold text-on-surface" htmlFor="work-email">
-            Work Email
-          </label>
-          <span className="font-label-caps text-label-caps uppercase text-outline">Corporate Id</span>
-        </div>
+        <label className="font-caption-bold text-caption-bold text-on-surface" htmlFor="work-email">
+          Email
+        </label>
         <TextInput
           id="work-email"
           leadingIcon="mail"
           type="email"
-          placeholder="elena@acmestudio.com"
+          autoComplete="email"
+          placeholder="you@company.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="h-11 [&_input]:py-2.5 [&_input]:rounded-lg [&_input]:bg-surface-container-lowest"
@@ -62,16 +70,28 @@ export default function SignInForm() {
       <div className="space-y-1.5">
         <div className="flex items-center justify-between">
           <label className="font-caption-bold text-caption-bold text-on-surface" htmlFor="auth-password">
-            Master Password
+            Password
           </label>
-          <a className="font-caption-bold text-caption-bold text-primary hover:underline" href="/sign-in">
-            Forgot password?
-          </a>
+          {resetSent ? (
+            <span className="font-caption-bold text-caption-bold text-tertiary">
+              Reset link sent
+            </span>
+          ) : (
+            <button
+              className="font-caption-bold text-caption-bold text-primary hover:underline disabled:opacity-50"
+              type="button"
+              onClick={handleForgotPassword}
+              disabled={!email.trim()}
+            >
+              Forgot password?
+            </button>
+          )}
         </div>
         <PasswordField
           id="auth-password"
           leadingIcon="lock"
-          placeholder="••••••••••••"
+          autoComplete="current-password"
+          placeholder="Enter your password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="h-11 [&_input]:py-2.5 [&_input]:rounded-lg [&_input]:bg-surface-container-lowest"
@@ -81,10 +101,9 @@ export default function SignInForm() {
       <div className="pt-1">
         <Checkbox
           id="remember-device"
-          checked={rememberDevice}
-          onChange={() => setRememberDevice((v) => !v)}
-          label="Remember this device for 30 days"
-          description="Enforces hardware-backed encryption token on local secure enclave"
+          checked={remember}
+          onChange={() => setRemember((v) => !v)}
+          label="Keep me signed in"
         />
       </div>
 
@@ -97,7 +116,7 @@ export default function SignInForm() {
 
       <div className="pt-2">
         <button
-          className="w-full py-3.5 px-6 rounded-lg bg-primary hover:bg-on-primary-fixed text-on-primary font-headline-sm text-headline-sm flex items-center justify-center gap-2 shadow-md transition-all active:scale-[0.98] group disabled:opacity-60 disabled:pointer-events-none"
+          className="w-full py-3.5 px-6 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-headline-sm text-headline-sm flex items-center justify-center gap-2 shadow-md transition-all active:scale-[0.98] group disabled:opacity-60 disabled:pointer-events-none"
           type="submit"
           disabled={status === "submitting" || status === "success"}
         >
@@ -110,26 +129,19 @@ export default function SignInForm() {
             <>Signed in!</>
           ) : (
             <>
-              <span>Sign In to Workspace</span>
+              <span>Sign In</span>
               <Icon name="arrow_forward" size={18} className="transition-transform duration-200 group-hover:translate-x-1" />
             </>
           )}
         </button>
       </div>
 
-      <div className="pt-8 mt-6 border-t-0 flex flex-col sm:flex-row items-center justify-between gap-3 text-on-surface-variant">
-        <p className="font-body-sm text-body-sm">
-          Don&apos;t have an account?{" "}
-          <Link className="font-caption-bold text-caption-bold text-primary hover:underline ml-1" href="/sign-up">
-            Create an account
-          </Link>
-        </p>
-        <div className="flex items-center gap-4 font-caption-bold text-caption-bold text-outline">
-          <Link href="/pricing" className="hover:text-on-surface transition-colors">Legal Terms</Link>
-          <span>•</span>
-          <Link href="/enterprise" className="hover:text-on-surface transition-colors">Privacy Codex</Link>
-        </div>
-      </div>
+      <p className="pt-6 text-center font-body-sm text-body-sm text-on-surface-variant">
+        Don&apos;t have an account?{" "}
+        <Link className="font-caption-bold text-caption-bold text-primary hover:underline ml-1" href="/sign-up">
+          Create an account
+        </Link>
+      </p>
     </form>
   );
 }

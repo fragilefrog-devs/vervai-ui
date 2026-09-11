@@ -24,15 +24,11 @@ export default function Page() {
                 </div>
               </div>
               <div className="pt-4">
-                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-surface-container-highest text-secondary text-caption-bold font-caption-bold mb-4">
-                  <span className="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
-                  Sovereign Auth
-                </div>
                 <h2 className="font-headline-lg text-headline-lg text-on-surface tracking-tight leading-snug">
-                  Autonomous workflows, calibrated under Swiss discipline.
+                  Your publishing pipeline, all in one place.
                 </h2>
                 <p className="font-body-sm text-body-sm text-on-surface-variant mt-2 leading-relaxed">
-                  Direct real-time orchestration across agent graphs, scheduled publishing pipelines, and enterprise telemetry feeds.
+                  Research, draft, approve, and schedule content across every channel you already use.
                 </p>
               </div>
             </div>
@@ -61,28 +57,20 @@ export default function Page() {
                 </div>
               </div>
             </div>
-            <div className="relative z-10 pt-2 flex items-center justify-between text-on-surface-variant">
-              <div className="flex items-center gap-2">
-                <span className="material-symbols-outlined text-[18px] text-outline">domain_verification</span>
-                <span className="font-caption-bold text-caption-bold text-secondary">SOC 2 Certified</span>
-              </div>
-              <span className="font-label-caps text-label-caps uppercase text-outline">Server Rendered</span>
-            </div>
           </div>
           <div className="lg:col-span-7 p-8 lg:p-12 flex flex-col justify-between bg-surface-container-lowest">
-            <div>
+            <div className="w-full max-w-md mx-auto">
               <div className="mb-8">
-                <div className="flex items-center justify-between"></div>
-                <h1 className="font-display-xl text-display-xl text-on-surface mt-2 tracking-tight">Welcome back to VervAI</h1>
+                <h1 className="font-display-xl text-display-xl text-on-surface mt-2 tracking-tight">Welcome back</h1>
                 <p className="font-body-medium text-body-medium text-on-surface-variant mt-1.5">
-                  Sign in to access your autonomous workspace, agent graphs, and distribution pipeline.
+                  Sign in to your workspace to continue where you left off.
                 </p>
               </div>
               <SignInProviders />
               <div className="relative flex py-2 items-center mb-8">
                 <div className="flex-grow bg-surface-variant h-px"></div>
                 <span className="flex-shrink mx-4 font-caption-bold text-caption-bold text-outline uppercase tracking-wider">
-                  or continue with sovereign credentials
+                  or sign in with email
                 </span>
                 <div className="flex-grow bg-surface-variant h-px"></div>
               </div>

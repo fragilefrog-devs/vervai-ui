@@ -7,28 +7,28 @@ type FeatureCard = {
 
 const FEATURES: FeatureCard[] = [
   {
-    icon: "bolt",
-    iconClass: "text-primary",
-    title: "20 Free Synthesis Credits",
-    description: "Instant activation across long-form multimodal transforms.",
-  },
-  {
     icon: "graphic_eq",
     iconClass: "text-tertiary",
-    title: "Whisper-v3 Neural Diarization",
-    description: "Frame-accurate multi-speaker separation and transcript synthesis.",
+    title: "Library Ingestion",
+    description: "Bring in podcasts, videos, and transcripts as searchable sources.",
   },
   {
-    icon: "verified",
+    icon: "auto_awesome",
     iconClass: "text-primary",
-    title: "Zero-Buzzword Pruning Gate",
-    description: "Deterministic brand voice filters to strip slop and generic jargon.",
+    title: "Agent Drafting",
+    description: "Generate posts, newsletters, scripts, and threads from your sources.",
   },
   {
-    icon: "sync_alt",
+    icon: "fact_check",
+    iconClass: "text-primary",
+    title: "Review & Approve",
+    description: "Keep a human in the loop before anything goes out.",
+  },
+  {
+    icon: "send",
     iconClass: "text-secondary",
-    title: "Native Buffer & LinkedIn Sync",
-    description: "Single-click pipeline delivery to your connected channels.",
+    title: "Scheduled Distribution",
+    description: "Queue content and push it to your connected channels.",
   },
 ];
 
