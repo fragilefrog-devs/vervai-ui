@@ -675,7 +675,8 @@ export default function FeaturesContent() {
             </p>
           </div>
           {/* Comparison Grid */}
-          <div className="overflow-hidden rounded-xl bg-surface-container-lowest shadow-sm">
+          <div className="overflow-x-auto rounded-xl bg-surface-container-lowest shadow-sm">
+            <div className="min-w-[720px]">
             <div className="grid grid-cols-12 bg-surface-container-high p-4 font-headline-sm text-headline-sm text-on-surface">
               <div className="col-span-4 lg:col-span-4">
                 Operational Dimension
@@ -807,6 +808,7 @@ export default function FeaturesContent() {
               <div className="col-span-4 lg:col-span-4 font-body-sm text-body-sm text-on-surface-variant">
                 User inputs retained or pooled for global foundation training
               </div>
+            </div>
             </div>
           </div>
         </div>

@@ -15,42 +15,6 @@ type LineageRow = {
   toneScore: string;
 };
 
-const LINEAGE_ROWS: LineageRow[] = [
-  {
-    fileName: "ep42-founder-interview.mp3",
-    fileMeta: "Audio • 54 min 12 sec",
-    icon: "mic",
-    iconTone: "secondary",
-    ingestedAt: "May 14, 2025 • 14:20",
-    outputCount: "4 outputs",
-    outputBreakdown: "1 Article, 2 Shorts, 1 Thread",
-    approval: { kind: "pending", label: "2 Approved, 2 Pending" },
-    toneScore: "97.2% Match",
-  },
-  {
-    fileName: "q3-growth-strategy.pdf",
-    fileMeta: "Document • 38 pages",
-    icon: "picture_as_pdf",
-    iconTone: "error",
-    ingestedAt: "May 12, 2025 • 09:15",
-    outputCount: "6 outputs",
-    outputBreakdown: "2 Carousels, 4 Summaries",
-    approval: { kind: "published", label: "4 Published, 2 Ready" },
-    toneScore: "94.1% Match",
-  },
-  {
-    fileName: "systems-architecture-v2.docx",
-    fileMeta: "Document • Technical Spec",
-    icon: "description",
-    iconTone: "fixed",
-    ingestedAt: "May 09, 2025 • 17:40",
-    outputCount: "3 outputs",
-    outputBreakdown: "3 Blueprint Diagrams",
-    approval: { kind: "neutral", label: "1 Review, 2 Staged" },
-    toneScore: "95.9% Match",
-  },
-];
-
 function FileIconTile({ row }: { row: LineageRow }) {
   const toneClass =
     row.iconTone === "secondary"
@@ -89,7 +53,7 @@ function ApprovalPill({ approval }: { approval: ApprovalStatus }) {
   );
 }
 
-export default function SourceLineageTable() {
+export default function SourceLineageTable({ rows }: { rows: LineageRow[] }) {
   return (
     <section className="rounded-xl bg-surface-container-lowest p-space-lg shadow-sm space-y-space-md">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
@@ -126,50 +90,61 @@ export default function SourceLineageTable() {
               <th className="py-2.5 px-3">Ingestion Date</th>
               <th className="py-2.5 px-3">Generated Assets</th>
               <th className="py-2.5 px-3">Approval Status</th>
-              <th className="py-2.5 px-3">Average Tone Score</th>
+              <th className="py-2.5 px-3">Source Status</th>
               <th className="py-2.5 px-3 rounded-r-lg text-right">Lineage Ops</th>
             </tr>
           </thead>
           <tbody className="divide-y-0 text-body-sm text-body-sm">
-            {LINEAGE_ROWS.map((row) => (
-              <tr key={row.fileName} className="hover:bg-surface-container-low/70 transition-colors">
-                <td className="py-3 px-3">
-                  <div className="flex items-center gap-2.5">
-                    <FileIconTile row={row} />
-                    <div>
-                      <p className="font-caption-bold text-caption-bold text-on-surface">
-                        {row.fileName}
-                      </p>
-                      <p className="text-[11px] text-secondary">{row.fileMeta}</p>
+            {rows.length > 0 ? (
+              rows.map((row) => (
+                <tr key={row.fileName} className="hover:bg-surface-container-low/70 transition-colors">
+                  <td className="py-3 px-3">
+                    <div className="flex items-center gap-2.5">
+                      <FileIconTile row={row} />
+                      <div>
+                        <p className="font-caption-bold text-caption-bold text-on-surface">
+                          {row.fileName}
+                        </p>
+                        <p className="text-[11px] text-secondary">{row.fileMeta}</p>
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td className="py-3 px-3 text-secondary font-medium">{row.ingestedAt}</td>
-                <td className="py-3 px-3">
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-caption-bold text-on-surface">{row.outputCount}</span>
-                    <span className="text-outline text-xs">/</span>
-                    <span className="text-secondary text-[12px]">{row.outputBreakdown}</span>
-                  </div>
-                </td>
-                <td className="py-3 px-3">
-                  <ApprovalPill approval={row.approval} />
-                </td>
-                <td className="py-3 px-3">
-                  <span className="font-caption-bold text-caption-bold text-tertiary">
-                    {row.toneScore}
-                  </span>
-                </td>
-                <td className="py-3 px-3 text-right">
-                  <button
-                    className="p-1 rounded text-secondary hover:text-on-surface hover:bg-surface-container-high transition-colors"
-                    type="button"
-                  >
-                    <span className="material-symbols-outlined text-[18px]">more_horiz</span>
-                  </button>
+                  </td>
+                  <td className="py-3 px-3 text-secondary font-medium">{row.ingestedAt}</td>
+                  <td className="py-3 px-3">
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-caption-bold text-on-surface">{row.outputCount}</span>
+                      <span className="text-outline text-xs">/</span>
+                      <span className="text-secondary text-[12px]">{row.outputBreakdown}</span>
+                    </div>
+                  </td>
+                  <td className="py-3 px-3">
+                    <ApprovalPill approval={row.approval} />
+                  </td>
+                  <td className="py-3 px-3">
+                    <span className="font-caption-bold text-caption-bold text-tertiary">
+                      {row.toneScore}
+                    </span>
+                  </td>
+                  <td className="py-3 px-3 text-right">
+                    <button
+                      className="p-1 rounded text-secondary hover:text-on-surface hover:bg-surface-container-high transition-colors"
+                      type="button"
+                    >
+                      <span className="material-symbols-outlined text-[18px]">more_horiz</span>
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan={6}
+                  className="py-8 px-3 text-center text-secondary font-body-sm text-body-sm"
+                >
+                  No sources ingested yet — upload a source to populate lineage.
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

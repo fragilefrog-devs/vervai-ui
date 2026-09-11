@@ -27,9 +27,18 @@ const FORMATS = [
   "Infographics & Carousels",
 ];
 
-export default function LibraryFilterBar() {
+export default function LibraryFilterBar({
+  counts,
+}: {
+  counts?: Partial<Record<string, number>>;
+}) {
   const [activeTab, setActiveTab] = useState("all");
   const [activeFormats, setActiveFormats] = useState<Set<string>>(new Set());
+
+  const tabs = FILTER_TABS.map((tab) => ({
+    ...tab,
+    count: counts?.[tab.id] ?? tab.count,
+  }));
 
   const toggleFormat = (format: string) =>
     setActiveFormats((prev) => {
@@ -42,7 +51,7 @@ export default function LibraryFilterBar() {
   return (
     <div className="flex flex-col gap-y-space-xs pt-space-xs">
       <div className="flex items-center gap-1 overflow-x-auto py-1 text-nowrap">
-        {FILTER_TABS.map((tab) => {
+        {tabs.map((tab) => {
           const active = tab.id === activeTab;
           return (
             <button

@@ -5,14 +5,17 @@ type RegistryRow = {
   count: string;
 };
 
-const REGISTRY_ROWS: RegistryRow[] = [
-  { icon: "article", iconTone: "primary", label: "Longform Articles", count: "14 ready" },
-  { icon: "smart_display", iconTone: "secondary", label: "Video Scripts & Clips", count: "18 cut & timed" },
-  { icon: "tag", iconTone: "secondary", label: "Micro-Essays & Threads", count: "11 drafted" },
-  { icon: "schema", iconTone: "secondary", label: "Blueprint Diagrams", count: "5 generated" },
-];
-
-export default function OutputRegistry() {
+export default function OutputRegistry({
+  rows,
+  total,
+  sourceCount,
+  latestLabel,
+}: {
+  rows: RegistryRow[];
+  total: number;
+  sourceCount: number;
+  latestLabel: string;
+}) {
   return (
     <div className="lg:col-span-4 flex flex-col justify-between rounded-xl bg-surface-container-lowest p-space-lg shadow-sm">
       <div className="space-y-space-md">
@@ -21,23 +24,23 @@ export default function OutputRegistry() {
             Output Registry
           </span>
           <span className="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-caption-bold text-[11px]">
-            Active Engine
+            Live Engine
           </span>
         </div>
         <div className="flex items-baseline justify-between">
           <div>
-            <h3 className="font-display-xl text-display-xl text-on-surface">48 Total</h3>
+            <h3 className="font-display-xl text-display-xl text-on-surface">{total} Total</h3>
             <p className="font-body-sm text-body-sm text-secondary">
-              Asset artifacts across 6 channels
+              Asset artifacts across {sourceCount} {sourceCount === 1 ? "source" : "sources"}
             </p>
           </div>
           <div className="text-right">
-            <span className="font-headline-lg text-headline-lg text-tertiary">94.8%</span>
-            <p className="font-label-caps text-[10px] text-secondary uppercase">Voice Score Avg</p>
+            <span className="font-headline-lg text-headline-lg text-tertiary">{latestLabel}</span>
+            <p className="font-label-caps text-[10px] text-secondary uppercase">Latest Output</p>
           </div>
         </div>
         <div className="space-y-space-xs pt-1">
-          {REGISTRY_ROWS.map((row) => (
+          {rows.map((row) => (
             <div
               key={row.label}
               className="flex items-center justify-between p-2 rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors"
@@ -82,10 +85,10 @@ export default function OutputRegistry() {
         </svg>
         <div className="min-w-0">
           <p className="font-caption-bold text-caption-bold text-on-surface leading-tight">
-            Audited for Elena's Cadence
+            Live from <span className="text-primary">sources</span> + <span className="text-primary">outputs</span>
           </p>
           <p className="font-body-sm text-[12px] text-secondary truncate">
-            Zero generic corporate cliches detected
+            Queried directly from your workspace database
           </p>
         </div>
       </div>

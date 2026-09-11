@@ -22,55 +22,6 @@ export type Kpi = {
   footerRight: ReactNode;
 };
 
-const KPIS: Kpi[] = [
-  {
-    label: "Source Repositories",
-    icon: "database",
-    value: "18",
-    unit: "active sources",
-    description: "Cataloged into semantic search vector space.",
-    rows: [
-      { icon: "videocam", label: "Video files", value: "3" },
-      { icon: "mic", label: "Audio recordings", value: "8" },
-      { icon: "article", label: "Text documents", value: "7" },
-    ],
-    footerLeft: "Sync state",
-    footerRight: (
-      <>
-        <span className="w-1.5 h-1.5 rounded-full bg-tertiary" /> 2 hours ago
-      </>
-    ),
-  },
-  {
-    label: "Distribution Pipeline",
-    icon: "send",
-    iconTone: "text-primary",
-    value: "4 Posts",
-    unit: "queued this week",
-    description: "Live automation routed through social channels.",
-    rows: [
-      { icon: "in", label: "LinkedIn Creator", value: "2 queued" },
-      { icon: "𝕏", label: "Twitter Broadcast", value: "2 queued" },
-    ],
-    footerLeft: "Connector",
-    footerRight: (
-      <>
-        <Icon name="link" size={14} className="text-tertiary" /> Buffer Connected
-      </>
-    ),
-  },
-  {
-    label: "Compute Quota",
-    icon: "speed",
-    value: "68%",
-    unit: "136 / 200 min",
-    description: "Voice transcription & generative reasoning minutes.",
-    progress: 68,
-    footerLeft: "Billing cycle",
-    footerRight: "Reset in 9 days",
-  },
-];
-
 function KpiCard({ kpi }: { kpi: Kpi }) {
   return (
     <Panel>
@@ -122,10 +73,10 @@ function KpiCard({ kpi }: { kpi: Kpi }) {
   );
 }
 
-export default function OverviewKpis() {
+export default function OverviewKpis({ kpis }: { kpis: Kpi[] }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-      {KPIS.map((kpi) => (
+      {kpis.map((kpi) => (
         <KpiCard key={kpi.label} kpi={kpi} />
       ))}
     </div>

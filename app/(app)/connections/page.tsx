@@ -1,11 +1,157 @@
 import ConnectorSection from "@/components/connections/ConnectorSection";
 import CheckAllStatuses from "@/components/connections/CheckAllStatuses";
+import type { ConnectorCardItem } from "@/components/connections/ConnectorCard";
 import {
-  MAIN_SOURCE_CONNECTORS,
-  MAIN_PUBLISHING_RELAYS,
-} from "@/components/connections/mainConnectorData";
+  getConnectionsState,
+  getDistributionJobs,
+  getSourcesWithOutputs,
+  timeAgo,
+  FORMAT_LABEL,
+} from "@/lib/data";
 
-export default function Page() {
+function sourceConnectors(
+  connections: Awaited<ReturnType<typeof getConnectionsState>>,
+): ConnectorCardItem[] {
+  const drive = connections.drive;
+  const youtube = connections.youtube;
+  return [
+    drive
+      ? {
+          icon: "folder_shared",
+          iconTone: "primary-container",
+          status: { label: "Connected", tone: "active" },
+          title: "Google Drive",
+          description: drive.drive_name || "Workspace storage connected",
+          details: [
+            { label: "Email:", value: drive.drive_email },
+            { label: "Connected:", value: timeAgo(drive.created_at), valueTone: "tertiary" },
+          ],
+          action: { label: "Manage Sync Paths", tone: "default" },
+        }
+      : {
+          icon: "folder_shared",
+          iconTone: "primary-container",
+          status: { label: "Available", tone: "available" },
+          title: "Google Drive",
+          description: "Auto-sync a source intake folder from your Drive.",
+          details: [{ label: "Status:", value: "No OAuth connection", valueTone: "tertiary" }],
+          action: { label: "+ Connect OAuth", tone: "connect" },
+        },
+    youtube
+      ? {
+          icon: "smart_display",
+          iconTone: "error",
+          status: { label: "Connected", tone: "active" },
+          title: "YouTube & Workspace",
+          description: `Channel: ${youtube.channel_title}`,
+          details: [
+            { label: "Channel:", value: youtube.channel_title, valueTone: "tertiary" },
+            { label: "Connected:", value: timeAgo(youtube.created_at) },
+          ],
+          action: { label: "Manage Channel Watch", tone: "default" },
+        }
+      : {
+          icon: "smart_display",
+          iconTone: "error",
+          status: { label: "Available", tone: "available" },
+          title: "YouTube & Workspace",
+          description: "Ingest captions from your own YouTube channel.",
+          details: [{ label: "Status:", value: "No OAuth connection", valueTone: "tertiary" }],
+          action: { label: "+ Connect OAuth", tone: "connect" },
+        },
+    {
+      icon: "videocam",
+      iconTone: "primary",
+      status: { label: "Available", tone: "available" },
+      title: "Loom / Screen Recorder",
+      description: "Drop Loom recordings as video sources via the intake node.",
+      details: [{ label: "Status:", value: "Not connected", valueTone: "tertiary" }],
+      action: { label: "+ Connect OAuth", tone: "connect" },
+    },
+    {
+      icon: "podcasts",
+      iconTone: "on-surface-variant",
+      status: { label: "Available", tone: "available" },
+      title: "Spotify / RSS Feeds",
+      description: "Paste a podcast RSS or Markdown URL into the intake node.",
+      details: [{ label: "Status:", value: "Not required — use Web Link", valueTone: "tertiary" }],
+      action: { label: "+ Paste URL", tone: "connect" },
+    },
+  ];
+}
+
+function publishingRelays(
+  connections: Awaited<ReturnType<typeof getConnectionsState>>,
+  scheduledCount: number,
+): ConnectorCardItem[] {
+  const buffer = connections.buffer;
+  return [
+    buffer
+      ? {
+          icon: "layers",
+          iconTone: "primary-container",
+          status: { label: "Connected", tone: "stable" },
+          title: "Buffer Pipeline",
+          description: `Connected Buffer account: @${buffer.username}`,
+          details: [
+            { label: "Account:", value: `@${buffer.username}` },
+            { label: "Queued:", value: `${scheduledCount} scheduled`, valueTone: "primary" },
+          ],
+          action: { label: "Test Webhook Relay", tone: "default" },
+        }
+      : {
+          icon: "layers",
+          iconTone: "primary-container",
+          status: { label: "Available", tone: "available" },
+          title: "Buffer Pipeline",
+          description: "Schedule LinkedIn, X, and more via a Buffer connection.",
+          details: [{ label: "Status:", value: "No Buffer key", valueTone: "tertiary" }],
+          action: { label: "+ Connect OAuth", tone: "connect" },
+        },
+    {
+      icon: "share",
+      iconTone: "primary",
+      status: { label: "Available", tone: "available" },
+      title: "LinkedIn Creator API",
+      description: "Distribution routes through the Buffer pipeline once connected.",
+      details: [{ label: "Status:", value: "Via Buffer", valueTone: "tertiary" }],
+      action: { label: "+ Connect via Buffer", tone: "connect" },
+    },
+    {
+      icon: "tag",
+      iconTone: "on-surface",
+      status: { label: "Available", tone: "available" },
+      title: "Twitter / X",
+      description: "Thread publishing routes through the Buffer pipeline.",
+      details: [{ label: "Status:", value: "Via Buffer", valueTone: "tertiary" }],
+      action: { label: "+ Connect via Buffer", tone: "connect" },
+    },
+    {
+      icon: "webhook",
+      iconTone: "on-surface-variant",
+      status: { label: "Available", tone: "available" },
+      title: "Newsletter Dispatch",
+      description: "Newsletter outputs become ready-to-publish drafts in the queue.",
+      details: [{ label: "Status:", value: "Via queue", valueTone: "tertiary" }],
+      action: { label: "View Publish Queue", tone: "default" },
+    },
+  ];
+}
+
+export default async function Page() {
+  const [connections, jobs, sources] = await Promise.all([
+    getConnectionsState(),
+    getDistributionJobs(200),
+    getSourcesWithOutputs(500),
+  ]);
+
+  const connectedCount = [connections.buffer, connections.youtube, connections.drive].filter(
+    Boolean,
+  ).length;
+  const scheduledCount = jobs.filter((j) => j.status === "scheduled").length;
+  const publishedCount = jobs.filter((j) => j.status === "published").length;
+  const draftCount = jobs.filter((j) => j.status === "draft").length;
+
   return (
     <div className="flex flex-col w-full">
       <div className="w-full max-w-7xl mx-auto space-y-space-xl">
@@ -25,7 +171,7 @@ export default function Page() {
             </h1>
             <p className="font-body-medium text-body-medium text-on-surface-variant leading-relaxed">
               Manage OAuth authentications, webhook pipelines, source intake connectors, and
-              scheduled distribution endpoints. Secure, isolated API token management.
+              scheduled distribution endpoints. Status reflects your live database rows.
             </p>
           </div>
           <div className="flex items-center gap-space-sm shrink-0">
@@ -47,50 +193,52 @@ export default function Page() {
                 <span className="material-symbols-outlined text-[22px]">hub</span>
               </div>
               <div className="flex flex-col">
-                <span className="font-display-xl text-display-xl text-on-surface leading-tight">7</span>
+                <span className="font-display-xl text-display-xl text-on-surface leading-tight">
+                  {connectedCount}
+                </span>
                 <span className="font-caption-bold text-caption-bold text-on-surface-variant uppercase">
                   Connected Services
                 </span>
               </div>
             </div>
             <div className="flex items-center gap-space-md p-space-sm rounded-lg bg-surface-container-low">
-              <div className="w-10 h-10 rounded-lg bg-error-container flex items-center justify-center text-error">
-                <span className="material-symbols-outlined text-[22px]">warning</span>
+              <div className="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-primary">
+                <span className="material-symbols-outlined text-[22px]">schedule</span>
               </div>
               <div className="flex flex-col">
-                <div className="flex items-center gap-2">
-                  <span className="font-display-xl text-display-xl text-on-surface leading-tight">1</span>
-                  <span className="w-2 h-2 rounded-full bg-error animate-pulse"></span>
-                </div>
+                <span className="font-display-xl text-display-xl text-on-surface leading-tight">
+                  {scheduledCount}
+                </span>
                 <span className="font-caption-bold text-caption-bold text-on-surface-variant uppercase">
-                  Degraded Channel
+                  Scheduled Posts
+                </span>
+              </div>
+            </div>
+            <div className="flex items-center gap-space-md p-space-sm rounded-lg bg-surface-container-low">
+              <div className="w-10 h-10 rounded-lg bg-tertiary-container flex items-center justify-center text-tertiary">
+                <span className="material-symbols-outlined text-[22px]">check_circle</span>
+              </div>
+              <div className="flex flex-col">
+                <span className="font-display-xl text-display-xl text-on-surface leading-tight">
+                  {publishedCount}
+                </span>
+                <span className="font-caption-bold text-caption-bold text-on-surface-variant uppercase">
+                  Published Posts
                 </span>
               </div>
             </div>
             <div className="flex items-center gap-space-md p-space-sm rounded-lg bg-surface-container-low">
               <div className="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
-                <span className="material-symbols-outlined text-[22px]">check_circle</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-display-xl text-display-xl text-on-surface leading-tight">0</span>
-                <span className="font-caption-bold text-caption-bold text-on-surface-variant uppercase">
-                  Revoked Tokens
-                </span>
-              </div>
-            </div>
-            <div className="flex items-center gap-space-md p-space-sm rounded-lg bg-surface-container-low">
-              <div className="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-primary">
-                <span className="material-symbols-outlined text-[22px]">speed</span>
+                <span className="material-symbols-outlined text-[22px]">drafts</span>
               </div>
               <div className="flex flex-col flex-1 min-w-0">
                 <div className="flex items-center justify-between">
                   <span className="font-display-xl text-display-xl text-on-surface leading-tight">
-                    99.94%
+                    {draftCount}
                   </span>
-                  <span className="font-caption-bold text-caption-bold text-tertiary">30D Peak</span>
                 </div>
                 <span className="font-caption-bold text-caption-bold text-on-surface-variant uppercase truncate">
-                  Relay Engine Uptime
+                  Queued Drafts
                 </span>
               </div>
             </div>
@@ -98,34 +246,34 @@ export default function Page() {
           <div className="mt-space-md pt-space-sm flex flex-col md:flex-row md:items-center justify-between gap-2 text-on-surface-variant font-caption-bold text-caption-bold">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-tertiary-container"></span> TLS 1.3
-                In-Flight Encryption
+                <span className="w-2 h-2 rounded-full bg-tertiary-container"></span> Live from
+                database
               </span>
               <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-primary-container"></span> Zero-Knowledge
-                Ingress Vault
+                <span className="w-2 h-2 rounded-full bg-primary-container"></span> {connectedCount}/3
+                OAuth relays active
               </span>
             </div>
             <div className="flex items-center gap-1 font-body-sm text-body-sm">
-              <span>Global Heartbeat ping:</span>
-              <span className="text-on-surface font-semibold">14ms ago</span>
+              <span>Distribution jobs tracked:</span>
+              <span className="text-on-surface font-semibold">{jobs.length}</span>
             </div>
           </div>
         </div>
         <ConnectorSection
           colorBar="bg-primary"
           title="Source Intake & Storage Connectors"
-          badge="4 Relays"
+          badge={`${connectedCount} Connected`}
           meta="Raw Ingestion Layer"
-          items={MAIN_SOURCE_CONNECTORS}
+          items={sourceConnectors(connections)}
           variant="compact"
         />
         <ConnectorSection
           colorBar="bg-primary-container"
           title="Publishing & Distribution Relays"
-          badge="Active Outbound"
-          meta="Multi-Platform Dispatch"
-          items={MAIN_PUBLISHING_RELAYS}
+          badge="Outbound Dispatch"
+          meta="Multi-Platform Queue"
+          items={publishingRelays(connections, scheduledCount)}
           variant="compact"
         />
         <section className="space-y-space-md">
@@ -133,10 +281,10 @@ export default function Page() {
             <div className="flex items-center gap-space-sm">
               <div className="w-2 h-5 bg-tertiary-container rounded-full"></div>
               <h2 className="font-headline-lg text-headline-lg text-on-surface tracking-tight">
-                Enterprise Vector &amp; Agent Compute Relays
+                Live Pipeline State
               </h2>
               <span className="px-2 py-0.5 rounded-full bg-secondary-container text-primary font-caption-bold text-caption-bold">
-                Core Infrastructure
+                Current Data
               </span>
             </div>
             <span className="font-caption-bold text-caption-bold text-outline uppercase tracking-wider">
@@ -154,41 +302,45 @@ export default function Page() {
                     </div>
                     <div>
                       <h3 className="font-headline-lg text-headline-lg text-on-surface">
-                        Supabase pgvector &amp; Storage
+                        Supabase Storage &amp; Postgres
                       </h3>
                       <p className="font-body-sm text-body-sm text-on-surface-variant">
-                        System Internal • Dedicated isolated tenant
+                        Source nodes + generated outputs live in your project&apos;s database
                       </p>
                     </div>
                   </div>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-tertiary-fixed text-tertiary font-caption-bold text-caption-bold">
-                    <span className="w-2 h-2 rounded-full bg-tertiary"></span> Encrypted AES-256
+                    <span className="w-2 h-2 rounded-full bg-tertiary"></span> RLS Protected
                   </span>
                 </div>
                 <p className="font-body-base text-body-base text-on-surface-variant leading-relaxed">
-                  Provides dedicated semantic indexing for Acme Studio brand guidelines, transcripts,
-                  tone of voice embeddings, and asset version histories.
+                  Every source you ingest and every output the agent synthesizes is persisted as a
+                  row, queryable in real time from this workspace.
                 </p>
                 <div className="grid grid-cols-3 gap-space-sm pt-2">
                   <div className="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
                     <span className="font-caption-bold text-caption-bold text-outline uppercase">
-                      Index Size
+                      Sources
                     </span>
                     <span className="font-headline-sm text-headline-sm text-on-surface">
-                      428,102 vecs
+                      {sources.length}
                     </span>
                   </div>
                   <div className="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
                     <span className="font-caption-bold text-caption-bold text-outline uppercase">
-                      Avg Query
+                      Region
                     </span>
-                    <span className="font-headline-sm text-headline-sm text-tertiary">18.4 ms</span>
+                    <span className="font-headline-sm text-headline-sm text-tertiary">
+                      Supabase Hosted
+                    </span>
                   </div>
                   <div className="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
                     <span className="font-caption-bold text-caption-bold text-outline uppercase">
-                      Partition
+                      Security
                     </span>
-                    <span className="font-headline-sm text-headline-sm text-on-surface">us-east-1</span>
+                    <span className="font-headline-sm text-headline-sm text-on-surface">
+                      Row-Level
+                    </span>
                   </div>
                 </div>
               </div>
@@ -197,13 +349,13 @@ export default function Page() {
                   <span className="material-symbols-outlined text-[18px] text-tertiary">
                     verified_user
                   </span>
-                  <span>Hardware-level SOC2 Compliant</span>
+                  <span>Per-user RLS via auth session</span>
                 </div>
                 <button
                   className="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium transition-colors flex items-center gap-2"
                   type="button"
                 >
-                  <span>View DB Metrics</span>
+                  <span>Open Content Library</span>
                   <span className="material-symbols-outlined text-[16px]">query_stats</span>
                 </button>
               </div>
@@ -214,57 +366,62 @@ export default function Page() {
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-primary">
-                      <span className="material-symbols-outlined text-[28px]">cognition</span>
+                      <span className="material-symbols-outlined text-[28px]">sensors</span>
                     </div>
                     <div>
                       <h3 className="font-headline-lg text-headline-lg text-on-surface">
-                        OpenAI &amp; Anthropic API Keys
+                        Distribution &amp; Agent Compute
                       </h3>
                       <p className="font-body-sm text-body-sm text-on-surface-variant">
-                        Connected • Bring-Your-Own-Key tier enabled
+                        Scheduled posts and generated formats tracked in the database
                       </p>
                     </div>
                   </div>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-primary font-caption-bold text-caption-bold">
-                    <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span> Active
-                    Routing
+                    <span className="w-2 h-2 rounded-full bg-primary"></span> Live Queue
                   </span>
                 </div>
                 <p className="font-body-base text-body-base text-on-surface-variant leading-relaxed">
-                  Model orchestrator runs automated load balancing across Claude 3.5 Sonnet and
-                  GPT-4o with automatic latency failovers and budget alerts.
+                  Outputs are staged as drafts, scheduled, and published through the queue. Status
+                  here reflects the real rows behind every dashboard stat.
                 </p>
                 <div className="grid grid-cols-3 gap-space-sm pt-2">
                   <div className="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
                     <span className="font-caption-bold text-caption-bold text-outline uppercase">
-                      Primary Agent
+                      Scheduled
                     </span>
-                    <span className="font-headline-sm text-headline-sm text-on-surface">Claude 3.5</span>
+                    <span className="font-headline-sm text-headline-sm text-on-surface">
+                      {scheduledCount}
+                    </span>
                   </div>
                   <div className="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
                     <span className="font-caption-bold text-caption-bold text-outline uppercase">
-                      Fallback
+                      Published
                     </span>
-                    <span className="font-headline-sm text-headline-sm text-on-surface">GPT-4o</span>
+                    <span className="font-headline-sm text-headline-sm text-tertiary">
+                      {publishedCount}
+                    </span>
                   </div>
                   <div className="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
                     <span className="font-caption-bold text-caption-bold text-outline uppercase">
-                      Monthly Cap
+                      Drafts
                     </span>
-                    <span className="font-headline-sm text-headline-sm text-primary">$450.00 Max</span>
+                    <span className="font-headline-sm text-headline-sm text-primary">
+                      {draftCount}
+                    </span>
                   </div>
                 </div>
               </div>
               <div className="flex items-center justify-between pt-space-lg mt-space-md">
                 <div className="flex items-center gap-2 text-on-surface-variant font-caption-bold text-caption-bold">
-                  <span className="material-symbols-outlined text-[18px] text-primary">key</span>
-                  <span>Keys vault-hashed (SHA-256)</span>
+                  <span className="material-symbols-outlined text-[18px] text-primary">schedule</span>
+                  <span>Queryable across {Object.keys(FORMAT_LABEL).length} output formats</span>
                 </div>
                 <button
                   className="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium transition-colors flex items-center gap-2"
                   type="button"
                 >
-                  <span>Rotate Secret Keys</span>
+                  <span>Open Publish Queue</span>
                   <span className="material-symbols-outlined text-[16px]">sync_lock</span>
                 </button>
               </div>
@@ -278,11 +435,11 @@ export default function Page() {
             </div>
             <div className="space-y-0.5">
               <h4 className="font-headline-sm text-headline-sm text-on-surface">
-                Looking for custom ERP or bespoke CMS endpoints?
+                Better with more connections enabled?
               </h4>
               <p className="font-body-sm text-body-sm text-on-surface-variant">
-                Develop tailored webhook listeners via our VervAI open-source TypeScript SDK or
-                access enterprise SSO configurations.
+                Connect Google Drive, YouTube, and Buffer to unlock auto-ingest and scheduled
+                distribution across LinkedIn, X, and newsletters.
               </p>
             </div>
           </div>
@@ -291,7 +448,7 @@ export default function Page() {
               className="px-space-md py-2 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium transition-colors"
               type="button"
             >
-              View Developer SDK
+              View Setup Guide
             </button>
             <button
               className="px-space-md py-2 rounded-lg bg-primary-container text-on-primary font-body-medium text-body-medium hover:bg-primary transition-colors"
@@ -308,7 +465,7 @@ export default function Page() {
       >
         <span className="material-symbols-outlined text-[20px] text-tertiary-fixed">check_circle</span>
         <span className="font-body-medium text-body-medium" id="statusToastText">
-          All 8 active API channels re-verified successfully.
+          Connection status verified against the database.
         </span>
       </div>
     </div>

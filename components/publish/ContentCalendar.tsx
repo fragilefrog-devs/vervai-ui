@@ -1,4 +1,4 @@
-type CalendarDay =
+export type CalendarDay =
   | {
       kind: "published";
       day: string;
@@ -32,80 +32,7 @@ type CalendarDay =
       status: { icon: string; label: string; tone: "primary" | "secondary" };
     };
 
-const WEEK: CalendarDay[] = [
-  {
-    kind: "published",
-    day: "Mon 21",
-    label: "Published",
-    labelClass: "bg-emerald-100 text-emerald-900",
-    channel: "LinkedIn Article",
-    channelClass: "text-blue-800",
-    dotClass: "bg-blue-700",
-    title: '"The Death of Gated Content"',
-    description:
-      "Why ungating our core operating models drove 3x higher enterprise pipeline.",
-    stats: [
-      { icon: "visibility", value: "4.2k" },
-      { icon: "repeat", value: "94" },
-    ],
-    footer: "142 inbound visits",
-  },
-  {
-    kind: "published",
-    day: "Tue 22",
-    label: "Published",
-    labelClass: "bg-emerald-100 text-emerald-900",
-    channel: "Newsletter Brief",
-    channelClass: "text-orange-800",
-    dotClass: "bg-orange-600",
-    title: '"SaaS Retention Drivers"',
-    description: "Deconstructing cohort churn thresholds using automated agent telemetry.",
-    stats: [{ icon: "mark_email_read", value: "48% Open" }],
-    footer: "3.8% Click-Through",
-  },
-  { kind: "today", day: "Wed 23" },
-  {
-    kind: "scheduled",
-    day: "Thu 24",
-    label: "Scheduled",
-    labelClass: "bg-blue-100 text-blue-900",
-    channel: "LinkedIn Carousel",
-    channelClass: "text-blue-800",
-    dotClass: "bg-blue-700",
-    time: "09:00 AM",
-    title: '"B2B SaaS Growth Framework Visual Carousel"',
-    description: "10-slide architectural schematic break down for early revenue operations.",
-    status: { icon: "check", label: "Buffer Ready", tone: "primary" },
-  },
-  {
-    kind: "scheduled",
-    day: "Fri 25",
-    label: "Scheduled",
-    labelClass: "bg-blue-100 text-blue-900",
-    channel: "Ghost Webhook",
-    channelClass: "text-orange-800",
-    dotClass: "bg-orange-600",
-    time: "10:00 AM",
-    title: '"Weekly Executive Brief: AI Operations"',
-    description: "Curated insights on autonomous orchestration for engineering leadership.",
-    status: { icon: "verified", label: "Queued", tone: "primary" },
-  },
-  {
-    kind: "scheduled",
-    day: "Sat 26",
-    dayClass: "text-secondary",
-    label: "Queued Draft",
-    labelClass: "bg-neutral-200 text-neutral-800",
-    channel: "Twitter Thread",
-    channelClass: "text-neutral-800",
-    dotClass: "bg-neutral-800",
-    time: "11:30 AM",
-    title: '"5 Unintuitive Hiring Rules"',
-    description:
-      "Why we test candidates on system architecture prompt design over whiteboard leetcode.",
-    status: { icon: "edit_note", label: "Pending Polish", tone: "secondary" },
-  },
-];
+const WEEK: CalendarDay[] = [];
 
 function PublishedDay({ day }: { day: Extract<CalendarDay, { kind: "published" }> }) {
   return (
@@ -224,7 +151,13 @@ function ScheduledDay({ day }: { day: Extract<CalendarDay, { kind: "scheduled" }
   );
 }
 
-export default function ContentCalendar() {
+export default function ContentCalendar({
+  days,
+  rangeLabel,
+}: {
+  days: CalendarDay[];
+  rangeLabel?: string;
+}) {
   return (
     <section className="bg-surface-container-lowest rounded-xl shadow-sm flex flex-col">
       <div className="p-space-lg bg-surface-container-low/40 rounded-t-xl flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
@@ -233,7 +166,7 @@ export default function ContentCalendar() {
             Scheduled Content Calendar &amp; Broadcast Queue
           </h2>
           <p className="font-body-sm text-body-sm text-secondary">
-            Live orchestration queue for the current active cycle (Oct 21 – Oct 27)
+            {rangeLabel ?? "Live orchestration queue from your distribution jobs"}
           </p>
         </div>
         <div className="flex items-center gap-space-xs self-start sm:self-auto">
@@ -242,42 +175,30 @@ export default function ContentCalendar() {
               className="px-3 py-1 rounded-md bg-surface-container-lowest font-caption-bold text-caption-bold text-on-surface shadow-xs"
               type="button"
             >
-              Weekly Matrix
-            </button>
-            <button
-              className="px-3 py-1 rounded-md font-caption-bold text-caption-bold text-secondary hover:text-on-surface transition-colors"
-              type="button"
-            >
-              List Feed
+              Queue View
             </button>
           </div>
           <div className="inline-flex items-center gap-1 pl-2">
-            <button
-              className="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-secondary"
-              type="button"
-            >
-              <span className="material-symbols-outlined text-[18px]">chevron_left</span>
-            </button>
             <span className="font-caption-bold text-caption-bold text-on-surface px-1">
-              This Week
+              Upcoming
             </span>
-            <button
-              className="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-secondary"
-              type="button"
-            >
-              <span className="material-symbols-outlined text-[18px]">chevron_right</span>
-            </button>
           </div>
         </div>
       </div>
       <div className="p-space-lg">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-space-md">
-          {WEEK.map((day) => {
-            if (day.kind === "published") return <PublishedDay key={day.day} day={day} />;
-            if (day.kind === "today") return <TodayDay key={day.day} day={day} />;
-            return <ScheduledDay key={day.day} day={day} />;
-          })}
-        </div>
+        {days.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-space-md">
+            {days.map((day) => {
+              if (day.kind === "published") return <PublishedDay key={day.day + day.title} day={day} />;
+              if (day.kind === "today") return <TodayDay key={day.day} day={day} />;
+              return <ScheduledDay key={day.day + day.title} day={day} />;
+            })}
+          </div>
+        ) : (
+          <div className="rounded-xl bg-surface-container-low p-space-lg text-center text-secondary font-body-sm text-body-sm">
+            No scheduled or published posts yet. Approved outputs will appear on the calendar.
+          </div>
+        )}
       </div>
     </section>
   );

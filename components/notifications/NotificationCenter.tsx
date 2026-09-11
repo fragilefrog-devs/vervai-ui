@@ -16,7 +16,7 @@ export default function NotificationCenter() {
       : NOTIFICATIONS.filter((n) => n.category === activeFilter);
 
   return (
-    <aside className="fixed top-14 right-0 bottom-0 w-[540px] max-w-[calc(100vw-16rem)] bg-surface-container-lowest shadow-2xl z-50 flex flex-col justify-between overflow-hidden">
+    <aside className="fixed top-14 right-0 bottom-0 w-full sm:w-[540px] sm:max-w-[calc(100vw-16rem)] bg-surface-container-lowest shadow-2xl z-50 flex flex-col justify-between overflow-hidden sm:border-l sm:border-outline-variant/40">
       <div className="bg-surface-container-lowest shrink-0">
         <div className="px-space-lg py-space-md flex items-center justify-between bg-surface-container-lowest">
           <div className="flex items-center gap-space-sm">

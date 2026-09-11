@@ -12,27 +12,6 @@ export type Opportunity = {
   description: string;
 };
 
-const OPPORTUNITIES: Opportunity[] = [
-  {
-    icon: "movie_edit",
-    iconTone: "text-primary",
-    title: "Short-Form Video & Carousel",
-    tagLabel: "8.2x Impact Est.",
-    tagTone: "tertiary",
-    description:
-      "Convert 12-min segment in ep42 into 3 viral short video scripts + visual carousel for LinkedIn.",
-  },
-  {
-    icon: "schema",
-    iconTone: "text-secondary",
-    title: "Infographic & Systems Flow",
-    tagLabel: "Technical asset",
-    tagTone: "secondary",
-    description:
-      "Extract 4 actionable frameworks from Q3 Strategy into visual infographic copy and architectural blueprint diagrams.",
-  },
-];
-
 function OpportunityRow({ opp }: { opp: Opportunity }) {
   return (
     <div className="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container transition-all flex items-start gap-space-md">
@@ -52,7 +31,13 @@ function OpportunityRow({ opp }: { opp: Opportunity }) {
   );
 }
 
-export default function AgentOpportunitiesPanel() {
+export default function AgentOpportunitiesPanel({
+  opportunities,
+  count,
+}: {
+  opportunities: Opportunity[];
+  count: number;
+}) {
   return (
     <Panel className="lg:col-span-6">
       <div>
@@ -69,13 +54,19 @@ export default function AgentOpportunitiesPanel() {
           </Tag>
         </div>
         <p className="font-body-medium text-body-medium text-secondary mb-space-md">
-          3 high-leverage content angles detected from your latest ingested sources.
+          {count} high-leverage content angles detected from your latest ingested sources.
         </p>
-        <div className="space-y-space-sm">
-          {OPPORTUNITIES.map((opp) => (
-            <OpportunityRow key={opp.title} opp={opp} />
-          ))}
-        </div>
+        {opportunities.length > 0 ? (
+          <div className="space-y-space-sm">
+            {opportunities.map((opp) => (
+              <OpportunityRow key={opp.title} opp={opp} />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-lg bg-surface-container-low p-space-lg text-center text-secondary font-body-sm text-body-sm">
+            No unlocked opportunities yet. Once sources are transcribed, the agent surfaces angles here.
+          </div>
+        )}
       </div>
       <div className="pt-space-md mt-space-sm">
         <ButtonLink href="/workspace" variant="secondary" size="md" className="w-full justify-between bg-surface-container text-on-surface hover:bg-surface-container-high shadow-sm">

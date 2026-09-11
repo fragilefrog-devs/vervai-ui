@@ -1,7 +1,11 @@
 import SearchInput from "@/components/ui/SearchInput";
 import LibraryFilterBar from "./LibraryFilterBar";
 
-export default function LibraryHeader() {
+export default function LibraryHeader({
+  counts,
+}: {
+  counts?: Partial<Record<string, number>>;
+}) {
   return (
     <section className="flex flex-col gap-y-space-md">
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
@@ -38,7 +42,7 @@ export default function LibraryHeader() {
           </button>
         </div>
       </div>
-      <LibraryFilterBar />
+      <LibraryFilterBar counts={counts} />
     </section>
   );
 }

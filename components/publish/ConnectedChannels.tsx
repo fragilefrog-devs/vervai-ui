@@ -7,42 +7,14 @@ type ChannelRow = {
   statusIcon: string;
 };
 
-const CHANNELS: ChannelRow[] = [
-  {
-    monogram: "B",
-    monogramClass: "bg-blue-600",
-    name: "Buffer Pipeline",
-    meta: "Default routing queue",
-    status: "Synchronized",
-    statusIcon: "sync",
-  },
-  {
-    monogram: "in",
-    monogramClass: "bg-sky-700",
-    name: "LinkedIn Creator API",
-    meta: "Token valid for 52 days",
-    status: "Connected",
-    statusIcon: "check_circle",
-  },
-  {
-    monogram: "𝕏",
-    monogramClass: "bg-neutral-900",
-    name: "Twitter / X Broadcast",
-    meta: "@ElenaVance & @AcmeStudio",
-    status: "Connected",
-    statusIcon: "check_circle",
-  },
-  {
-    monogram: "S",
-    monogramClass: "bg-amber-600",
-    name: "Substack / Ghost",
-    meta: "Direct CMS Webhook",
-    status: "Active",
-    statusIcon: "bolt",
-  },
-];
-
-export default function ConnectedChannels() {
+export default function ConnectedChannels({
+  channels = [],
+  updatedLabel = "",
+}: {
+  channels?: ChannelRow[];
+  updatedLabel?: string;
+}) {
+  const stable = channels.length;
   return (
     <div className="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col space-y-space-md">
       <div className="flex items-center justify-between">
@@ -59,42 +31,52 @@ export default function ConnectedChannels() {
         </div>
         <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 font-caption-bold text-caption-bold">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
-          All 4 Stable
+          {channels.length} Connected
         </span>
       </div>
       <div className="space-y-space-xs">
-        {CHANNELS.map((channel) => (
-          <div key={channel.name} className="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div
-                className={`w-7 h-7 rounded-full ${channel.monogramClass} text-white flex items-center justify-center font-bold text-xs`}
-              >
-                {channel.monogram}
-              </div>
-              <div>
-                <div className="font-caption-bold text-caption-bold text-on-surface">
-                  {channel.name}
+        {channels.length > 0 ? (
+          channels.map((channel) => (
+            <div key={channel.name} className="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div
+                  className={`w-7 h-7 rounded-full ${channel.monogramClass} text-white flex items-center justify-center font-bold text-xs`}
+                >
+                  {channel.monogram}
                 </div>
-                <div className="font-label-caps text-label-caps text-secondary">{channel.meta}</div>
+                <div>
+                  <div className="font-caption-bold text-caption-bold text-on-surface">
+                    {channel.name}
+                  </div>
+                  <div className="font-label-caps text-label-caps text-secondary">{channel.meta}</div>
+                </div>
               </div>
+              <span className="font-caption-bold text-caption-bold text-tertiary flex items-center gap-1">
+                <span className="material-symbols-outlined text-[14px]">{channel.statusIcon}</span>
+                {channel.status}
+              </span>
             </div>
-            <span className="font-caption-bold text-caption-bold text-tertiary flex items-center gap-1">
-              <span className="material-symbols-outlined text-[14px]">{channel.statusIcon}</span>
-              {channel.status}
-            </span>
+          ))
+        ) : (
+          <div className="p-space-md rounded-lg bg-surface-container-low text-center text-secondary font-body-sm text-body-sm">
+            No channels connected yet. Connect Buffer or YouTube to enable distribution.
           </div>
-        ))}
+        )}
       </div>
       <div className="p-space-md rounded-xl bg-surface-container-high/60 space-y-2">
         <div className="flex items-center justify-between">
           <span className="font-label-caps text-label-caps uppercase text-secondary tracking-wider">
-            Next Dispatched Broadcast
+            Distribution Queue
           </span>
-          <span className="font-caption-bold text-caption-bold text-primary">T-18h 40m</span>
+          <span className="font-caption-bold text-caption-bold text-primary">
+            {updatedLabel || "—"}
+          </span>
         </div>
-        <div className="font-headline-sm text-headline-sm text-on-surface">Tomorrow, 8:45 AM</div>
+        <div className="font-headline-sm text-headline-sm text-on-surface">
+          Live from distribution jobs
+        </div>
         <p className="font-body-sm text-body-sm text-secondary">
-          Dispatches via LinkedIn Creator Pipe upon sign-off approval.
+          Every approved output moves through the queue once a channel is connected.
         </p>
       </div>
       <a

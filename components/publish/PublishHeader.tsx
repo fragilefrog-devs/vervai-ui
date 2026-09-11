@@ -1,6 +1,12 @@
 import QuickScheduleModal from "./QuickScheduleModal";
 
-export default function PublishHeader() {
+export default function PublishHeader({
+  queueCount,
+  bufferLabel,
+}: {
+  queueCount: number;
+  bufferLabel?: string;
+}) {
   return (
     <div className="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
       <div className="space-y-1">
@@ -23,15 +29,17 @@ export default function PublishHeader() {
             calendar_month
           </span>
           <span>
-            Queue: <strong className="text-primary font-bold">4 Posts</strong>
+            Queue: <strong className="text-primary font-bold">{queueCount} Posts</strong>
           </span>
         </div>
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container text-on-surface font-caption-bold text-caption-bold shadow-sm">
-          <span className="w-2 h-2 rounded-full bg-tertiary"></span>
-          <span>
-            Buffer Pipeline: <span className="text-secondary font-medium">Synced 5m ago</span>
-          </span>
-        </div>
+        {bufferLabel && (
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container text-on-surface font-caption-bold text-caption-bold shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-tertiary"></span>
+            <span>
+              Buffer: <span className="text-secondary font-medium">{bufferLabel}</span>
+            </span>
+          </div>
+        )}
         <QuickScheduleModal />
       </div>
     </div>

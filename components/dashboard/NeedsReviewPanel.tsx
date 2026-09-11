@@ -13,31 +13,6 @@ export type Review = {
   meta: string;
 };
 
-const REVIEWS: Review[] = [
-  {
-    channel: "LinkedIn",
-    channelTone: "primary",
-    match: "94% match",
-    matchIcon: "verified",
-    title: "The Death of Gated Content",
-    meta: "Extracted from ep42 • Founder perspective",
-  },
-  {
-    channel: "Newsletter",
-    channelTone: "secondary",
-    match: "Briefing Format",
-    title: "Weekly Executive Brief: AI Operations Playbook",
-    meta: "Synthesized across 3 internal memos",
-  },
-  {
-    channel: "Twitter / X",
-    channelTone: "surface",
-    match: "Thread • 7 posts",
-    title: "5 Unintuitive Hiring Rules",
-    meta: "Direct takeaways from ep42 audio snippet",
-  },
-];
-
 function ReviewRow({ review }: { review: Review }) {
   return (
     <div className="p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex items-center justify-between gap-space-sm">
@@ -66,7 +41,11 @@ function ReviewRow({ review }: { review: Review }) {
   );
 }
 
-export default function NeedsReviewPanel() {
+export default function NeedsReviewPanel({
+  reviews,
+}: {
+  reviews: Review[];
+}) {
   return (
     <Panel className="lg:col-span-5">
       <div>
@@ -74,7 +53,7 @@ export default function NeedsReviewPanel() {
           <div className="flex items-center gap-2">
             <h2 className="font-headline-lg text-headline-lg text-on-surface">Needs Review</h2>
             <span className="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed font-caption-bold text-caption-bold text-xs">
-              3 Drafts
+              {reviews.length} {reviews.length === 1 ? "Draft" : "Drafts"}
             </span>
           </div>
           <Icon name="pending_actions" size={20} className="text-outline" />
@@ -82,11 +61,17 @@ export default function NeedsReviewPanel() {
         <p className="font-body-sm text-body-sm text-secondary mb-space-md">
           Generated drafts requiring human editorial approval before delivery.
         </p>
-        <div className="space-y-space-sm">
-          {REVIEWS.map((review) => (
-            <ReviewRow key={review.title} review={review} />
-          ))}
-        </div>
+        {reviews.length > 0 ? (
+          <div className="space-y-space-sm">
+            {reviews.map((review) => (
+              <ReviewRow key={review.title} review={review} />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-lg bg-surface-container-low p-space-lg text-center text-secondary font-body-sm text-body-sm">
+            Nothing awaiting review — the queue is clear.
+          </div>
+        )}
       </div>
       <div className="pt-space-md mt-space-sm">
         <Link

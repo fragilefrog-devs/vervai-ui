@@ -5,12 +5,17 @@ import Tag from "@/components/ui/Tag";
 
 const FORMATS = ["MP4", "MP3", "PDF", "DOCX", "YOUTUBE / WEB"] as const;
 
-const RECENT_INTAKE = [
-  { icon: "graphic_eq", iconTone: "text-tertiary", name: "ep42-founder-interview.mp3" },
-  { icon: "description", iconTone: "text-secondary", name: "q3-growth-strategy.pdf" },
-] as const;
+export type RecentSource = {
+  icon: string;
+  iconTone: string;
+  name: string;
+};
 
-export default function IntakePanel() {
+export default function IntakePanel({
+  recentSources = [],
+}: {
+  recentSources?: RecentSource[];
+}) {
   return (
     <Panel className="lg:col-span-7 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary-fixed/20 rounded-full blur-3xl pointer-events-none -mr-24 -mt-24" />
@@ -54,21 +59,27 @@ export default function IntakePanel() {
         </Button>
       </div>
 
-      <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pt-space-sm">
-        <span className="font-caption-bold text-caption-bold text-secondary">Recent intake:</span>
-        <div className="flex flex-wrap items-center gap-space-xs">
-          {RECENT_INTAKE.map((item) => (
-            <div
-              key={item.name}
-              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container text-on-surface font-caption-bold text-caption-bold text-xs hover:bg-surface-container-high cursor-pointer transition-colors"
-            >
-              <Icon name={item.icon} size={14} className={item.iconTone} />
-              <span className="truncate max-w-[140px]">{item.name}</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-tertiary" />
-            </div>
-          ))}
+<div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pt-space-sm">
+          <span className="font-caption-bold text-caption-bold text-secondary">Recent intake:</span>
+          <div className="flex flex-wrap items-center gap-space-xs">
+            {recentSources.length > 0 ? (
+              recentSources.map((item) => (
+                <div
+                  key={item.name}
+                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container text-on-surface font-caption-bold text-caption-bold text-xs hover:bg-surface-container-high cursor-pointer transition-colors"
+                >
+                  <Icon name={item.icon} size={14} className={item.iconTone} />
+                  <span className="truncate max-w-[140px]">{item.name}</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-tertiary" />
+                </div>
+              ))
+            ) : (
+              <span className="font-body-sm text-body-sm text-secondary text-xs">
+                No sources ingested yet.
+              </span>
+            )}
+          </div>
         </div>
-      </div>
     </Panel>
   );
 }
