@@ -6,10 +6,10 @@ import ChangelogPanel from "@/components/help/ChangelogPanel";
 import SearchInput from "@/components/ui/SearchInput";
 
 const FREQUENT_QUERIES = [
-  { icon: "graphic_eq", iconClass: "text-primary", label: "Whisper-v3 Diarization" },
+  { icon: "graphic_eq", iconClass: "text-primary", label: "Speaker Diarization" },
   { icon: "inventory_2", iconClass: "text-tertiary", label: "Output Registry" },
   { icon: "webhook", iconClass: "text-secondary", label: "Custom Webhooks" },
-  { icon: "tune", iconClass: "text-primary-container", label: "LoRA Tone Vector" },
+  { icon: "tune", iconClass: "text-primary-container", label: "Brand Tone" },
 ];
 
 export default function Page() {
@@ -22,14 +22,11 @@ export default function Page() {
           <span className="text-on-surface font-body-medium text-body-medium">
             Documentation & Knowledge Base
           </span>
-          <span className="ml-space-xs px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-caps text-label-caps">
-            v2.4.1-STABLE
-          </span>
         </div>
         <div className="flex items-center gap-space-sm">
           <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-high text-on-surface font-caption-bold text-caption-bold">
-            <span className="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span>
-            <span>Graph Engine 99.98% Live</span>
+            <span className="w-2 h-2 rounded-full bg-tertiary-container"></span>
+            <span>Read-only Documentation</span>
           </div>
           <button className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-medium text-body-medium shadow-sm transition-all active:scale-[0.98]">
             <span className="material-symbols-outlined text-[16px] text-primary">download</span>
@@ -44,9 +41,6 @@ export default function Page() {
             <div className="flex items-center gap-2">
               <span className="px-2.5 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-caption-bold text-caption-bold uppercase tracking-wider">
                 Engineering Codex
-              </span>
-              <span className="text-on-surface-variant font-body-sm text-body-sm">
-                Updated 14 mins ago
               </span>
             </div>
             <h1 className="font-display-2xl text-display-2xl text-on-surface tracking-tight">
@@ -103,15 +97,12 @@ export default function Page() {
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
                 <h3 className="font-headline-sm text-headline-sm text-on-surface">
-                  Dedicated Solutions Engineer Desk
+                  Need help with your workspace?
                 </h3>
-                <span className="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-caption-bold text-[10px] uppercase">
-                  Assigned to your tier
-                </span>
               </div>
               <p className="font-body-sm text-body-sm text-on-surface-variant">
-                Direct routing to Elena's engineering desk for tailored model fine-tuning, latency
-                SLAs, and custom LLM inference pipelines.
+                Search the knowledge base above, or reach the support team for pipeline and
+                integration questions.
               </p>
             </div>
           </div>
@@ -121,14 +112,14 @@ export default function Page() {
               href="#"
             >
               <span className="material-symbols-outlined text-[18px]">forum</span>
-              <span>Founder Slack</span>
+              <span>Community Forum</span>
             </a>
             <a
               className="px-4 py-2 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-body-medium text-body-medium flex items-center gap-2 transition-all shadow-sm active:scale-[0.98]"
               href="#"
             >
               <span className="material-symbols-outlined text-[18px]">headset_mic</span>
-              <span>Contact Elena's Desk</span>
+              <span>Contact Support</span>
             </a>
           </div>
         </div>

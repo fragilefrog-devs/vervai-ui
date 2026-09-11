@@ -1,3 +1,7 @@
+"use client";
+
+import { useMemo, useState } from "react";
+
 type Metric = {
   label: string;
   value: string;
@@ -5,50 +9,72 @@ type Metric = {
   tone: "primary" | "tertiary" | "neutral";
 };
 
-const METRICS: Metric[] = [
-  { label: "Cadence Match", value: "94.2%", verdict: "Optimal", tone: "primary" },
-  { label: "Jargon Score", value: "0.0%", verdict: "Clean", tone: "tertiary" },
-  { label: "Rhythm Flow", value: "14 wps", verdict: "Punchy", tone: "neutral" },
-];
-
 export default function SpeechCadenceSimulator() {
+  const [text, setText] = useState("");
+  const words = useMemo(
+    () => (text.trim() ? text.trim().split(/\s+/).length : 0),
+    [text],
+  );
+  const sentences = useMemo(() => {
+    const matches = text.match(/[.!?]+(?:["')}\]]*)/g);
+    if (matches) return matches.length;
+    return text.trim() ? 1 : 0;
+  }, [text]);
+  const avgPerSentence = useMemo(
+    () => (words && sentences ? Math.round((words / sentences) * 10) / 10 : 0),
+    [words, sentences],
+  );
+  const clauses = useMemo(
+    () => (text.match(/[.,;:!?]/g) ?? []).length + (text.trim() ? 1 : 0),
+    [text],
+  );
+
+  const metrics: Metric[] = [
+    { label: "Words", value: String(words), verdict: "Counted live", tone: "primary" },
+    { label: "Sentences", value: String(sentences), verdict: "Detected live", tone: "tertiary" },
+    { label: "Avg. Words / Sentence", value: String(avgPerSentence), verdict: "Readability proxy", tone: "neutral" },
+  ];
+
   return (
     <div className="lg:col-span-5 flex flex-col bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
       <div className="flex items-center justify-between pb-space-xs">
         <div className="flex items-center gap-2">
           <span className="material-symbols-outlined text-[20px] text-primary">speed</span>
           <h2 className="font-headline-md text-headline-md text-on-surface">
-            Live Cadence Simulator &amp; Lint
+            Cadence Simulator & Lint
           </h2>
         </div>
-        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-primary-fixed text-primary font-caption-bold text-caption-bold">
-          <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
-          Inference Active
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-caption-bold text-caption-bold">
+          <span className="w-1.5 h-1.5 rounded-full bg-outline"></span>
+          Local Analysis
         </span>
       </div>
       <p className="font-body-sm text-body-sm text-on-surface-variant mb-space-sm">
-        Paste a draft hook to evaluate sentence geometry, rhythm, and semantic density.
+        Paste a draft hook to measure basic text structure.
       </p>
       <div className="relative bg-surface-container-low rounded-xl p-3 mb-space-md shadow-inner">
         <textarea
-          className="w-full bg-transparent font-body-base text-body-medium text-on-surface resize-none focus:outline-none leading-relaxed"
+          className="w-full bg-transparent font-body-base text-body-medium text-on-surface resize-none focus:outline-none leading-relaxed placeholder:text-outline"
+          placeholder="Draft hook or paragraph to evaluate..."
           rows={3}
-        >
-          Most enterprise software roadmaps are polite fiction. We scaled throughput 4x by
-          eliminating consensus-seeking rituals and deploying deterministic agents directly into
-          the PR review pipeline.
-        </textarea>
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
         <div className="flex items-center justify-between pt-2 text-outline">
           <span className="font-caption-bold text-[11px] uppercase tracking-wider">
-            Words: 28 • Clauses: 2
+            Words: {words} • Clauses: {clauses}
           </span>
-          <span className="font-caption-bold text-[11px] text-tertiary uppercase tracking-wider">
-            Passed Negative Check
-          </span>
+          <button
+            className="font-caption-bold text-[11px] text-primary uppercase tracking-wider hover:underline"
+            type="button"
+            onClick={() => setText("")}
+          >
+            Clear
+          </button>
         </div>
       </div>
       <div className="grid grid-cols-3 gap-2 mb-space-md">
-        {METRICS.map((m) => (
+        {metrics.map((m) => (
           <div key={m.label} className="p-3 bg-surface-container rounded-lg text-center">
             <span className="font-caption-bold text-[11px] uppercase text-outline block mb-1">
               {m.label}
@@ -84,12 +110,11 @@ export default function SpeechCadenceSimulator() {
         </span>
         <div className="min-w-0">
           <span className="font-headline-sm text-body-sm text-on-surface block">
-            Dynamic Syntax Suggestion
+            About this tool
           </span>
           <p className="font-body-sm text-[12px] text-on-surface-variant leading-normal mt-0.5">
-            Opening assertion is solid. To hit &gt;96% cadence alignment, convert &quot;Most
-            enterprise software roadmaps are polite fiction&quot; into an immediate empirical
-            claim.
+            All metrics are computed in your browser from the pasted text. No AI evaluation is
+            running.
           </p>
         </div>
       </div>

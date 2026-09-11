@@ -3,8 +3,10 @@ import DropZone from "@/components/source-intake/DropZone";
 import UrlFetchBar from "@/components/source-intake/UrlFetchBar";
 import IntakeProtocol from "@/components/source-intake/IntakeProtocol";
 import IngestionList from "@/components/source-intake/IngestionList";
+import { getSourcesWithOutputs } from "@/lib/data";
 
-export default function Page() {
+export default async function Page() {
+  const sources = await getSourcesWithOutputs(30);
   return (
     <div className="flex flex-col w-full">
       <IntakeHeader />
@@ -16,7 +18,7 @@ export default function Page() {
         </div>
         <IntakeProtocol />
       </div>
-      <IngestionList />
+      <IngestionList sources={sources} />
     </div>
   );
 }

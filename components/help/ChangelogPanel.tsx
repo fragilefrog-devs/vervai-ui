@@ -8,24 +8,24 @@ type ChangelogEntry = {
 const CHANGELOG_ENTRIES: ChangelogEntry[] = [
   {
     dotClass: "bg-primary",
-    title: "Whisper-v3 Diarization",
-    time: "Yesterday",
+    title: "Speaker Diarization",
+    time: "Core",
     description:
-      "Overlapping speaker isolation and real-time noise reduction under heavy background hiss.",
+      "Overlapping speaker isolation and noise reduction for multi-guest recordings.",
   },
   {
     dotClass: "bg-secondary",
     title: "Blueprint Clustering",
-    time: "3 days ago",
+    time: "Core",
     description:
-      "Auto-groups key topics across multiple 60-minute podcast episodes into singular editorial arches.",
+      "Auto-groups key topics across long episodes into singular editorial arches.",
   },
   {
     dotClass: "bg-tertiary",
     title: "Zero-Egress Vector Vault",
-    time: "1 week ago",
+    time: "Core",
     description:
-      "Local enterprise storage integration ensuring no model training on client input transcripts.",
+      "Isolated storage ensuring no model training on your input transcripts.",
   },
 ];
 
@@ -39,8 +39,7 @@ export default function ChangelogPanel() {
               <span className="material-symbols-outlined text-[18px]">history</span>
             </div>
             <div>
-              <h2 className="font-headline-md text-headline-md text-on-surface">Recent Changelog</h2>
-              <p className="font-body-sm text-body-sm text-on-surface-variant">Build 2024.11-rc4</p>
+              <h2 className="font-headline-md text-headline-md text-on-surface">Product Highlights</h2>
             </div>
           </div>
           <span className="px-2 py-0.5 rounded bg-tertiary-container text-on-tertiary font-caption-bold text-caption-bold">

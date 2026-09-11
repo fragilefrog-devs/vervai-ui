@@ -1,47 +1,7 @@
-type Angle = {
-  number: string;
-  heat: string;
-  heatClass: string;
-  score: string;
-  title: string;
-  description: string;
-  footer: { label: string; action: string | null };
-};
+import { timeAgo, type IdeaRow } from "@/lib/data";
 
-const ANGLES: Angle[] = [
-  {
-    number: "01",
-    heat: "High Heat",
-    heatClass: "text-primary",
-    score: "Score: 9.4/10",
-    title: "“Why seed capital makes founders hire people they don't need.”",
-    description:
-      "Dissects the psychological trap of equating team size with company trajectory, directly citing the 18-month burn ramp.",
-    footer: { label: "Selected in Plan", action: null },
-  },
-  {
-    number: "02",
-    heat: "Tactical",
-    heatClass: "text-secondary",
-    score: "Score: 8.8/10",
-    title: "“How we run 80 customer interviews in 14 days without burnout.”",
-    description:
-      "A precise operational SOP covering automated Calendly-to-Notion ingestion workflows and structured 15-minute question sets.",
-    footer: { label: "Reserve Queue", action: "+ Add to Plan" },
-  },
-  {
-    number: "03",
-    heat: "Storytelling",
-    heatClass: "text-secondary",
-    score: "Score: 8.2/10",
-    title: "“The single dashboard metric that forced us to pivot in Week 9.”",
-    description:
-      "Personal narrative revealing the emotional realization when active cohort retention plummeted to 4% despite strong signups.",
-    footer: { label: "Reserve Queue", action: "+ Add to Plan" },
-  },
-];
-
-export default function AngleReservoir() {
+export default function AngleReservoir({ ideas }: { ideas: IdeaRow[] }) {
+  const count = ideas.length;
   return (
     <section className="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-space-sm mb-space-md">
@@ -50,7 +10,9 @@ export default function AngleReservoir() {
             Candidate Angle Reservoir
           </h3>
           <p className="font-body-sm text-body-sm text-secondary">
-            Autonomous extraction identified 5 viable narrative hooks from this conversation
+            {count > 0
+              ? `${count} angle${count === 1 ? "" : "s"} surfaced by the agent from ingested sources`
+              : "Angles detected from ingested sources appear here."}
           </p>
         </div>
         <button
@@ -61,42 +23,63 @@ export default function AngleReservoir() {
           <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
         </button>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-space-md">
-        {ANGLES.map((angle) => (
-          <div
-            key={angle.number}
-            className="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col justify-between"
-          >
-            <div>
-              <div className="flex items-center justify-between mb-space-xs">
-                <span className={`font-label-caps text-[10px] uppercase font-bold ${angle.heatClass}`}>
-                  Angle {angle.number} • {angle.heat}
-                </span>
-                <span className="font-label-caps text-[10px] text-secondary">{angle.score}</span>
+      {ideas.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+          {ideas.map((idea, i) => {
+            const approved = idea.approved;
+            const formatCount = idea.suggested_formats.length;
+            const formatLabel =
+              formatCount > 0
+                ? `${formatCount} ${formatCount === 1 ? "format" : "formats"}`
+                : "No formats proposed";
+            return (
+              <div
+                key={idea.id}
+                className="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-space-xs">
+                    <span
+                      className={`font-label-caps text-[10px] uppercase font-bold ${approved ? "text-primary" : "text-secondary"}`}
+                    >
+                      Angle {String(i + 1).padStart(2, "0")} • {approved ? "Approved" : "Candidate"}
+                    </span>
+                    <span className="font-label-caps text-[10px] text-secondary">
+                      {formatLabel}
+                    </span>
+                  </div>
+                  <p className="font-caption-bold text-caption-bold text-on-surface mb-1">
+                    {idea.title}
+                  </p>
+                  <p className="font-body-sm text-[12px] text-on-surface-variant line-clamp-2">
+                    {idea.rationale ?? idea.description ?? "No rationale recorded for this angle."}
+                  </p>
+                </div>
+                <div className="mt-space-md pt-space-xs flex items-center justify-between">
+                  <span className="font-label-caps text-[10px] text-secondary">
+                    {approved ? "Included in plan" : `Surfaced ${timeAgo(idea.created_at)}`}
+                  </span>
+                  {approved ? (
+                    <span className="material-symbols-outlined text-[16px] text-primary">check</span>
+                  ) : (
+                    <button
+                      className="font-label-caps text-[10px] font-bold text-primary hover:underline"
+                      type="button"
+                    >
+                      Add to Plan
+                    </button>
+                  )}
+                </div>
               </div>
-              <p className="font-caption-bold text-caption-bold text-on-surface mb-1">
-                {angle.title}
-              </p>
-              <p className="font-body-sm text-[12px] text-on-surface-variant line-clamp-2">
-                {angle.description}
-              </p>
-            </div>
-            <div className="mt-space-md pt-space-xs flex items-center justify-between">
-              <span className="font-label-caps text-[10px] text-secondary">{angle.footer.label}</span>
-              {angle.footer.action ? (
-                <button
-                  className="font-label-caps text-[10px] font-bold text-primary hover:underline"
-                  type="button"
-                >
-                  {angle.footer.action}
-                </button>
-              ) : (
-                <span className="material-symbols-outlined text-[16px] text-primary">check</span>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="rounded-lg bg-surface-container-low p-space-lg text-center text-secondary font-body-sm text-body-sm">
+          No candidate angles yet. Once sources are transcribed, the agent surfaces narrative hooks
+          here.
+        </div>
+      )}
     </section>
   );
 }

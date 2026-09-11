@@ -69,6 +69,34 @@ export type ConnectionsState = {
   drive: { drive_name: string; drive_email: string; created_at: string } | null;
 };
 
+export type AgentRunRow = {
+  id: string;
+  source_id: string | null;
+  mode: string | null;
+  status: string | null;
+  plan: Record<string, unknown> | null;
+  created_at: string;
+};
+
+export type AgentPreferencesRow = {
+  auto_mode: boolean;
+  brand_tone: string | null;
+  brand_forbidden_phrases: string[] | null;
+  brand_examples: string[] | null;
+  brand_samples: string[] | null;
+};
+
+export type ProfileRow = {
+  user_id: string | null;
+  plan: string | null;
+  plan_status: string | null;
+};
+
+export type RunStatusRow = {
+  status: string | null;
+  count: number;
+};
+
 const MIN = 60_000;
 const HOUR = 3_600_000;
 const DAY = 86_400_000;
@@ -226,4 +254,54 @@ export async function getConnectionsState(): Promise<ConnectionsState> {
         }
       : null,
   };
+}
+
+export async function getAgentRuns(limit = 20): Promise<AgentRunRow[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("v4_agent_runs")
+    .select("id,source_id,mode,status,plan,created_at")
+    .order("created_at", { ascending: false })
+    .limit(limit);
+  if (error) return [];
+  return (data ?? []) as AgentRunRow[];
+}
+
+export async function getAgentPreferences(): Promise<AgentPreferencesRow | null> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("v4_agent_preferences")
+    .select("auto_mode,brand_tone,brand_forbidden_phrases,brand_examples,brand_samples")
+    .limit(1)
+    .maybeSingle();
+  if (error) return null;
+  return (data ?? null) as AgentPreferencesRow | null;
+}
+
+export async function getProfile(): Promise<ProfileRow | null> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("user_id,plan,plan_status")
+    .limit(1)
+    .maybeSingle();
+  if (error) return null;
+  return (data ?? null) as ProfileRow | null;
+}
+
+export async function getRunStatusCounts(): Promise<RunStatusRow[]> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("v4_agent_runs")
+    .select("status")
+    .limit(1000);
+  if (error) return [];
+  const counts = new Map<string, number>();
+  for (const row of data ?? []) {
+    const key = row.status ?? "unknown";
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+  return Array.from(counts.entries())
+    .map(([status, count]) => ({ status, count }))
+    .sort((a, b) => b.count - a.count);
 }

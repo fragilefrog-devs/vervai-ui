@@ -2,31 +2,82 @@
 
 import { useState } from "react";
 import Toggle from "@/components/ui/Toggle";
-import Select from "@/components/ui/Select";
-import Slider from "@/components/ui/Slider";
+import type { AgentPreferencesRow } from "@/lib/data";
 
-const BLUEPRINTS = [
-  "Preset: High-Growth Founder Suite (1 Essay, 1 Newsletter, 3 Short-form scripts, 1 Infographic)",
-  "Preset: B2B Thought Leader (1 Whitepaper Brief, 2 LinkedIn Articles, 5 Micro-posts)",
-  "Preset: Podcaster Amplifier (Full Show Notes, 1 Deep Dive, 4 Audiogram Quotes, 1 Timestamp Index)",
-  "Preset: Developer Evangelist (1 Tech Teardown, 3 Code Highlights, 1 TL;DR Summary)",
-];
+type AgentDefaultsProps = {
+  prefs?: AgentPreferencesRow | null;
+};
 
-export default function AgentDefaults() {
-  const [autoMatrix, setAutoMatrix] = useState(true);
-  const [diarization, setDiarization] = useState(true);
-  const [blueprint, setBlueprint] = useState(BLUEPRINTS[0]);
-  const [threshold, setThreshold] = useState(90);
+type ListMode = "phrases" | "examples" | "samples";
+
+export default function AgentDefaults({ prefs }: AgentDefaultsProps) {
+  const [autoMode, setAutoMode] = useState(prefs?.auto_mode ?? false);
+  const [tone, setTone] = useState(prefs?.brand_tone ?? "");
+  const [forbidden, setForbidden] = useState<string[]>(prefs?.brand_forbidden_phrases ?? []);
+  const [examples, setExamples] = useState<string[]>(prefs?.brand_examples ?? []);
+  const [samples, setSamples] = useState<string[]>(prefs?.brand_samples ?? []);
 
   const reset = () => {
-    setAutoMatrix(true);
-    setDiarization(true);
-    setBlueprint(BLUEPRINTS[0]);
-    setThreshold(90);
+    setAutoMode(false);
+    setTone("");
+    setForbidden([]);
+    setExamples([]);
+    setSamples([]);
+  };
+
+  const ListSection = ({ mode }: { mode: ListMode }) => {
+    const items = mode === "phrases" ? forbidden : mode === "examples" ? examples : samples;
+    const setItems =
+      mode === "phrases" ? setForbidden : mode === "examples" ? setExamples : setSamples;
+    const title =
+      mode === "phrases"
+        ? "Forbidden Phrases"
+        : mode === "examples"
+          ? "Brand Examples"
+          : "Brand Samples";
+    const singular = mode === "phrases" ? "phrase" : mode === "examples" ? "example" : "sample";
+
+    return (
+      <div className="flex flex-col p-space-md bg-surface-container-low rounded-xl gap-2">
+        <div className="flex items-center justify-between">
+          <span className="font-headline-sm text-headline-sm text-on-surface">{title}</span>
+          <span className="font-caption-bold text-caption-bold text-primary font-semibold">
+            {items.length}
+          </span>
+        </div>
+        {items.length > 0 ? (
+          <div className="flex flex-wrap gap-1.5">
+            {items.map((item) => (
+              <span
+                key={item}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container-highest text-on-surface font-caption-bold text-caption-bold"
+              >
+                {item}
+                <button
+                  className="text-outline hover:text-error transition-colors"
+                  type="button"
+                  aria-label={`Remove ${item}`}
+                  onClick={() => setItems(items.filter((i) => i !== item))}
+                >
+                  <span className="material-symbols-outlined text-[14px]">close</span>
+                </button>
+              </span>
+            ))}
+          </div>
+        ) : (
+          <p className="font-body-sm text-body-sm text-on-surface-variant">
+            No {singular}s configured.
+          </p>
+        )}
+      </div>
+    );
   };
 
   return (
-    <section className="lg:col-span-7 bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col justify-between gap-space-lg">
+    <section
+      id="agent-defaults"
+      className="lg:col-span-7 bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col justify-between gap-space-lg scroll-mt-8"
+    >
       <div className="flex flex-col gap-space-md">
         <div className="flex items-center justify-between pb-space-xs">
           <div className="flex items-center gap-3">
@@ -38,119 +89,53 @@ export default function AgentDefaults() {
                 Autonomous Agent Default Behaviors
               </h2>
               <p className="font-body-sm text-body-sm text-on-surface-variant">
-                Calibrate ingestion triggers, output sets, and automated governance.
+                Defaults the agent uses when processing new source content.
               </p>
             </div>
           </div>
-          <span className="px-2.5 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-caption-bold text-caption-bold">
-            v3.2 Core
-          </span>
         </div>
         <div className="space-y-space-md">
           <div className="flex items-start justify-between p-space-md bg-surface-container-low rounded-xl gap-space-md">
             <div className="flex flex-col">
               <span className="font-headline-sm text-headline-sm text-on-surface">
-                Auto-start Opportunity Matrix upon intake completion
+                Autonomous mode
               </span>
               <span className="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
-                Launches semantic decomposition immediately when audio, video, or long-form copy
-                completes ingestion.
+                Start processing automatically when new source content arrives.
               </span>
             </div>
             <div className="shrink-0 mt-1">
-              <Toggle checked={autoMatrix} onChange={setAutoMatrix} />
+              <Toggle checked={autoMode} onChange={setAutoMode} />
             </div>
           </div>
           <div className="flex flex-col p-space-md bg-surface-container-low rounded-xl gap-2">
-            <div className="flex items-center justify-between">
-              <span className="font-headline-sm text-headline-sm text-on-surface">
-                Default Output Target Blueprint
-              </span>
-              <span className="font-caption-bold text-caption-bold text-primary font-semibold">
-                Active Strategy
-              </span>
-            </div>
+            <label
+              className="font-headline-sm text-headline-sm text-on-surface"
+              htmlFor="agent-brand-tone"
+            >
+              Brand Tone
+            </label>
             <p className="font-body-sm text-body-sm text-on-surface-variant">
-              Defines the default matrix of content artifacts generated for incoming sources.
+              Free-text description of your brand voice used by the agent.
             </p>
-            <div className="mt-1">
-              <Select
-                value={blueprint}
-                onChange={(e) => setBlueprint(e.target.value)}
-                options={BLUEPRINTS.map((label) => ({ value: label, label }))}
-                className="w-full"
-              />
-            </div>
+            <textarea
+              id="agent-brand-tone"
+              className="p-3 bg-surface-container-lowest text-on-surface font-body-sm text-body-sm rounded-lg outline-none focus:shadow-sm focus:bg-surface-container-highest transition-all resize-none placeholder:text-outline"
+              rows={3}
+              placeholder="No brand tone configured"
+              value={tone}
+              onChange={(e) => setTone(e.target.value)}
+            />
           </div>
-          <div className="flex items-start justify-between p-space-md bg-surface-container-low rounded-xl gap-space-md">
-            <div className="flex flex-col">
-              <div className="flex items-center gap-2">
-                <span className="font-headline-sm text-headline-sm text-on-surface">
-                  Autonomous Diarization
-                </span>
-                <span className="font-caption-bold text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant">
-                  Whisper-v3 Large
-                </span>
-              </div>
-              <span className="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
-                Always isolate multiple speaker channels with acoustic timestamps for precise quote
-                attribution.
-              </span>
-            </div>
-            <div className="shrink-0 mt-1">
-              <Toggle checked={diarization} onChange={setDiarization} />
-            </div>
-          </div>
-          <div className="flex items-start justify-between p-space-md bg-secondary-container/40 rounded-xl gap-space-md">
-            <div className="flex flex-col">
-              <div className="flex items-center gap-2 text-on-secondary-fixed">
-                <span className="material-symbols-outlined text-[16px] text-tertiary">lock</span>
-                <span className="font-headline-sm text-headline-sm">Human Sign-off Guardrail</span>
-              </div>
-              <span className="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
-                Require explicit one-click human approval before any asset is moved to Distribution
-                queue.
-              </span>
-            </div>
-            <div className="flex items-center gap-2 mt-1">
-              <span className="font-caption-bold text-caption-bold text-tertiary">
-                Permanently Enforced
-              </span>
-              <Toggle checked disabled />
-            </div>
-          </div>
-          <div className="p-space-md bg-surface-container-low rounded-xl flex flex-col gap-2">
-            <div className="flex items-center justify-between">
-              <div className="flex flex-col">
-                <span className="font-headline-sm text-headline-sm text-on-surface">
-                  Content Confidence Threshold
-                </span>
-                <span className="font-body-sm text-body-sm text-on-surface-variant">
-                  Flag any synthesized draft scoring below target for mandatory deep review.
-                </span>
-              </div>
-              <span className="font-headline-lg text-headline-lg text-primary font-bold px-2.5 py-1 bg-primary-fixed rounded-lg">
-                {threshold}%
-              </span>
-            </div>
-            <div className="w-full flex items-center gap-4 mt-2">
-              <span className="font-caption-bold text-caption-bold text-outline">70%</span>
-              <Slider
-                min={70}
-                max={100}
-                step={1}
-                value={threshold}
-                onChange={(e) => setThreshold(Number(e.target.value))}
-                className="flex-1"
-              />
-              <span className="font-caption-bold text-caption-bold text-on-surface font-semibold">
-                100%
-              </span>
-            </div>
-          </div>
+          <ListSection mode="phrases" />
+          <ListSection mode="examples" />
+          <ListSection mode="samples" />
         </div>
       </div>
-      <div className="pt-2 flex justify-end">
+      <div className="pt-2 flex flex-wrap items-center justify-end gap-space-sm">
+        <span className="font-body-sm text-[12px] text-on-surface-variant mr-auto">
+          Changes are applied locally and are not saved to the server yet.
+        </span>
         <button
           className="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium transition-all"
           type="button"

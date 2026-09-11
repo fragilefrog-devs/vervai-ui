@@ -1,4 +1,11 @@
-type CreditCard = {
+type Props = {
+  sourceCount: number;
+  outputCount: number;
+  jobCount: number;
+  publishedCount: number;
+};
+
+type StatCard = {
   label: string;
   title: string;
   icon: string;
@@ -11,61 +18,74 @@ type CreditCard = {
   barClass: string;
   barWidth: string;
   footerLeft: string;
-  footerRight: string;
 };
 
-const CREDIT_CARDS: CreditCard[] = [
-  {
-    label: "Primary Computation",
-    title: "Synthesis Credits",
-    icon: "bolt",
-    iconClass: "bg-primary-fixed text-on-primary-fixed",
-    value: "12",
-    total: "/ 20",
-    totalClass: "font-headline-lg text-headline-lg text-on-surface-variant",
-    badge: "60% used",
-    badgeClass: "bg-primary-fixed text-primary",
-    barClass: "bg-primary-container",
-    barWidth: "60%",
-    footerLeft: "Multi-agent allocation healthy",
-    footerRight: "Audit logs",
-  },
-  {
-    label: "Audio & Video Streams",
-    title: "Whisper-v3 Diarization",
-    icon: "mic",
-    iconClass: "bg-secondary-fixed text-on-secondary-fixed",
-    value: "13.4",
-    total: "/ 20.0 hrs",
-    totalClass: "font-headline-lg text-headline-lg text-on-surface-variant",
-    badge: "67% parsed",
-    badgeClass: "bg-secondary-fixed text-secondary",
-    barClass: "bg-secondary",
-    barWidth: "67%",
-    footerLeft: "7 podcasts, 4 Zoom calls, 6 Looms",
-    footerRight: "check",
-  },
-  {
-    label: "High-Dimension Store",
-    title: "Vector Memory & Index",
-    icon: "hub",
-    iconClass: "bg-tertiary-fixed text-on-tertiary-fixed",
-    value: "428,102",
-    total: "/ 1M",
-    totalClass: "font-headline-sm text-headline-sm text-on-surface-variant",
-    badge: "Optimal",
-    badgeClass: "bg-tertiary-fixed text-tertiary",
-    barClass: "bg-tertiary-container",
-    barWidth: "42.8%",
-    footerLeft: "Supabase pgvector tenant: us-east-1",
-    footerRight: "1.8ms lat",
-  },
-];
+export default function CreditCards({
+  sourceCount,
+  outputCount,
+  jobCount,
+  publishedCount,
+}: Props) {
+  const cards: StatCard[] = [
+    {
+      label: "Content Pipeline",
+      title: "Sources Ingested",
+      icon: "database",
+      iconClass: "bg-primary-fixed text-on-primary-fixed",
+      value: String(sourceCount),
+      total: "total",
+      totalClass: "font-headline-lg text-headline-lg text-on-surface-variant",
+      badge: `${outputCount} outputs`,
+      badgeClass: "bg-primary-fixed text-primary",
+      barClass: "bg-primary-container",
+      barWidth:
+        sourceCount > 0
+          ? `${Math.min(100, (outputCount / Math.max(sourceCount, 1)) * 100)}%`
+          : "0%",
+      footerLeft: "Active content sources",
+    },
+    {
+      label: "Distribution",
+      title: "Posts Published",
+      icon: "send",
+      iconClass: "bg-secondary-fixed text-on-secondary-fixed",
+      value: String(publishedCount),
+      total: `of ${jobCount} jobs`,
+      totalClass: "font-headline-lg text-headline-lg text-on-surface-variant",
+      badge:
+        jobCount > 0
+          ? `${Math.round((publishedCount / jobCount) * 100)}% live`
+          : "No jobs",
+      badgeClass: "bg-secondary-fixed text-secondary",
+      barClass: "bg-secondary",
+      barWidth: jobCount > 0 ? `${(publishedCount / jobCount) * 100}%` : "0%",
+      footerLeft: "Across all platforms",
+    },
+    {
+      label: "Outputs",
+      title: "Generated Content",
+      icon: "speed",
+      iconClass: "bg-tertiary-fixed text-on-tertiary-fixed",
+      value: String(outputCount),
+      total: "outputs",
+      totalClass: "font-headline-sm text-headline-sm text-on-surface-variant",
+      badge:
+        sourceCount > 0
+          ? `${(outputCount / sourceCount).toFixed(1)} per source`
+          : "No data",
+      badgeClass: "bg-tertiary-fixed text-tertiary",
+      barClass: "bg-tertiary-container",
+      barWidth:
+        sourceCount > 0
+          ? `${Math.min(100, (outputCount / sourceCount) * 25)}%`
+          : "0%",
+      footerLeft: "Deliverables across all formats",
+    },
+  ];
 
-export default function CreditCards() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-      {CREDIT_CARDS.map((card) => (
+      {cards.map((card) => (
         <div
           key={card.title}
           className="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden group"
@@ -103,29 +123,18 @@ export default function CreditCards() {
                 style={{ width: card.barWidth }}
               ></div>
             </div>
-            <div className="flex justify-between items-center text-on-surface-variant font-caption-bold text-caption-bold">
-              <span>Cycle resets Nov 01 (in 9d)</span>
-              <span>8 units deployed</span>
-            </div>
           </div>
           <div className="mt-space-md pt-space-sm bg-surface-container-low -mx-space-lg -mb-space-lg px-space-lg py-2.5 flex items-center justify-between text-on-surface-variant">
             <span className="font-body-sm text-body-sm flex items-center gap-1 truncate">
               <span className="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
               {card.footerLeft}
             </span>
-            {card.footerRight === "check" ? (
-              <span className="material-symbols-outlined text-tertiary text-[18px]" title="Zero transcription backlogs">
-                check_circle
-              </span>
-            ) : (
-              <a
-                className="font-caption-bold text-caption-bold text-primary hover:underline flex items-center gap-0.5"
-                href="#ledger"
-              >
-                {card.footerRight}
-                <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
-              </a>
-            )}
+            <span
+              className="material-symbols-outlined text-tertiary text-[18px]"
+              title="Healthy"
+            >
+              check_circle
+            </span>
           </div>
         </div>
       ))}

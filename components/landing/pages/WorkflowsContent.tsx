@@ -71,9 +71,9 @@ export default function WorkflowsContent() {
               </div>
               <div className="lg:col-span-7 bg-surface-container rounded-xl p-6 shadow-inner space-y-4">
                 <div className="flex items-center justify-between pb-3 bg-surface-container">
-                  <span className="font-caption-bold text-caption-bold uppercase text-secondary tracking-wider">Live Ingestion Hopper</span>
+                  <span className="font-caption-bold text-caption-bold uppercase text-secondary tracking-wider">Ingestion Workspace</span>
                   <span className="inline-flex items-center gap-1.5 font-caption-bold text-caption-bold text-tertiary bg-surface-container-lowest px-2 py-0.5 rounded shadow-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse" /> Ready for Stream
+                    <span className="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse" /> Add Source
                   </span>
                 </div>
                 <div className="bg-surface-container-lowest p-8 rounded-lg shadow-sm text-center flex flex-col items-center justify-center space-y-3 cursor-pointer hover:bg-surface-bright transition-colors">
@@ -96,14 +96,11 @@ export default function WorkflowsContent() {
                       <Icon name="mic" size={20} className="text-secondary" />
                       <span className="font-body-medium text-body-medium text-on-surface font-semibold">founder-memo-q4-strategy.m4a</span>
                     </div>
-                    <span className="font-caption-bold text-caption-bold text-secondary">14.2 MB</span>
-                  </div>
-                  <div className="w-full bg-surface-container h-2 rounded-full overflow-hidden">
-                    <div className="bg-primary-container h-full w-4/5 rounded-full transition-all" />
+                    <span className="font-caption-bold text-caption-bold text-secondary">Voice or Video Source</span>
                   </div>
                   <div className="flex items-center justify-between font-caption-bold text-caption-bold text-on-surface-variant">
-                    <span>Diarizing speakers (Whisper-v3)</span>
-                    <span>80% • ~4s left</span>
+                    <span>Whisper-v3 Diarization</span>
+                    <span>Multi-Speaker</span>
                   </div>
                 </div>
               </div>
@@ -115,7 +112,7 @@ export default function WorkflowsContent() {
                 <div className="flex items-center justify-between pb-3 bg-surface-container">
                   <span className="font-caption-bold text-caption-bold uppercase text-secondary tracking-wider">Orthogonal Multi-Agent Topology</span>
                   <span className="inline-flex items-center px-2 py-0.5 rounded font-caption-bold text-caption-bold bg-primary-fixed text-on-primary-fixed">
-                    4 Active Workers
+                    Agent Quorum
                   </span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -127,7 +124,7 @@ export default function WorkflowsContent() {
                     <h4 className="font-headline-sm text-headline-sm text-on-surface">The Dialectician</h4>
                     <p className="font-body-sm text-body-sm text-on-surface-variant">Identifies counter-intuitive assertions, steel-mans opposing market narratives, and isolates contrarian hooks.</p>
                     <div className="pt-2 text-primary font-caption-bold text-caption-bold flex items-center gap-1">
-                      <span>Confidence 98.4%</span>
+                      <span>Hooks & Counterpoints</span>
                       <Icon name="verified" size={14} />
                     </div>
                   </div>
@@ -139,7 +136,7 @@ export default function WorkflowsContent() {
                     <h4 className="font-headline-sm text-headline-sm text-on-surface">Framework Synthesizer</h4>
                     <p className="font-body-sm text-body-sm text-on-surface-variant">Extracts atomic execution steps, generates conceptual diagrams, and models operational playbooks.</p>
                     <div className="pt-2 text-primary font-caption-bold text-caption-bold flex items-center gap-1">
-                      <span>Confidence 96.1%</span>
+                      <span>Playbooks & Diagrams</span>
                       <Icon name="verified" size={14} />
                     </div>
                   </div>
@@ -151,7 +148,7 @@ export default function WorkflowsContent() {
                     <h4 className="font-headline-sm text-headline-sm text-on-surface">Cadence Architect</h4>
                     <p className="font-body-sm text-body-sm text-on-surface-variant">Lints rhythm, enforces variable sentence length, and applies your sovereign brand voice corpus vector weights.</p>
                     <div className="pt-2 text-primary font-caption-bold text-caption-bold flex items-center gap-1">
-                      <span>Confidence 99.2%</span>
+                      <span>Rhythm & Voice Lint</span>
                       <Icon name="verified" size={14} />
                     </div>
                   </div>
@@ -163,7 +160,7 @@ export default function WorkflowsContent() {
                     <h4 className="font-headline-sm text-headline-sm text-on-surface">Native Platform Transmuter</h4>
                     <p className="font-body-sm text-body-sm text-on-surface-variant">Outputs tailored formatting for LinkedIn Carousels, X threads, Substack essays, and internal changelogs.</p>
                     <div className="pt-2 text-primary font-caption-bold text-caption-bold flex items-center gap-1">
-                      <span>Confidence 97.8%</span>
+                      <span>Channel-Native Formats</span>
                       <Icon name="verified" size={14} />
                     </div>
                   </div>
@@ -207,26 +204,26 @@ export default function WorkflowsContent() {
               <div className="lg:col-span-7 bg-surface-container rounded-xl p-6 shadow-inner space-y-4">
                 <div className="flex items-center justify-between pb-3 bg-surface-container">
                   <span className="font-caption-bold text-caption-bold uppercase text-secondary tracking-wider">Candidate Sign-Off Rail</span>
-                  <span className="font-caption-bold text-caption-bold text-on-surface-variant">3 Items Awaiting Review</span>
+                  <span className="font-caption-bold text-caption-bold text-on-surface-variant">Awaiting Your Review</span>
                 </div>
                 <div className="bg-surface-container-lowest p-5 rounded-lg shadow-sm space-y-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-caption-bold text-caption-bold">LinkedIn Architecture Post</span>
-                      <span className="text-secondary font-caption-bold text-caption-bold">• Derived from Memo #42</span>
+                      <span className="text-secondary font-caption-bold text-caption-bold">• Derived from your source</span>
                     </div>
                     <span className="text-tertiary font-caption-bold text-caption-bold flex items-center gap-1">
-                      <span className="w-2 h-2 rounded-full bg-tertiary" /> 99.4% Voice Match
+                      <span className="w-2 h-2 rounded-full bg-tertiary" /> Voice-Matched
                     </span>
                   </div>
                   <div className="bg-surface-container-low p-3.5 rounded text-on-surface font-body-sm text-body-sm space-y-1.5">
-                    <p className="font-semibold text-on-surface">&quot;Most founders mistake prompt engineering for product design...&quot;</p>
-                    <p className="text-on-surface-variant">True sovereign advantage comes from owning your orchestration checkpoints and local feedback loops, not from rented wrapper interfaces.</p>
+                    <p className="font-semibold text-on-surface">&quot;Your draft appears here — written to match your calibrated voice.&quot;</p>
+                    <p className="text-on-surface-variant">Every draft is drafted from your source material with citations you can verify before approving.</p>
                   </div>
                   <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
                     <div className="flex items-center gap-2">
-                      <span className="px-2 py-1 bg-surface-container rounded font-caption-bold text-caption-bold text-secondary">0 Banned Words</span>
-                      <span className="px-2 py-1 bg-surface-container rounded font-caption-bold text-caption-bold text-secondary">Dynamic Rhythm: High</span>
+                      <span className="px-2 py-1 bg-surface-container rounded font-caption-bold text-caption-bold text-secondary">No Banned Words</span>
+                      <span className="px-2 py-1 bg-surface-container rounded font-caption-bold text-caption-bold text-secondary">Dynamic Rhythm: Varied</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <button type="button" className="px-3 py-1.5 rounded-lg font-body-medium text-body-medium bg-surface-container-highest text-on-surface hover:bg-surface-variant transition-colors">
@@ -351,9 +348,9 @@ export default function WorkflowsContent() {
             <div className="space-y-3">
               <span className="font-caption-bold text-caption-bold uppercase text-secondary">Synthesis Matrix</span>
               <h4 className="font-headline-md text-headline-md text-on-surface">Agent Extraction Vectors</h4>
-              <p className="font-body-sm text-body-sm text-on-surface-variant">Isolates 3 pricing thesis points, creates a mathematical cost-comparison model, and identifies a contrarian title hook.</p>
+              <p className="font-body-sm text-body-sm text-on-surface-variant">Isolates pricing thesis points, surfaces a cost-comparison angle, and identifies a contrarian title hook.</p>
               <div className="p-3 bg-surface-container-low rounded-lg font-caption-bold text-caption-bold text-primary flex items-center gap-2">
-                <Icon name="insights" size={18} /> 4 Candidate Variants Compiled
+                <Icon name="insights" size={18} /> Candidate Variants Compiled
               </div>
             </div>
             <div className="space-y-3">
@@ -361,13 +358,13 @@ export default function WorkflowsContent() {
               <h4 className="font-headline-md text-headline-md text-on-surface">Ready For Dispatch</h4>
               <ul className="space-y-2 font-body-sm text-body-sm text-on-surface">
                 <li className="flex items-center gap-2">
-                  <Icon name="article" size={18} className="text-tertiary" /> 1 Deep-Dive Substack Essay (1,400w)
+                  <Icon name="article" size={18} className="text-tertiary" /> Deep-Dive Substack Essay
                 </li>
                 <li className="flex items-center gap-2">
-                  <Icon name="share" size={18} className="text-tertiary" /> 1 Punchy LinkedIn Thought-Lead Post
+                  <Icon name="share" size={18} className="text-tertiary" /> Punchy LinkedIn Thought-Lead Post
                 </li>
                 <li className="flex items-center gap-2">
-                  <Icon name="videocam" size={18} className="text-tertiary" /> 3 Script Outlines for YouTube Shorts
+                  <Icon name="videocam" size={18} className="text-tertiary" /> Script Outlines for YouTube Shorts
                 </li>
               </ul>
             </div>
@@ -386,9 +383,9 @@ export default function WorkflowsContent() {
             <div className="space-y-3">
               <span className="font-caption-bold text-caption-bold uppercase text-secondary">Synthesis Matrix</span>
               <h4 className="font-headline-md text-headline-md text-on-surface">Agent Extraction Vectors</h4>
-              <p className="font-body-sm text-body-sm text-on-surface-variant">Diarizes 6 individual speakers, segments team commitments from high-level vision, and extracts unblocked release milestones.</p>
+              <p className="font-body-sm text-body-sm text-on-surface-variant">Diarizes every speaker, segments team commitments from high-level vision, and extracts unblocked release milestones.</p>
               <div className="p-3 bg-surface-container-low rounded-lg font-caption-bold text-caption-bold text-primary flex items-center gap-2">
-                <Icon name="hub" size={18} /> 6 Speakers Resolved
+                <Icon name="hub" size={18} /> All Speakers Resolved
               </div>
             </div>
             <div className="space-y-3">
@@ -396,13 +393,13 @@ export default function WorkflowsContent() {
               <h4 className="font-headline-md text-headline-md text-on-surface">Ready For Dispatch</h4>
               <ul className="space-y-2 font-body-sm text-body-sm text-on-surface">
                 <li className="flex items-center gap-2">
-                  <Icon name="mark_email_read" size={18} className="text-tertiary" /> 1 Internal Executive Memo (Slack / Notion)
+                  <Icon name="mark_email_read" size={18} className="text-tertiary" /> Internal Executive Memo (Slack / Notion)
                 </li>
                 <li className="flex items-center gap-2">
-                  <Icon name="code" size={18} className="text-tertiary" /> 1 Public Engineering Changelog Post
+                  <Icon name="code" size={18} className="text-tertiary" /> Public Engineering Changelog Post
                 </li>
                 <li className="flex items-center gap-2">
-                  <Icon name="public" size={18} className="text-tertiary" /> 1 Culture / Milestone Post for LinkedIn
+                  <Icon name="public" size={18} className="text-tertiary" /> Culture / Milestone Post for LinkedIn
                 </li>
               </ul>
             </div>
@@ -421,7 +418,7 @@ export default function WorkflowsContent() {
             <div className="space-y-3">
               <span className="font-caption-bold text-caption-bold uppercase text-secondary">Synthesis Matrix</span>
               <h4 className="font-headline-md text-headline-md text-on-surface">Agent Extraction Vectors</h4>
-              <p className="font-body-sm text-body-sm text-on-surface-variant">Maps conversational pivots into 5 core themes, builds narrative timelines, and flags timestamped highlight clips.</p>
+              <p className="font-body-sm text-body-sm text-on-surface-variant">Maps conversational pivots into core themes, builds narrative timelines, and flags timestamped highlight clips.</p>
               <div className="p-3 bg-surface-container-low rounded-lg font-caption-bold text-caption-bold text-primary flex items-center gap-2">
                 <Icon name="auto_awesome" size={18} /> Full Broadcast Blueprint Built
               </div>
@@ -431,13 +428,13 @@ export default function WorkflowsContent() {
               <h4 className="font-headline-md text-headline-md text-on-surface">Ready For Dispatch</h4>
               <ul className="space-y-2 font-body-sm text-body-sm text-on-surface">
                 <li className="flex items-center gap-2">
-                  <Icon name="newspaper" size={18} className="text-tertiary" /> 1 Comprehensive Show-Notes Edition
+                  <Icon name="newspaper" size={18} className="text-tertiary" /> Comprehensive Show-Notes Edition
                 </li>
                 <li className="flex items-center gap-2">
-                  <Icon name="dynamic_feed" size={18} className="text-tertiary" /> 1 Comprehensive 8-Part X / Twitter Thread
+                  <Icon name="dynamic_feed" size={18} className="text-tertiary" /> Comprehensive X / Twitter Thread
                 </li>
                 <li className="flex items-center gap-2">
-                  <Icon name="view_carousel" size={18} className="text-tertiary" /> 2 PDF Carousel Slides for Executive Feeds
+                  <Icon name="view_carousel" size={18} className="text-tertiary" /> PDF Carousel Slides for Executive Feeds
                 </li>
               </ul>
             </div>
@@ -451,7 +448,7 @@ export default function WorkflowsContent() {
             <span className="font-caption-bold text-caption-bold text-primary-fixed uppercase tracking-wider">Zero Commitment Ingestion</span>
             <h3 className="font-display-xl text-display-xl tracking-tight text-on-primary">See the protocol live in action. Try your first source free.</h3>
             <p className="font-body-base text-body-base text-primary-fixed">
-              Drop a voice memo or a YouTube URL. Our agent quorum will return 3 platform-native drafts in under 90 seconds.
+              Drop a voice memo or a YouTube URL. Our agent quorum returns platform-native drafts for your review.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto relative z-10">

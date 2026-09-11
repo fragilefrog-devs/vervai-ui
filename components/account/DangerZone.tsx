@@ -7,38 +7,33 @@ type DangerAction = {
   titleClass: string;
   description: ReactNode;
   action: { icon: string; label: string; className: string };
-  footerNote?: string;
 };
 
 const DANGER_ACTIONS: DangerAction[] = [
   {
     icon: "folder_zip",
     iconClass: "text-primary text-[18px]",
-    title: "Export Sovereign Creative Identity",
+    title: "Export Workspace Data",
     titleClass: "text-on-surface",
     description:
-      "Download a cryptographically signed bundle containing your fine-tuned prompt vectors, generation history, custom brand models, and audit logs formatted as an open standard JSON/Vector manifest.",
+      "Download an archive of your workspace sources, generated outputs, and saved configuration as an open JSON/Vector manifest.",
     action: {
       icon: "download",
-      label: "Export Vector Archive (2.4 GB)",
+      label: "Export Workspace Archive",
       className:
         "flex items-center gap-2 bg-surface-container-highest hover:bg-surface-dim text-on-surface font-body-medium text-body-medium px-4 py-2 rounded-lg transition-all active:scale-[0.98] shadow-sm",
     },
-    footerNote: "SHA-256 Verified",
   },
   {
     icon: "delete_forever",
     iconClass: "text-error text-[18px]",
-    title: "Irrevocable Profile & Seat Closure",
+    title: "Close Account",
     titleClass: "text-error",
-    description: (
-      <>
-        Closing your account purges your access from <strong>Acme Studio</strong>, revokes all personal tokens, transfers organization ownership to your secondary team administrator, and detaches linked identities.
-      </>
-    ),
+    description:
+      "Closing your account removes access to this workspace, revokes personal tokens, and detaches linked identities. This cannot be undone.",
     action: {
       icon: "close",
-      label: "Close Account & Revoke Keys",
+      label: "Close Account & Revoke Access",
       className:
         "flex items-center gap-1.5 bg-error text-on-error hover:bg-on-error-container font-body-medium text-body-medium px-4 py-2 rounded-lg transition-all active:scale-[0.98] shadow-sm",
     },
@@ -53,7 +48,7 @@ export default function DangerZone() {
           <span className="material-symbols-outlined text-error text-[20px]">warning</span>
           <div>
             <h2 className="font-headline-sm text-headline-sm text-on-surface">Data Sovereignty, Portability & Identity Deletion</h2>
-            <p className="font-body-sm text-[12px] text-on-surface-variant">Export immutable creative outputs or irrevocably close this personal profile node.</p>
+            <p className="font-body-sm text-[12px] text-on-surface-variant">Export your workspace content or irrevocably close this account.</p>
           </div>
         </div>
         <span className="font-caption-bold text-caption-bold text-error uppercase tracking-wide">Danger Zone</span>
@@ -66,14 +61,11 @@ export default function DangerZone() {
               <span>{item.title}</span>
             </div>
             <p className="font-body-sm text-body-sm text-on-surface-variant">{item.description}</p>
-            <div className="mt-2 flex items-center gap-space-sm">
+            <div className="mt-2">
               <button className={item.action.className} type="button">
                 <span className="material-symbols-outlined text-[18px]">{item.action.icon}</span>
                 <span>{item.action.label}</span>
               </button>
-              {item.footerNote && (
-                <span className="font-caption-bold text-[11px] text-on-surface-variant">{item.footerNote}</span>
-              )}
             </div>
           </div>
         ))}

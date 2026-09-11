@@ -1,5 +1,14 @@
 import Icon from "./Icon";
 
+function initialsFor(name: string): string {
+  const parts = name.split(/[\s._-]+/).filter(Boolean).slice(0, 2);
+  return (
+    parts
+      .map((p) => p[0]?.toUpperCase() ?? "")
+      .join("") || "?"
+  );
+}
+
 export default function Avatar({
   src,
   name,
@@ -12,13 +21,14 @@ export default function Avatar({
   className?: string;
 }) {
   if (!src) {
+    const initials = name ? initialsFor(name) : null;
     return (
       <span
-        aria-label={name}
+        aria-label={name || "avatar"}
         className={`inline-flex items-center justify-center rounded-full bg-primary-container text-on-primary-container font-caption-bold shrink-0 ${className}`}
-        style={{ width: size, height: size, fontSize: size * 0.42 }}
+        style={{ width: size, height: size, fontSize: size * 0.4 }}
       >
-        <Icon name="person" size={size * 0.6} />
+        {initials ?? <Icon name="person" size={size * 0.6} />}
       </span>
     );
   }

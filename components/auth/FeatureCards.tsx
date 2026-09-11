@@ -28,7 +28,7 @@ const FEATURES: FeatureCard[] = [
     icon: "sync_alt",
     iconClass: "text-secondary",
     title: "Native Buffer & LinkedIn Sync",
-    description: "Single-click pipeline delivery with automated queue telemetry.",
+    description: "Single-click pipeline delivery to your connected channels.",
   },
 ];
 

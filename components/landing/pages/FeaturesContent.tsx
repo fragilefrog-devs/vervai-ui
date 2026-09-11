@@ -41,17 +41,17 @@ export default function FeaturesContent() {
               </span>
             </div>
           </div>
-          {/* High Density Telemetry Ribbon */}
+          {/* Capability Ribbon */}
           <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-xl bg-surface-container-low shadow-sm">
             <div className="p-4 rounded-lg bg-surface-container-lowest flex flex-col justify-between">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-label-caps text-label-caps uppercase text-secondary">
-                  Active Agents
+                  Agent Graph
                 </span>
                 <Icon name="hub" size={18} className="text-primary" />
               </div>
               <div className="font-display-xl text-display-xl text-on-surface tracking-tight">
-                7 Sub-Agents
+                Multi-Agent
               </div>
               <span className="font-body-sm text-body-sm text-tertiary mt-1 flex items-center gap-1 font-medium">
                 <span className="w-1.5 h-1.5 rounded-full bg-tertiary"></span>{" "}
@@ -61,36 +61,36 @@ export default function FeaturesContent() {
             <div className="p-4 rounded-lg bg-surface-container-lowest flex flex-col justify-between">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-label-caps text-label-caps uppercase text-secondary">
-                  Latency Budget
+                  Dispatch
                 </span>
                 <Icon name="speed" size={18} className="text-primary" />
               </div>
               <div className="font-display-xl text-display-xl text-on-surface tracking-tight">
-                &lt;1.4s
+                Low-Latency
               </div>
               <span className="font-body-sm text-body-sm text-on-surface-variant mt-1">
-                First Token Telemetry Stream
+                Deterministic Execution
               </span>
             </div>
             <div className="p-4 rounded-lg bg-surface-container-lowest flex flex-col justify-between">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-label-caps text-label-caps uppercase text-secondary">
-                  Deterministic Cadence
+                  Cadence
                 </span>
                 <Icon name="verified" size={18} className="text-primary" />
               </div>
               <div className="font-display-xl text-display-xl text-on-surface tracking-tight">
-                99.8%
+                Deterministic
               </div>
               <span className="font-body-sm text-body-sm text-tertiary mt-1 flex items-center gap-1 font-medium">
                 <span className="w-1.5 h-1.5 rounded-full bg-tertiary"></span>{" "}
-                P99 Reproducibility Score
+                Checkpointed State Runs
               </span>
             </div>
             <div className="p-4 rounded-lg bg-surface-container-lowest flex flex-col justify-between">
               <div className="flex items-center justify-between mb-2">
                 <span className="font-label-caps text-label-caps uppercase text-secondary">
-                  Lexical Filter
+                  Lexical Guard
                 </span>
                 <Icon
                   name="filter_alt"
@@ -99,10 +99,10 @@ export default function FeaturesContent() {
                 />
               </div>
               <div className="font-display-xl text-display-xl text-on-surface tracking-tight">
-                0.0%
+                Zero-Jargon
               </div>
               <span className="font-body-sm text-body-sm text-on-surface-variant mt-1">
-                Corporate Buzzword Tolerance
+                Banned-Word Control
               </span>
             </div>
           </div>
@@ -149,7 +149,7 @@ export default function FeaturesContent() {
                 </div>
                 <span className="px-2.5 py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed-variant font-caption-bold text-caption-bold flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
-                  Live DAG Orchestrator
+                  DAG Orchestrator
                 </span>
               </div>
               {/* Pipeline Stages */}
@@ -302,46 +302,34 @@ export default function FeaturesContent() {
               <div className="rounded-lg bg-surface-container p-4 font-mono text-[12px] leading-relaxed text-on-surface flex flex-col gap-1.5 mt-2">
                 <div className="flex items-center justify-between text-secondary pb-2 mb-1">
                   <span className="font-label-caps text-label-caps tracking-wider uppercase text-secondary">
-                    Telemetric Live Execution Bus
+                    Pipeline Checkpoint Stream
                   </span>
                   <span className="font-caption-bold text-caption-bold text-primary">
-                    Checkpoints • Redis 7.4 Cluster (Durable)
+                    Checkpoints • Persistent State
                   </span>
                 </div>
                 <div className="text-on-surface-variant flex items-center gap-2">
-                  <span className="text-tertiary font-bold">
-                    [14:02:44.209]
-                  </span>
                   <span className="text-on-surface">
                     INGESTION_RESOLVED:
                   </span>
                   <span>
-                    Audio stream 84.1 MB unpacked. Bitrate: 320kbps. Codec:
-                    AAC-LC.
+                    Source unpacked and normalized across supported formats.
                   </span>
                 </div>
                 <div className="text-on-surface-variant flex items-center gap-2">
-                  <span className="text-tertiary font-bold">
-                    [14:02:44.891]
-                  </span>
                   <span className="text-on-surface">
                     ACOUSTIC_ALIGNMENT:
                   </span>
                   <span>
-                    Whisper-v3 diarized 2 continuous speaker roles across 4,218
-                    tokens.
+                    Multi-speaker roles separated with aligned timestamps.
                   </span>
                 </div>
                 <div className="text-on-surface-variant flex items-center gap-2">
-                  <span className="text-primary font-bold">
-                    [14:02:45.310]
-                  </span>
                   <span className="text-on-surface">
                     SYNTHESIS_PIPELINE:
                   </span>
                   <span>
-                    Token drift delta: 0.0014%. Compiled 4 downstream artifact
-                    formats.
+                    Channel-native artifacts compiled for downstream review.
                   </span>
                 </div>
               </div>
@@ -372,9 +360,9 @@ export default function FeaturesContent() {
                       <span className="text-secondary">
                         Analytical vs Emotional
                       </span>
-                      <span className="text-primary">
-                        85% Analytical
-                      </span>
+<span className="text-primary">
+                    Analytical-Leaning
+                  </span>
                     </div>
                     <div className="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
                       <div
@@ -388,9 +376,9 @@ export default function FeaturesContent() {
                       <span className="text-secondary">
                         Punchiness vs Exposition
                       </span>
-                      <span className="text-primary">
-                        78% Concise Punch
-                      </span>
+<span className="text-primary">
+                    Concise-Leaning
+                  </span>
                     </div>
                     <div className="h-2 w-full bg-surface-container-highest rounded-full overflow-hidden">
                       <div
@@ -470,11 +458,11 @@ export default function FeaturesContent() {
                     <div className="flex-1">
                       <div className="flex justify-between items-center text-secondary font-caption-bold text-caption-bold mb-0.5">
                         <span>Speaker A (Host)</span>
-                        <span className="font-mono">00:14:02.140</span>
+                        <span className="font-mono">Voice Track</span>
                       </div>
                       <p className="font-body-sm text-body-sm text-on-surface leading-tight">
-                        &ldquo;The entire bottleneck was state persistence across
-                        sub-agents...&rdquo;
+                        Per-speaker transcript attribution keeps every quote
+                        anchored to its source.
                       </p>
                     </div>
                   </div>
@@ -484,12 +472,12 @@ export default function FeaturesContent() {
                     </span>
                     <div className="flex-1">
                       <div className="flex justify-between items-center text-secondary font-caption-bold text-caption-bold mb-0.5">
-                        <span>Speaker B (Lead Architect)</span>
-                        <span className="font-mono">00:14:08.820</span>
+                        <span>Speaker B (Guest)</span>
+                        <span className="font-mono">Time-Aligned</span>
                       </div>
                       <p className="font-body-sm text-body-sm text-on-surface leading-tight">
-                        &ldquo;Exactly. Once we decoupled vector retrieval from
-                        deterministic nodes...&rdquo;
+                        Timestamps sync dialogue to clips for quick cut sheets
+                        and highlights.
                       </p>
                     </div>
                   </div>
@@ -504,7 +492,7 @@ export default function FeaturesContent() {
                   />
                   Frame-Accurate Video Clip Cutters
                 </span>
-                <span className="font-mono text-[11px]">±12ms Precision</span>
+                <span className="font-mono text-[11px]">Frame-Accurate</span>
               </div>
             </div>
 
@@ -539,7 +527,7 @@ export default function FeaturesContent() {
                       </span>
                     </div>
                     <span className="font-caption-bold text-caption-bold text-secondary">
-                      1,800w Technical
+                      Editorial Long-Form
                     </span>
                   </div>
                   <div className="p-2.5 rounded-lg bg-surface-container-low flex items-center justify-between">
@@ -588,7 +576,7 @@ export default function FeaturesContent() {
               <div className="pt-4 mt-2">
                 <span className="font-caption-bold text-caption-bold text-tertiary flex items-center gap-1.5">
                   <Icon name="instant_mix" size={16} />
-                  Simultaneous 4-channel compilation in &lt;3.8s
+                  Simultaneous multi-channel compilation
                 </span>
               </div>
             </div>
@@ -619,8 +607,8 @@ export default function FeaturesContent() {
                         LinkedIn Creator API
                       </span>
                     </div>
-                    <span className="font-mono text-[11px] text-tertiary">
-                      200 OK • Queue Active
+<span className="font-mono text-[11px] text-tertiary">
+                       Connected • Queue Ready
                     </span>
                   </div>
                   <div className="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
@@ -631,7 +619,7 @@ export default function FeaturesContent() {
                       </span>
                     </div>
                     <span className="font-mono text-[11px] text-tertiary">
-                      Direct Draft Staged
+                      Draft Staged
                     </span>
                   </div>
                   <div className="p-3 rounded-lg bg-surface-container-low flex items-center justify-between">
@@ -642,7 +630,7 @@ export default function FeaturesContent() {
                       </span>
                     </div>
                     <span className="font-mono text-[11px] text-tertiary">
-                      Payload Verified
+                      Scheduled Dispatch
                     </span>
                   </div>
                 </div>
@@ -650,7 +638,7 @@ export default function FeaturesContent() {
               <div className="pt-4 mt-2">
                 <span className="font-caption-bold text-caption-bold text-secondary flex items-center gap-1.5">
                   <Icon name="sync" size={16} />
-                  Zero-drift distribution queue telemetry
+                  Programmatic multi-channel dispatch
                 </span>
               </div>
             </div>
@@ -742,7 +730,7 @@ export default function FeaturesContent() {
               <div className="col-span-4 lg:col-span-4">
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed-variant font-caption-bold text-caption-bold">
                   <Icon name="check" size={14} />
-                  Whisper-v3 Microsecond Boundary Isolation
+                  Whisper-v3 Boundary Isolation
                 </span>
               </div>
               <div className="col-span-4 lg:col-span-4 font-body-sm text-body-sm text-on-surface-variant">
@@ -825,8 +813,8 @@ export default function FeaturesContent() {
                   Enterprise Acceleration
                 </span>
                 <h2 className="font-display-2xl text-display-2xl text-on-surface tracking-tight mb-4">
-                  Deploy autonomous content pipelines to your team in under 90
-                  seconds.
+                  Deploy autonomous content pipelines to your team with minimal
+                  setup.
                 </h2>
                 <p className="font-body-base text-body-base text-on-surface-variant max-w-2xl leading-relaxed">
                   Connect your podcast feeds, Google Drive, or raw voice memo

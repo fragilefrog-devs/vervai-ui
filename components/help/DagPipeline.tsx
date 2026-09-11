@@ -64,7 +64,7 @@ export default function DagPipeline() {
                 Graph Rebuild Execution Endpoint
               </span>
               <span className="font-caption-bold text-caption-bold text-tertiary">
-                200 OK • Node Cache Hit
+                Read endpoint
               </span>
             </div>
             <div className="p-space-sm rounded-lg bg-surface-container-low font-mono text-body-sm text-on-surface flex items-center justify-between shadow-inner">
@@ -97,9 +97,6 @@ export default function DagPipeline() {
           <span>Read complete DAG specification</span>
           <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
         </a>
-        <span className="text-on-surface-variant font-caption-bold text-caption-bold">
-          Latency: 140ms avg
-        </span>
       </div>
     </div>
   );

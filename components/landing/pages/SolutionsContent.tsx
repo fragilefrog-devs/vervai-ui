@@ -43,9 +43,9 @@ export default function SolutionsContent() {
               Tailored Content Workspaces for High-Leverage Teams
             </h1>
             <p className="font-body-base text-body-base text-on-surface-variant max-w-3xl leading-relaxed">
-              Discover how industry leaders use VervAI&apos;s autonomous agent
-              graphs to scale their personal moats, turn executive speech into
-              company narrative, and streamline editorial production.
+              Discover how teams use VervAI&apos;s autonomous agent graphs to
+              turn executive speech into company narrative, scale their voice,
+              and streamline editorial production.
             </p>
           </div>
 
@@ -104,26 +104,26 @@ export default function SolutionsContent() {
                 <div className="grid grid-cols-3 gap-3 mb-6 bg-surface-container-low p-4 rounded-lg">
                   <div>
                     <span className="font-display-xl text-display-xl text-primary block tracking-tight">
-                      8.4x
+                      Amplified
                     </span>
                     <span className="font-caption-bold text-caption-bold text-secondary">
-                      Content Leverage
+                      Content Output
                     </span>
                   </div>
                   <div>
                     <span className="font-display-xl text-display-xl text-tertiary block tracking-tight">
-                      4.2h
+                      Voice-Locked
                     </span>
                     <span className="font-caption-bold text-caption-bold text-secondary">
-                      Saved / Week
+                      Brand Consistency
                     </span>
                   </div>
                   <div>
                     <span className="font-display-xl text-display-xl text-on-surface block tracking-tight">
-                      0%
+                      Heavier
                     </span>
                     <span className="font-caption-bold text-caption-bold text-secondary">
-                      Generic Slop
+                      On Review, Not Drafting
                     </span>
                   </div>
                 </div>
@@ -131,7 +131,7 @@ export default function SolutionsContent() {
                 {/* Visual Workflow Pipeline Diagram */}
                 <div className="bg-surface-container p-4 rounded-lg mb-6">
                   <span className="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider block mb-3">
-                    Live Execution Pipeline
+                    Execution Pipeline
                   </span>
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-body-sm font-body-sm text-on-surface">
                     <div className="flex items-center gap-2 bg-surface-container-lowest px-3 py-2 rounded shadow-sm">
@@ -166,7 +166,7 @@ export default function SolutionsContent() {
                         size={18}
                         className="text-on-secondary-fixed"
                       />
-                      <span>1.8k Substack + 3 Hooks</span>
+                      <span>Substack Draft + Hook Variants</span>
                     </div>
                   </div>
                 </div>
@@ -174,19 +174,16 @@ export default function SolutionsContent() {
 
               {/* Verified Testimonial Footprint with Photo */}
               <div className="bg-surface-container-low p-4 rounded-lg flex items-center gap-4 mt-2">
-                <img
-                  alt="Elena Vance"
-                  className="w-12 h-12 rounded-full object-cover shadow-sm shrink-0"
-                  src="https://lh3.googleusercontent.com/aida/AEtjO1Wn6QvczQ3mHK-rQmAgdZeGZoN0ncrZUrofimHv_Uk6ClX_3mE-t0dTYLtz5x634PqnK4UrOJhfzPPSfTuaaKMVf-u1F5OaxokAWOJ65QNctG_ryidADO3P9xGB6NMGnwvenyROR1wvoM7NppwkS6YOM8xtg08lDIKsUhRav3SKjr5POm7Uz0nsEuvV9g-94fiF2QYYeXx55La13aC96rOZfbds4A42BUPvX5NK8kMao_sKt24MSB_4uVw"
-                />
+                <div className="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center shrink-0 text-primary">
+                  <Icon name="auto_awesome" size={22} />
+                </div>
                 <div className="min-w-0">
                   <p className="font-body-sm text-body-sm text-on-surface italic line-clamp-2">
-                    &ldquo;VervAI eliminated our editorial bottleneck. I talk
-                    into my phone for 12 minutes on Tuesdays, and our engineering
-                    deep-dive lands on Friday.&rdquo;
+                    Record a voice memo once. VervAI drafts the platform-native
+                    pieces; you review, refine, and dispatch.
                   </p>
                   <p className="font-caption-bold text-caption-bold text-secondary mt-1">
-                    Elena Vance — Founder & CEO, Kinetic Scale
+                    Sovereign Creator Workflow
                   </p>
                 </div>
               </div>
@@ -231,18 +228,18 @@ export default function SolutionsContent() {
                 <div className="grid grid-cols-2 gap-3 mb-6 bg-surface-container-low p-4 rounded-lg">
                   <div>
                     <span className="font-display-xl text-display-xl text-primary block tracking-tight">
-                      14.2x
+                      Parallel
                     </span>
                     <span className="font-caption-bold text-caption-bold text-secondary">
-                      Throughput Scale
+                      Pipeline Execution
                     </span>
                   </div>
                   <div>
                     <span className="font-display-xl text-display-xl text-tertiary block tracking-tight">
-                      96.2%
+                      Streamlined
                     </span>
                     <span className="font-caption-bold text-caption-bold text-secondary">
-                      First-Pass Sign-off
+                      Review Workflow
                     </span>
                   </div>
                 </div>
@@ -331,33 +328,33 @@ export default function SolutionsContent() {
                     <div className="flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-primary" />
                       <span className="font-body-sm text-body-sm text-on-surface font-medium">
-                        Fintech Unicorn (Series C)
+                        Brand Voice Partition A
                       </span>
                     </div>
                     <span className="font-caption-bold text-caption-bold text-secondary bg-surface-container-lowest px-2 py-0.5 rounded">
-                      Encrypted Vector #A10
+                      Isolated Memory
                     </span>
                   </div>
                   <div className="p-3 bg-surface-container-low rounded-lg flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-tertiary" />
                       <span className="font-body-sm text-body-sm text-on-surface font-medium">
-                        DeepTech Robotics Fund
+                        Brand Voice Partition B
                       </span>
                     </div>
                     <span className="font-caption-bold text-caption-bold text-secondary bg-surface-container-lowest px-2 py-0.5 rounded">
-                      Encrypted Vector #B04
+                      Isolated Memory
                     </span>
                   </div>
                   <div className="p-3 bg-surface-container-low rounded-lg flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-secondary" />
                       <span className="font-body-sm text-body-sm text-on-surface font-medium">
-                        B2B SaaS Infrastructure
+                        Brand Voice Partition C
                       </span>
                     </div>
                     <span className="font-caption-bold text-caption-bold text-secondary bg-surface-container-lowest px-2 py-0.5 rounded">
-                      Encrypted Vector #C88
+                      Isolated Memory
                     </span>
                   </div>
                 </div>
@@ -365,10 +362,10 @@ export default function SolutionsContent() {
 
               <div className="bg-surface-container p-3.5 rounded-lg flex items-center justify-between">
                 <span className="font-body-sm text-body-sm text-on-surface-variant">
-                  Client feedback velocity:
+                  Partition isolation:
                 </span>
                 <span className="font-caption-bold text-caption-bold text-on-surface">
-                  3.8x faster turnaround
+                  No Cross-Account Bleed
                 </span>
               </div>
             </article>
@@ -437,10 +434,10 @@ export default function SolutionsContent() {
 
               <div className="bg-surface-container p-3.5 rounded-lg flex items-center justify-between">
                 <span className="font-body-sm text-body-sm text-on-surface-variant">
-                  Production time per episode:
+                  Production workflow:
                 </span>
                 <span className="font-caption-bold text-caption-bold text-tertiary">
-                  Down from 11h to 48m
+                  Streamlined Per Episode
                 </span>
               </div>
             </article>
@@ -451,50 +448,51 @@ export default function SolutionsContent() {
         <section className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
           <div className="mb-8">
             <span className="font-label-caps text-label-caps uppercase text-secondary tracking-wider block mb-2">
-              Empirical Proof
+              Operating Model
             </span>
             <h2 className="font-display-xl text-display-xl text-on-surface tracking-tight">
-              Verified Field Implementations
+              How the Pipeline Runs
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Case Study 1: Hyperion Studio */}
+            {/* Pipeline Pattern 1: Voice & Loom Intake */}
             <div className="bg-surface-container-lowest p-8 rounded-xl shadow-sm flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between gap-4 mb-6">
                   <div>
                     <span className="font-headline-lg text-headline-lg text-on-surface block">
-                      Hyperion Studio
+                      Voice & Loom Intake
                     </span>
                     <span className="font-body-sm text-body-sm text-secondary">
-                      Early-stage Venture Operator
+                      From raw recordings to drafts
                     </span>
                   </div>
                   <span className="px-3 py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-caption-bold text-caption-bold">
-                    Audience Acceleration
+                    Omnichannel Drafting
                   </span>
                 </div>
                 <p className="font-body-base text-body-base text-on-surface-variant mb-8">
-                  Faced with zero bandwidth to write authoritative thought
-                  pieces, Hyperion connected VervAI to their executive Slack
-                  audio logs and Loom design syncs.
+                  Typical flow: upload an executive voice memo or design
+                  walkthrough. VervAI separates speakers, surfaces the strongest
+                  hooks, and drafts native posts for every channel you publish
+                  to.
                 </p>
                 <div className="grid grid-cols-2 gap-4 bg-surface-container-low p-5 rounded-lg mb-6">
                   <div>
                     <div className="font-display-2xl text-display-2xl text-primary font-bold tracking-tight">
-                      +22k
+                      Native
                     </div>
                     <div className="font-caption-bold text-caption-bold text-secondary mt-1">
-                      Net Qualified Followers
+                      Per-Channel Drafting
                     </div>
                   </div>
                   <div>
                     <div className="font-display-2xl text-display-2xl text-tertiary font-bold tracking-tight">
-                      -82%
+                      Cited
                     </div>
                     <div className="font-caption-bold text-caption-bold text-secondary mt-1">
-                      Manual Drafting Time
+                      Source-Anchored Quotes
                     </div>
                   </div>
                 </div>
@@ -502,52 +500,51 @@ export default function SolutionsContent() {
 
               <div className="flex items-center justify-between pt-4">
                 <span className="font-caption-bold text-caption-bold text-outline">
-                  Verified telemetry snapshot
+                  Documented workflow
                 </span>
                 <span className="font-body-sm text-body-sm text-on-surface font-medium flex items-center gap-1">
-                  Read Study{" "}
+                  See Pipeline{" "}
                   <Icon name="north_east" size={16} />
                 </span>
               </div>
             </div>
 
-            {/* Case Study 2: VenturePulse */}
+            {/* Pipeline Pattern 2: Podcast & Interview Synthesis */}
             <div className="bg-surface-container-lowest p-8 rounded-xl shadow-sm flex flex-col justify-between">
               <div>
                 <div className="flex items-center justify-between gap-4 mb-6">
                   <div>
                     <span className="font-headline-lg text-headline-lg text-on-surface block">
-                      VenturePulse
+                      Podcast & Interview Synthesis
                     </span>
                     <span className="font-body-sm text-body-sm text-secondary">
-                      Institutional Deal Intelligence
+                      Multi-guest shows into assets
                     </span>
                   </div>
                   <span className="px-3 py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed-variant font-caption-bold text-caption-bold">
-                    Synthesis Automation
+                    Guest Diarization
                   </span>
                 </div>
                 <p className="font-body-base text-body-base text-on-surface-variant mb-8">
-                  Transformed confidential partner investment committee
-                  transcripts into four high-impact weekly newsletter
-                  breakdowns sent to 45,000 limited partners and tech
-                  executives.
+                  For multi-guest episodes, VervAI attributes every quote to the
+                  right speaker, extracts timestamped clips, and compiles show
+                  notes plus social posts in a single pass.
                 </p>
                 <div className="grid grid-cols-2 gap-4 bg-surface-container-low p-5 rounded-lg mb-6">
                   <div>
                     <div className="font-display-2xl text-display-2xl text-primary font-bold tracking-tight">
-                      4x
+                      Per-Speaker
                     </div>
                     <div className="font-caption-bold text-caption-bold text-secondary mt-1">
-                      Weekly Breakdowns Automated
+                      Quote Attribution
                     </div>
                   </div>
                   <div>
                     <div className="font-display-2xl text-display-2xl text-tertiary font-bold tracking-tight">
-                      0 hrs
+                      Anchored
                     </div>
                     <div className="font-caption-bold text-caption-bold text-secondary mt-1">
-                      Partner Editorial Overhead
+                      Timestamp-Clipped Highlights
                     </div>
                   </div>
                 </div>
@@ -555,10 +552,10 @@ export default function SolutionsContent() {
 
               <div className="flex items-center justify-between pt-4">
                 <span className="font-caption-bold text-caption-bold text-outline">
-                  SOC2 Type II Isolated
+                  Prompt-free operation
                 </span>
                 <span className="font-body-sm text-body-sm text-on-surface font-medium flex items-center gap-1">
-                  Read Study{" "}
+                  See Pipeline{" "}
                   <Icon name="north_east" size={16} />
                 </span>
               </div>

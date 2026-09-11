@@ -103,11 +103,11 @@ export default function PricingContent() {
           </div>
           <div className="flex items-center gap-3">
             <span className="font-caption-bold text-caption-bold text-on-surface-variant">
-              Active Sovereign Relay
+              Sovereign Isolation
             </span>
             <span className="inline-flex w-2.5 h-2.5 rounded-full bg-tertiary" />
             <span className="font-caption-bold text-caption-bold text-tertiary">
-              100% Deterministic
+              Deterministic
             </span>
           </div>
         </div>
@@ -303,7 +303,7 @@ export default function PricingContent() {
                       className="text-tertiary-fixed shrink-0 mt-0.5"
                     />
                     <span>
-                      Priority Whisper-v3 GPU runtime (3x faster)
+                      Priority Whisper-v3 GPU runtime
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
@@ -423,8 +423,7 @@ export default function PricingContent() {
                       className="text-primary shrink-0 mt-0.5"
                     />
                     <span>
-                      SOC-2 Type II audit trail exports &amp; 99.99% uptime
-                      guarantee
+                      SOC-2 Type II audit trail exports
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
@@ -576,7 +575,7 @@ export default function PricingContent() {
         </div>
       </section>
 
-      {/* Section 4: Deep Bento Telemetry & Architecture Visual */}
+      {/* Section 4: Architecture & Runtime Guarantees */}
       <section className="max-w-7xl mx-auto px-6 lg:px-12 pb-16 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Architectural Explainer Bento (Col 7) */}
@@ -619,7 +618,7 @@ export default function PricingContent() {
                     Low Latency Queues
                   </p>
                   <p className="font-body-sm text-body-sm text-on-surface-variant mt-1">
-                    &lt;180s turnarounds for 60-minute streams
+                    Responsive turnaround for long-form streams
                   </p>
                 </div>
                 <div className="bg-surface-container p-4 rounded-lg">
@@ -651,79 +650,52 @@ export default function PricingContent() {
             </div>
           </div>
 
-          {/* Live Pipeline Telemetry Bento (Col 5) */}
+          {/* Runtime Guarantees Bento (Col 5) */}
           <div className="lg:col-span-5 bg-surface-container rounded-xl p-8 shadow-sm flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="font-label-caps text-label-caps uppercase text-secondary tracking-wider">
-                  Live System Telemetry
+                  Runtime Architecture
                 </span>
                 <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-caption-bold text-caption-bold">
                   <span className="w-1.5 h-1.5 rounded-full bg-tertiary" />{" "}
-                  99.98% Healthy
+                  Deterministic
                 </span>
               </div>
               <h4 className="font-headline-md text-headline-md text-on-surface mb-2">
-                Autonomous Workload Telemetry
+                How Workloads Are Processed
               </h4>
               <p className="font-body-sm text-body-sm text-on-surface-variant mb-6">
-                Real-time resource allocation and queue speeds across active
-                cluster nodes.
+                Every synthesis runs through a checkpointed pipeline with
+                per-tenant isolation. No shared inference memory between
+                workspaces.
               </p>
 
-              {/* Telemetry Data Visualizer (SVG) */}
-              <div className="bg-surface-container-lowest p-4 rounded-lg mb-6 shadow-inner">
-                <div className="flex justify-between items-center mb-2 font-caption-bold text-caption-bold">
-                  <span className="text-on-surface">
-                    Synthesis Cluster A-7 (Whisper-v3)
+              {/* Runtime Guarantees */}
+              <div className="bg-surface-container-lowest p-4 rounded-lg mb-6 shadow-inner space-y-3">
+                <div className="flex items-center justify-between bg-surface-container p-3 rounded-lg">
+                  <span className="font-caption-bold text-caption-bold text-on-surface">
+                    Isolation
                   </span>
-                  <span className="text-primary font-bold">142 ms avg</span>
+                  <span className="font-body-sm text-body-sm text-on-surface-variant">
+                    Dedicated per-workspace context
+                  </span>
                 </div>
-                <svg
-                  className="w-full h-16 text-primary"
-                  fill="none"
-                  preserveAspectRatio="none"
-                  viewBox="0 0 320 60"
-                >
-                  <path
-                    d="M0 45 C40 40, 80 50, 120 30 C160 10, 200 35, 240 25 C280 15, 300 20, 320 18"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeWidth={2.5}
-                  />
-                  <path
-                    d="M0 45 C40 40, 80 50, 120 30 C160 10, 200 35, 240 25 C280 15, 300 20, 320 18 L320 60 L0 60 Z"
-                    fill="currentColor"
-                    fillOpacity={0.08}
-                  />
-                  <circle cx={240} cy={25} fill="#2a4dff" r={4} />
-                </svg>
-                <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-surface-container-highest text-center">
-                  <div>
-                    <p className="font-caption-bold text-caption-bold text-secondary">
-                      Parallel Jobs
-                    </p>
-                    <p className="font-headline-sm text-headline-sm text-on-surface">
-                      1,842
-                    </p>
-                  </div>
-                  <div>
-                    <p className="font-caption-bold text-caption-bold text-secondary">
-                      Token Velocity
-                    </p>
-                    <p className="font-headline-sm text-headline-sm text-on-surface">
-                      42.8k/s
-                    </p>
-                  </div>
-                  <div>
-                    <p className="font-caption-bold text-caption-bold text-secondary">
-                      Zero-Loss P99
-                    </p>
-                    <p className="font-headline-sm text-headline-sm text-tertiary">
-                      99.99%
-                    </p>
-                  </div>
+                <div className="flex items-center justify-between bg-surface-container p-3 rounded-lg">
+                  <span className="font-caption-bold text-caption-bold text-on-surface">
+                    Dispatch
+                  </span>
+                  <span className="font-body-sm text-body-sm text-on-surface-variant">
+                    Low-latency worker queues
+                  </span>
+                </div>
+                <div className="flex items-center justify-between bg-surface-container p-3 rounded-lg">
+                  <span className="font-caption-bold text-caption-bold text-on-surface">
+                    Checkpoints
+                  </span>
+                  <span className="font-body-sm text-body-sm text-on-surface-variant">
+                    Persistent, resumable runs
+                  </span>
                 </div>
               </div>
             </div>
@@ -734,7 +706,7 @@ export default function PricingContent() {
                 className="text-secondary"
               />
               <span className="font-body-sm text-body-sm text-on-surface-variant font-mono text-xs">
-                Node cluster US-East-1 (Isolated Enclave)
+                Data encrypted at rest and in transit
               </span>
             </div>
           </div>
@@ -1143,8 +1115,7 @@ export default function PricingContent() {
               SOVEREIGN WORKSPACE ADOPTION
             </span>
             <h3 className="font-display-2xl text-display-2xl text-on-surface mb-3">
-              Join 1,200+ sovereign creators and media desks building with
-              VervAI.
+              Build sovereign content pipelines with VervAI.
             </h3>
             <p className="font-body-base text-body-base text-on-surface-variant">
               Deploy deterministic pipelines that distill high-signal editorial

@@ -18,52 +18,58 @@ const SLIDERS: SpeechSlider[] = [
   {
     id: "analytical",
     label: "Analytical vs. Emotional",
-    infoTitle: "Prioritizes numerical citations, empirical evidence, and systemic logic over sentimental phrasing.",
-    default: 85,
-    valueLabel: (v) => `${v}% Analytical`,
+    infoTitle: "Balance between numerical citation and empirical evidence versus sentimental phrasing.",
+    default: 50,
+    valueLabel: (v) => (v === 50 ? "Not calibrated" : `${v}% of 100`),
     left: "Affective & Empathetic",
-    center: "Empirical Proof • Operational",
+    center: "Evidence & Proof",
     right: "Mathematical Axiom",
   },
   {
     id: "punchiness",
     label: "Punchiness vs. Exposition",
-    infoTitle: "Controls average sentence token count, compression, and clause trimming.",
-    default: 78,
-    valueLabel: (v) => `${v}% Crisp`,
+    infoTitle: "Preferred average sentence length, compression, and clause trimming.",
+    default: 50,
+    valueLabel: (v) => (v === 50 ? "Not calibrated" : `${v}% of 100`),
     left: "Detailed Narrative Flow",
-    center: "Sub-15 Word Sentences",
+    center: "Balanced Sentences",
     right: "Telegraphic Bulleted",
   },
   {
     id: "formality",
     label: "Formality Matrix",
-    infoTitle: "Calibrates distance from colloquial ease to academic publication style.",
-    default: 42,
-    valueLabel: (v) => `${v}% Peer-to-Peer`,
+    infoTitle: "Distance from colloquial ease to academic publication style.",
+    default: 50,
+    valueLabel: (v) => (v === 50 ? "Not calibrated" : `${v}% of 100`),
     left: "Casual Raw Post",
-    center: "Unbuttoned Executive Authority",
+    center: "Executive Authority",
     right: "Rigid Enterprise Whitepaper",
   },
   {
     id: "contrarian",
     label: "Contrarian Index",
-    infoTitle: "Encourages challenging conventional software management orthodoxy with actionable proof.",
-    default: 68,
-    valueLabel: (v) => `${v}% Non-Consensus`,
+    infoTitle: "Encourages challenging conventional wisdom with actionable proof.",
+    default: 50,
+    valueLabel: (v) => (v === 50 ? "Not calibrated" : `${v}% of 100`),
     left: "Consensus-Aligned",
-    center: "Operational Thesis Leads",
+    center: "Operational Thesis",
     right: "Extreme Paradigm Shift",
   },
 ];
 
 export default function SpeechToneSliders() {
   const [values, setValues] = useState<Record<string, number>>(
-    Object.fromEntries(SLIDERS.map((s) => [s.id, s.default]))
+    Object.fromEntries(SLIDERS.map((s) => [s.id, s.default])),
   );
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 pt-space-md">
+      <div className="md:col-span-2">
+        <p className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1.5">
+          <Icon name="info" size={15} className="text-outline" />
+          Tone sliders are a preview only — they are not saved to your preferences.
+        </p>
+      </div>
       {SLIDERS.map((s) => (
         <div key={s.id} className="space-y-2">
           <div className="flex justify-between items-center">

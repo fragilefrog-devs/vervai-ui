@@ -3,10 +3,6 @@
 import { useMemo, useState } from "react";
 import Icon from "@/components/ui/Icon";
 
-const DEFAULT_TEXT = `Most enterprise software roadmaps are polite fiction. We scaled throughput 4x by
-eliminating consensus-seeking rituals and deploying deterministic agents directly into
-the PR review chain.`;
-
 type SimulatorMetric = {
   label: string;
   value: string;
@@ -14,16 +10,31 @@ type SimulatorMetric = {
   tone: "tertiary" | "neutral" | "primary";
 };
 
-const SIMULATOR_METRICS: SimulatorMetric[] = [
-  { label: "Cadence Match", value: "94.2%", verdict: "Excellent", tone: "tertiary" },
-  { label: "Jargon Score", value: "0%", verdict: "Clean", tone: "tertiary" },
-  { label: "Sentence Rhythm", value: "11 wpc", verdict: "Balanced", tone: "primary" },
-];
-
 export default function CadenceSimulator() {
-  const [text, setText] = useState(DEFAULT_TEXT);
-  const words = useMemo(() => (text.trim() ? text.trim().split(/\s+/).length : 0), [text]);
-  const clauses = useMemo(() => (text.match(/[.,;:!?]/g) ?? []).length + 1, [text]);
+  const [text, setText] = useState("");
+  const words = useMemo(
+    () => (text.trim() ? text.trim().split(/\s+/).length : 0),
+    [text],
+  );
+  const sentences = useMemo(() => {
+    const matches = text.match(/[.!?]+(?:["')}\]]*)/g);
+    if (matches) return matches.length;
+    return text.trim() ? 1 : 0;
+  }, [text]);
+  const avgPerSentence = useMemo(
+    () => (words && sentences ? Math.round((words / sentences) * 10) / 10 : 0),
+    [words, sentences],
+  );
+  const clauses = useMemo(
+    () => (text.match(/[.,;:!?]/g) ?? []).length + (text.trim() ? 1 : 0),
+    [text],
+  );
+
+  const metrics: SimulatorMetric[] = [
+    { label: "Words", value: String(words), verdict: "Counted live", tone: "tertiary" },
+    { label: "Sentences", value: String(sentences), verdict: "Detected live", tone: "primary" },
+    { label: "Avg. Words / Sentence", value: String(avgPerSentence), verdict: "Readability proxy", tone: "neutral" },
+  ];
 
   return (
     <div className="lg:col-span-5 bg-surface-container-lowest rounded-xl shadow-sm p-space-lg flex flex-col justify-between space-y-space-md">
@@ -32,20 +43,20 @@ export default function CadenceSimulator() {
           <div className="flex items-center gap-2">
             <Icon name="bolt" size={20} className="text-primary" />
             <h2 className="font-headline-sm text-headline-sm text-on-surface">
-              Live Cadence Simulator &amp; Lint
+              Cadence Simulator & Lint
             </h2>
           </div>
-          <span className="font-caption-bold text-caption-bold px-2 py-0.5 rounded bg-primary-fixed text-primary">
-            Inference Active
+          <span className="font-caption-bold text-caption-bold px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">
+            Local Analysis
           </span>
         </div>
         <p className="font-body-sm text-body-sm text-on-surface-variant">
-          Paste a draft hook to evaluate live against your strict parameters.
+          Paste a draft hook to measure basic text structure.
         </p>
         <div className="space-y-2">
           <textarea
             className="w-full p-space-md rounded-xl bg-surface-container-low text-on-surface font-body-sm text-body-sm resize-none focus:outline-none focus:shadow-md transition-shadow placeholder:text-outline"
-            placeholder="Draft hook or paragraph to evaluate against your voice profile..."
+            placeholder="Draft hook or paragraph to evaluate..."
             rows={3}
             value={text}
             onChange={(e) => setText(e.target.value)}
@@ -64,7 +75,7 @@ export default function CadenceSimulator() {
           </div>
         </div>
         <div className="grid grid-cols-3 gap-2 pt-space-xs">
-          {SIMULATOR_METRICS.map((metric) => (
+          {metrics.map((metric) => (
             <div key={metric.label} className="p-space-sm rounded-lg bg-surface-container-low text-center space-y-0.5">
               <span className="font-label-caps text-[10px] text-outline uppercase block">
                 {metric.label}
@@ -95,11 +106,11 @@ export default function CadenceSimulator() {
         <Icon name="tips_and_updates" size={20} className="text-primary mt-0.5 shrink-0" />
         <div className="space-y-0.5">
           <span className="font-caption-bold text-caption-bold text-on-surface block">
-            Dynamic Suggestion
+            About this tool
           </span>
           <p className="font-body-sm text-[12px] text-on-surface-variant leading-relaxed">
-            Replace opening passive clause with direct operational assertion for tighter
-            punchiness.
+            All metrics are computed in your browser from the pasted text. No AI evaluation is
+            running.
           </p>
         </div>
       </div>

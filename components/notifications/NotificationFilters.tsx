@@ -3,10 +3,11 @@
 type FilterTab = { id: string; label: string; count: number };
 
 export const FILTER_TABS: FilterTab[] = [
-  { id: "all", label: "All", count: 7 },
-  { id: "agent", label: "Agent Runs", count: 3 },
-  { id: "signoff", label: "Sign-offs", count: 2 },
-  { id: "system", label: "Integrations", count: 2 },
+  { id: "all", label: "All", count: 0 },
+  { id: "error", label: "Errors", count: 0 },
+  { id: "success", label: "Success", count: 0 },
+  { id: "info", label: "Info", count: 0 },
+  { id: "action", label: "Action", count: 0 },
 ];
 
 export default function NotificationFilters({

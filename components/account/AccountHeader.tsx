@@ -1,12 +1,32 @@
+type AccountHeaderProps = {
+  email: string | null;
+  name?: string | null;
+  plan?: string | null;
+  planStatus?: string | null;
+};
+
 const ACCOUNT_TABS = [
   { icon: "badge", label: "Profile & Identity", active: true },
-  { icon: "lock", label: "Security & Authentication", active: false },
-  { icon: "group", label: "Team & Multi-seat Access", active: false, badge: "4/5" },
-  { icon: "key", label: "API Keys & Personal Tokens", active: false },
-  { icon: "receipt_long", label: "Audit Log", active: false },
+  { icon: "devices", label: "Sessions & Security", active: false },
+  { icon: "hub", label: "Connected Accounts", active: false },
+  { icon: "warning", label: "Data & Danger Zone", active: false },
 ];
 
-export default function AccountHeader() {
+const FREE_PLAN = /free|starter|basic|trial|hobby|none/i;
+
+export default function AccountHeader({
+  email,
+  name,
+  plan,
+  planStatus,
+}: AccountHeaderProps) {
+  const isFree = plan ? FREE_PLAN.test(plan) : null;
+  const planLabel = plan
+    ? plan.charAt(0).toUpperCase() + plan.slice(1)
+    : "Free";
+  const identity = name ?? email ?? "Account";
+  const initials = (identity.trim().charAt(0) || "—").toUpperCase();
+
   return (
     <>
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
@@ -18,21 +38,32 @@ export default function AccountHeader() {
           </div>
           <h1 className="font-display-xl text-display-xl text-on-surface tracking-tight">Account & User Profile</h1>
           <p className="font-body-medium text-body-medium text-on-surface-variant max-w-2xl">
-            Manage your personal profile, cryptographic credentials, team role permissions, and active creative workspace sessions.
+            Manage your signed-in identity, authenticated session, connected accounts, and data settings.
           </p>
         </div>
-        <div className="flex items-center gap-space-sm self-start md:self-auto">
+        <div className="flex flex-wrap items-center gap-space-sm self-start md:self-auto">
+          <div className="flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded-lg shadow-sm">
+            <span className="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-caption-bold text-[11px]">
+              {initials}
+            </span>
+            <span className="font-caption-bold text-caption-bold text-on-surface">
+              {email ?? "Signed-in session"}
+            </span>
+          </div>
           <div className="flex items-center gap-2 bg-surface-container px-3 py-1.5 rounded-lg shadow-sm">
             <span className="inline-block w-2 h-2 rounded-full bg-tertiary"></span>
-            <span className="font-caption-bold text-caption-bold text-on-surface">Master Seat (Root Admin)</span>
+            <span className="font-caption-bold text-caption-bold text-on-surface">
+              {plan ? (planStatus ? `${planLabel} · ${planStatus}` : planLabel) : "Free plan"}
+            </span>
           </div>
-          <button
-            className="flex items-center gap-1.5 bg-surface-container-high hover:bg-surface-variant text-on-surface px-3 py-1.5 rounded-lg font-body-sm text-body-sm transition-all shadow-sm active:scale-[0.98]"
-            type="button"
-          >
-            <span className="material-symbols-outlined text-[18px]">history</span>
-            <span>View Audit Trail</span>
-          </button>
+          {isFree === true && (
+            <button
+              className="flex items-center gap-1.5 bg-primary hover:bg-primary-container text-on-primary px-3 py-1.5 rounded-lg font-body-sm text-body-sm transition-all shadow-sm active:scale-[0.98]"
+              type="button"
+            >
+              Upgrade
+            </button>
+          )}
         </div>
       </div>
       <div className="bg-surface-container-low p-1 rounded-xl shadow-sm overflow-x-auto">
@@ -49,11 +80,6 @@ export default function AccountHeader() {
             >
               <span className="material-symbols-outlined text-[18px]">{tab.icon}</span>
               <span>{tab.label}</span>
-              {tab.badge && (
-                <span className="bg-surface-container-high px-1.5 py-0.5 rounded text-[10px] font-caption-bold text-on-surface-variant">
-                  {tab.badge}
-                </span>
-              )}
             </button>
           ))}
         </nav>

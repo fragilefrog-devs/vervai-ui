@@ -44,60 +44,60 @@ export default function LandingContent() {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full max-w-3xl pt-8 bg-surface-container-low/50 rounded-xl p-4 shadow-sm">
           <div className="text-left px-3">
-            <div className="font-headline-lg text-headline-lg text-on-surface">14.2x
+            <div className="font-headline-lg text-headline-lg text-on-surface">Multi-Agent
             </div>
-            <div className="font-caption-bold text-caption-bold text-on-surface-variant uppercase tracking-wider mt-0.5">Throughput Scale
+            <div className="font-caption-bold text-caption-bold text-on-surface-variant uppercase tracking-wider mt-0.5">Parallel Pipeline
             </div>
           </div>
           <div className="text-left px-3">
-            <div className="font-headline-lg text-headline-lg text-primary">0% Clichés
+            <div className="font-headline-lg text-headline-lg text-primary">No Jargon
             </div>
             <div className="font-caption-bold text-caption-bold text-on-surface-variant uppercase tracking-wider mt-0.5">Strict Voice Gate
             </div>
           </div>
           <div className="text-left px-3">
-            <div className="font-headline-lg text-headline-lg text-tertiary">&lt; 1.4s
+            <div className="font-headline-lg text-headline-lg text-tertiary">Low-Latency
             </div>
-            <div className="font-caption-bold text-caption-bold text-on-surface-variant uppercase tracking-wider mt-0.5">Agent Pipeline Latency
+            <div className="font-caption-bold text-caption-bold text-on-surface-variant uppercase tracking-wider mt-0.5">Agent Dispatch
             </div>
           </div>
           <div className="text-left px-3">
-            <div className="font-headline-lg text-headline-lg text-on-surface">100%
+            <div className="font-headline-lg text-headline-lg text-on-surface">Verified
             </div>
-            <div className="font-caption-bold text-caption-bold text-on-surface-variant uppercase tracking-wider mt-0.5">Attribution Audit
+            <div className="font-caption-bold text-caption-bold text-on-surface-variant uppercase tracking-wider mt-0.5">Source Citations
             </div>
           </div>
         </div>
       </div>
       <div className="mt-20 pt-10 flex flex-col items-center">
         <p className="font-label-caps text-label-caps uppercase tracking-widest text-outline mb-6 text-center">
-          Trusted by visionary founders, creators, and enterprise media desks
+          One workspace for voice, video, and document-led content
         
         </p>
         <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14 opacity-75">
           <div className="flex items-center gap-2 font-headline-md text-headline-md tracking-tighter text-on-surface">
             <span className="w-3.5 h-3.5 rounded bg-on-surface">
-            </span> VenturePulse
+            </span> Voice Memos
           
           </div>
           <div className="flex items-center gap-2 font-headline-md text-headline-md tracking-tighter text-on-surface">
             <span className="w-3.5 h-3.5 rounded-full bg-primary">
-            </span> Kinetic Scale
+            </span> Podcast Feeds
           
           </div>
           <div className="flex items-center gap-2 font-headline-md text-headline-md tracking-tighter text-on-surface">
             <span className="w-3.5 h-3.5 rotate-45 bg-tertiary">
-            </span> Codex Bio
+            </span> Meetings &amp; Looms
           
           </div>
           <div className="flex items-center gap-2 font-headline-md text-headline-md tracking-tighter text-on-surface">
             <span className="w-3.5 h-3.5 rounded-sm bg-secondary">
-            </span> VectorLabs
+            </span> Whitepapers
           
           </div>
           <div className="flex items-center gap-2 font-headline-md text-headline-md tracking-tighter text-on-surface">
             <span className="w-3 h-3.5 clip-triangle bg-on-surface">
-            </span> Hyperion Media
+            </span> Live Webhooks
           
           </div>
         </div>
@@ -126,7 +126,7 @@ export default function LandingContent() {
                 <h3 className="font-headline-md text-headline-md text-on-surface">Autonomous 7-Stage Agent Pipeline
                 </h3>
               </div>
-              <span className="px-2.5 py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-caption-bold text-caption-bold">Live DAG Active
+              <span className="px-2.5 py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-caption-bold text-caption-bold">Deterministic Pipeline
               </span>
             </div>
             <p className="font-body-sm text-body-sm text-on-surface-variant mb-6">
@@ -137,10 +137,10 @@ export default function LandingContent() {
               <div className="flex items-center justify-between text-caption-bold font-caption-bold">
                 <span className="text-on-surface-variant">STAGE GRAPH
                 </span>
-                <span className="text-tertiary flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-tertiary">
-                  </span> 99.8% Deterministic
-                </span>
+<span className="text-tertiary flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-tertiary">
+                    </span> Deterministic Run
+                  </span>
               </div>
               <div className="grid grid-cols-4 gap-2 pt-2">
                 <div className="p-2.5 rounded bg-surface-container-lowest shadow-sm flex flex-col">
@@ -148,7 +148,7 @@ export default function LandingContent() {
                   </span>
                   <span className="font-headline-sm text-[13px] text-on-surface mt-1">Whisper-v3
                   </span>
-                  <span className="font-body-sm text-[11px] text-tertiary mt-0.5">Diarized (2 Spk)
+                  <span className="font-body-sm text-[11px] text-tertiary mt-0.5">Multi-Speaker
                   </span>
                 </div>
                 <div className="p-2.5 rounded bg-surface-container-lowest shadow-sm flex flex-col">
@@ -156,7 +156,7 @@ export default function LandingContent() {
                   </span>
                   <span className="font-headline-sm text-[13px] text-on-surface mt-1">Latent Angles
                   </span>
-                  <span className="font-body-sm text-[11px] text-primary mt-0.5">14 Hooks Found
+                  <span className="font-body-sm text-[11px] text-primary mt-0.5">Angle Discovery
                   </span>
                 </div>
                 <div className="p-2.5 rounded bg-surface-container-lowest shadow-sm flex flex-col">
@@ -164,7 +164,7 @@ export default function LandingContent() {
                   </span>
                   <span className="font-headline-sm text-[13px] text-on-surface mt-1">Tone Lock
                   </span>
-                  <span className="font-body-sm text-[11px] text-secondary mt-0.5">Fidelity 98.4%
+                  <span className="font-body-sm text-[11px] text-secondary mt-0.5">Tone Preserved
                   </span>
                 </div>
                 <div className="p-2.5 rounded bg-primary-fixed text-on-primary-fixed shadow-sm flex flex-col">
@@ -172,35 +172,35 @@ export default function LandingContent() {
                   </span>
                   <span className="font-headline-sm text-[13px] text-on-primary-fixed mt-1">Sign-Off Ready
                   </span>
-                  <span className="font-body-sm text-[11px] text-primary mt-0.5 font-bold">Relay Buffered
+                  <span className="font-body-sm text-[11px] text-primary mt-0.5 font-bold">Awaiting Approval
                   </span>
                 </div>
               </div>
               <div className="mt-4 pt-3 flex flex-wrap items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
-                <div className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-[16px] text-outline">speed
-                  </span>
-                  <span>Execution Latency: 
-                    <strong className="text-on-surface font-headline-sm">1.18s
-                    </strong>
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-[16px] text-outline">memory
-                  </span>
-                  <span>Context Cache: 
-                    <strong className="text-on-surface font-headline-sm">128k Tokens
-                    </strong>
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-[16px] text-tertiary">check_circle
-                  </span>
-                  <span>Audio Alignment: 
-                    <strong className="text-on-surface font-headline-sm">Sub-frame sync
-                    </strong>
-                  </span>
-                </div>
+<div className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-[16px] text-outline">speed
+                    </span>
+                    <span>Execution: 
+                      <strong className="text-on-surface font-headline-sm">Low-Latency
+                      </strong>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-[16px] text-outline">memory
+                    </span>
+                    <span>Context: 
+                      <strong className="text-on-surface font-headline-sm">Persistent
+                      </strong>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-[16px] text-tertiary">check_circle
+                    </span>
+                    <span>Audio Alignment: 
+                      <strong className="text-on-surface font-headline-sm">Frame-Synced
+                      </strong>
+                    </span>
+                  </div>
               </div>
             </div>
           </div>
@@ -212,11 +212,11 @@ export default function LandingContent() {
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-primary">
                 </span>
               </span>
-              <span className="font-caption-bold text-caption-bold text-on-surface">Graph Node #06: Omnichannel Packaging active
+<span className="font-caption-bold text-caption-bold text-on-surface">Active pipeline: Omnichannel Packaging
+                </span>
+              </div>
+              <span className="font-body-sm text-body-sm text-outline">Awaiting Sign-Off
               </span>
-            </div>
-            <span className="font-body-sm text-body-sm text-outline">Task #3842-AX
-            </span>
           </div>
         </div>
         <div className="md:col-span-5 bg-surface-container-lowest rounded-xl p-6 shadow-sm flex flex-col justify-between">
@@ -228,7 +228,7 @@ export default function LandingContent() {
                 <h3 className="font-headline-md text-headline-md text-on-surface">Strict Brand Voice Engine
                 </h3>
               </div>
-              <span className="px-2 py-0.5 rounded bg-surface-variant font-caption-bold text-caption-bold text-on-surface-variant">Calibrated
+              <span className="px-2 py-0.5 rounded bg-surface-variant font-caption-bold text-caption-bold text-on-surface-variant">Configurable
               </span>
             </div>
             <p className="font-body-sm text-body-sm text-on-surface-variant mb-6">
@@ -240,7 +240,7 @@ export default function LandingContent() {
                 <div className="flex justify-between font-caption-bold text-caption-bold mb-1.5">
                   <span className="text-on-surface">Analytical vs Emotional
                   </span>
-                  <span className="text-primary font-headline-sm">85% Analytical
+                  <span className="text-primary font-headline-sm">Analytical-Leaning
                   </span>
                 </div>
                 <div className="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
@@ -252,7 +252,7 @@ export default function LandingContent() {
                 <div className="flex justify-between font-caption-bold text-caption-bold mb-1.5">
                   <span className="text-on-surface">Punchiness &amp; Brevity
                   </span>
-                  <span className="text-primary font-headline-sm">78% Crisp
+                  <span className="text-primary font-headline-sm">Concise-Leaning
                   </span>
                 </div>
                 <div className="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
@@ -269,7 +269,7 @@ export default function LandingContent() {
                   Negative Vocabulary Interception
                 
                 </span>
-                <span className="text-[11px] font-caption-bold text-error">4 Rejected Today
+                <span className="text-[11px] font-caption-bold text-error">Blocked by Default
                 </span>
               </div>
               <div className="flex flex-wrap gap-1.5">
@@ -287,7 +287,7 @@ export default function LandingContent() {
           <div className="mt-6 flex items-center justify-between text-caption-bold text-caption-bold text-on-surface-variant">
             <span>Stylistic Variance Guard
             </span>
-            <span className="text-tertiary">Active (Strict Mode)
+            <span className="text-tertiary">Strict Mode
             </span>
           </div>
         </div>
@@ -361,11 +361,11 @@ export default function LandingContent() {
                     </span> LinkedIn Thought Leadership
                   
                   </span>
-                  <span className="text-[11px] font-caption-bold text-primary">Score: 94/100
+                  <span className="text-[11px] font-caption-bold text-primary">Ready for Review
                   </span>
                 </div>
                 <p className="font-body-sm text-[12px] text-on-surface-variant line-clamp-2">
-                  "Most AI companies mistake generation for curation. The true leverage lies in the negative space of the prompt..."
+                  Auto-fit native-length LinkedIn thought leadership drafted from your source hooks.
                 
                 </p>
               </div>
@@ -376,11 +376,11 @@ export default function LandingContent() {
                     </span> Substack Deep Dive Memo
                   
                   </span>
-                  <span className="text-[11px] font-caption-bold text-tertiary">Score: 98/100
+                  <span className="text-[11px] font-caption-bold text-tertiary">Ready for Review
                   </span>
                 </div>
                 <p className="font-body-sm text-[12px] text-on-surface-variant line-clamp-2">
-                  "Architectural report on local context caching and why autonomous pipelines replace prompt-engineering..."
+                  Long-form memo structured from source material with verified citations.
                 
                 </p>
               </div>
@@ -389,7 +389,7 @@ export default function LandingContent() {
           <div className="mt-4 pt-3 flex items-center justify-between font-caption-bold text-caption-bold text-on-surface-variant">
             <span>Omnichannel Variations
             </span>
-            <span className="text-on-surface">12 Outputs / Session
+            <span className="text-on-surface">Native Per Channel
             </span>
           </div>
         </div>
@@ -413,7 +413,7 @@ export default function LandingContent() {
                   <span className="font-body-medium text-body-medium text-on-surface">LinkedIn Creator Hub
                   </span>
                 </div>
-                <span className="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-caption-bold text-[11px]">Authorized
+                <span className="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-caption-bold text-[11px]">Connected
                 </span>
               </div>
               <div className="flex items-center justify-between p-2.5 rounded bg-surface">
@@ -423,7 +423,7 @@ export default function LandingContent() {
                   <span className="font-body-medium text-body-medium text-on-surface">Substack Webhook
                   </span>
                 </div>
-                <span className="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-caption-bold text-[11px]">Syncing
+                <span className="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-caption-bold text-[11px]">Configured
                 </span>
               </div>
               <div className="flex items-center justify-between p-2.5 rounded bg-surface">
@@ -433,15 +433,15 @@ export default function LandingContent() {
                   <span className="font-body-medium text-body-medium text-on-surface">Buffer Media Queue
                   </span>
                 </div>
-                <span className="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-caption-bold text-[11px]">Queued (3)
+                <span className="px-2 py-0.5 rounded bg-secondary-container text-on-secondary-container font-caption-bold text-[11px]">Integrated
                 </span>
               </div>
             </div>
           </div>
           <div className="mt-4 pt-3 flex items-center justify-between font-caption-bold text-caption-bold text-on-surface-variant">
-            <span>Webhook Latency
+            <span>Webhook Dispatch
             </span>
-            <span className="text-tertiary">38ms response
+            <span className="text-tertiary">Native API
             </span>
           </div>
         </div>
@@ -454,7 +454,7 @@ export default function LandingContent() {
         <h2 className="font-display-xl text-display-xl text-on-surface tracking-tight mt-1">Autonomous in 3 Frictionless Acts
         </h2>
         <p className="font-body-sm text-body-sm text-on-surface-variant mt-2">
-          From unstructured brain-dumps to broadcast-ready assets in under 3 minutes.
+          From unstructured brain-dumps to broadcast-ready assets in a single review pass.
         
         </p>
       </div>
@@ -524,21 +524,16 @@ export default function LandingContent() {
     <section className="max-w-7xl mx-auto px-6 lg:px-12 py-12">
       <div className="bg-surface-container-lowest rounded-xl p-8 lg:p-12 shadow-sm flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
         <div className="w-full lg:w-1/3 flex flex-col items-center text-center lg:items-start lg:text-left">
-          <img className="w-24 h-24 rounded-full object-cover shadow-sm mb-4" data-alt="Close up architectural portrait of a female creative director with sharp minimalist attire, soft natural northern light studio setting, contemporary editorial magazine aesthetics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5BN8lGWNtxLPfUUFtO52hKkR-zmLX-XsV-FFEsVlad6t88oaBR_2sIP-WjHfMQ41jrqzKg1L4zkyBy6l2DeRoF1PW-ZqFGEAI0EBSu8NhC7e8-57IEX5BJhsRf-cYH2g8IpFTVAzPR_VWu-rkASSb5fFmEtpBc2zkJsYsxLkz8NOAKsVk86EeSJ35n5cb3JKBZCE0BiziNfuFl4-JlJv8yRWQNX9_3j8xbvVnWkNpOfcw3pqoYV1I" />
-          <h4 className="font-headline-lg text-headline-lg text-on-surface">Elena Vance
+          <div className="w-24 h-24 rounded-full bg-surface-container shadow-sm mb-4 flex items-center justify-center">
+            <span className="material-symbols-outlined text-[40px] text-primary">auto_awesome
+            </span>
+          </div>
+          <h4 className="font-headline-lg text-headline-lg text-on-surface">Built for Operators Who Ship
           </h4>
-          <p className="font-body-sm text-body-sm text-on-surface-variant">Creative Director &amp; Founder, Kinetic Scale
+          <p className="font-body-sm text-body-sm text-on-surface-variant">VervAI turns source recordings into platform-native drafts while you stay in control of the voice.
           </p>
           <div className="flex items-center gap-1 mt-2 text-primary">
-            <span className="material-symbols-outlined text-[18px]">star
-            </span>
-            <span className="material-symbols-outlined text-[18px]">star
-            </span>
-            <span className="material-symbols-outlined text-[18px]">star
-            </span>
-            <span className="material-symbols-outlined text-[18px]">star
-            </span>
-            <span className="material-symbols-outlined text-[18px]">star
+            <span className="font-caption-bold text-caption-bold text-primary">Autonomous • Versatile • Dependable
             </span>
           </div>
         </div>
@@ -546,15 +541,15 @@ export default function LandingContent() {
           <span className="material-symbols-outlined text-outline-variant text-[36px] mb-2">format_quote
           </span>
           <p className="font-headline-md text-headline-md text-on-surface leading-relaxed mb-4">
-            "VervAI fundamentally ended prompt fatigue across our executive desk. Instead of rewriting lukewarm ChatGPT drafts or coaching interns on voice nuances, I talk into my microphone for 12 minutes on my morning commute. By 10 AM, we have four verified thought leadership pieces that genuinely sound like me."
+            Record an executive memo or podcast once. VervAI extracts the strongest hooks, drafts verified, on-voice content for LinkedIn, Substack, and Buffer — and leaves the final sign-off with you.
           
           </p>
           <div className="flex flex-wrap gap-4 text-caption-bold text-caption-bold text-on-surface-variant">
-            <span className="px-3 py-1 rounded-full bg-surface-container">22k LinkedIn Follower Growth
+            <span className="px-3 py-1 rounded-full bg-surface-container">Voice-Faithful Drafts
             </span>
-            <span className="px-3 py-1 rounded-full bg-surface-container">Zero AI Clichés Detected
+            <span className="px-3 py-1 rounded-full bg-surface-container">Source-Verified Citations
             </span>
-            <span className="px-3 py-1 rounded-full bg-surface-container">8.5 hrs saved / week
+            <span className="px-3 py-1 rounded-full bg-surface-container">Platform-Native Formats
             </span>
           </div>
         </div>
@@ -748,7 +743,7 @@ export default function LandingContent() {
           
           </h3>
           <p className="font-body-base text-body-base text-inverse-on-surface/80">
-            14-day full trial with 20 synthesis credits included. Connect your first media stream in under 90 seconds.
+            14-day full trial with 20 synthesis credits included. Connect your first media stream today.
           
           </p>
         </div>

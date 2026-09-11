@@ -1,22 +1,22 @@
 import type { ReactNode } from "react";
 
-type NotificationChip = { icon: string; iconClass: string; label: string };
-type NotificationButton = { label: string; icon?: string; iconClass?: string; iconAfter?: boolean; className: string };
+export type NotificationChip = { icon: string; iconClass: string; label: string };
+export type NotificationButton = { label: string; icon?: string; iconClass?: string; iconAfter?: boolean; className: string };
 
-type NotificationBody =
+export type NotificationBody =
   | { type: "chips"; chips: NotificationChip[] }
   | { type: "slide"; number: string; title: string; meta: string }
   | { type: "progress"; barClass: string; used: string; limit: string }
   | { type: "wave" }
   | { type: "none" };
 
-type NotificationFooter =
+export type NotificationFooter =
   | { type: "actions"; wrapperClass: string; buttons: NotificationButton[]; trailing?: ReactNode }
   | { type: "error"; wrapperClass: string; button: NotificationButton; status: ReactNode }
   | { type: "quota"; wrapperClass: string; button: NotificationButton; tier: string }
   | { type: "wave"; wrapperClass: string; persona: string; link: string };
 
-type NotificationCardProps = {
+export type NotificationCardProps = {
   category: string;
   barClass: string;
   icon: string;
@@ -28,171 +28,6 @@ type NotificationCardProps = {
   body?: NotificationBody;
   footer: NotificationFooter;
 };
-
-const NOTIFICATIONS: NotificationCardProps[] = [
-  {
-    category: "agent",
-    barClass: "bg-tertiary",
-    icon: "task_alt",
-    iconClass: "text-tertiary",
-    title: "Agent Run Completed",
-    badge: { label: "98% Match", className: "font-label-caps text-label-caps bg-tertiary-fixed text-on-tertiary-fixed px-space-xs py-0.5 rounded" },
-    time: "4m ago",
-    description: (
-      <>
-        Synthesis complete for <span className="text-on-surface font-body-medium">ep43-ai-infra-summit.mp4</span>. 4 high-leverage deliverables drafted (1 LinkedIn Essay, 1 Newsletter Feature, 2 Short-form clips).
-      </>
-    ),
-    body: {
-      type: "chips",
-      chips: [
-        { icon: "article", iconClass: "text-primary", label: "1x Founder Deep Dive" },
-        { icon: "movie", iconClass: "text-tertiary", label: "2x 9:16 Video Cuts" },
-      ],
-    },
-    footer: {
-      type: "actions",
-      wrapperClass: "flex items-center justify-between pt-space-xs",
-      buttons: [
-        {
-          label: "Review Drafts",
-          icon: "arrow_forward",
-          iconAfter: true,
-          className:
-            "bg-primary hover:bg-primary-container text-on-primary font-body-medium text-body-sm px-space-md py-1.5 rounded-lg transition-all active:scale-[0.98] shadow-sm flex items-center gap-1",
-        },
-        {
-          label: "View Graph",
-          icon: "account_tree",
-          iconClass: "text-on-surface-variant",
-          className:
-            "bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-body-medium text-body-sm px-space-sm py-1.5 rounded-lg transition-colors flex items-center gap-1",
-        },
-      ],
-      trailing: (
-        <button className="text-on-surface-variant hover:text-on-surface p-1 rounded transition-colors" title="Options" type="button">
-          <span className="material-symbols-outlined text-[18px]">more_vert</span>
-        </button>
-      ),
-    },
-  },
-  {
-    category: "signoff",
-    barClass: "bg-primary-container",
-    icon: "rate_review",
-    iconClass: "text-primary",
-    title: "Human Sign-off Required",
-    badge: { label: "Pending Gate", className: "font-label-caps text-label-caps bg-secondary-container text-on-secondary-fixed px-space-xs py-0.5 rounded font-bold uppercase" },
-    description: (
-      <>
-        <span className="text-on-surface font-body-medium">B2B SaaS Retention Framework</span> carousel scheduled for tomorrow at <span className="text-on-surface font-body-medium">09:00 AM</span> requires final founder sign-off before Buffer dispatch.
-      </>
-    ),
-    body: {
-      type: "slide",
-      number: "01",
-      title: "Slide 1: Cohort Erosion Anatomy",
-      meta: "6 Slides • 1080x1350 PNG • Tone: Direct",
-    },
-    footer: {
-      type: "actions",
-      wrapperClass: "flex items-center justify-between",
-      buttons: [
-        {
-          label: "Approve Dispatch",
-          icon: "check",
-          className:
-            "bg-primary-container hover:bg-primary text-on-primary font-body-medium text-body-sm px-space-md py-1.5 rounded-lg transition-all active:scale-[0.98] shadow-sm flex items-center gap-1",
-        },
-        {
-          label: "Edit",
-          className: "bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-sm px-space-md py-1.5 rounded-lg transition-colors",
-        },
-      ],
-      trailing: <span className="font-caption-bold text-[11px] text-on-surface-variant">Scheduled: T-14h</span>,
-    },
-  },
-  {
-    category: "system",
-    barClass: "bg-error",
-    icon: "warning",
-    iconClass: "text-error",
-    title: "Integration Token Expired",
-    badge: { label: "Needs Attention", className: "font-label-caps text-label-caps bg-error-container text-on-error-container px-space-xs py-0.5 rounded font-bold uppercase" },
-    description: (
-      <>
-        Twitter / X Developer v2 OAuth token expired <span className="text-on-surface font-body-medium">2 hours ago</span>. 1 scheduled thread is currently stalled in the buffer distribution queue.
-      </>
-    ),
-    body: { type: "none" },
-    footer: {
-      type: "error",
-      wrapperClass: "flex items-center justify-between pt-space-xs",
-      button: {
-        label: "Re-authenticate",
-        icon: "sync",
-        className:
-          "bg-error hover:bg-on-error-container text-on-error font-body-medium text-body-sm px-space-md py-1.5 rounded-lg transition-all active:scale-[0.98] shadow-sm flex items-center gap-1",
-      },
-      status: (
-        <span className="font-body-sm text-[11px] text-on-surface-variant flex items-center gap-1">
-          <span className="material-symbols-outlined text-[14px]">link_off</span> API status code: 401
-        </span>
-      ),
-    },
-  },
-  {
-    category: "system",
-    barClass: "bg-outline-variant",
-    icon: "hourglass_top",
-    iconClass: "text-on-surface-variant",
-    title: "Whisper-v3 Quota Threshold",
-    badge: { label: "67% Utilized", className: "font-caption-bold text-caption-bold text-on-surface-variant" },
-    description: (
-      <>
-        Audio ingestion capacity reached 67% (<span className="text-on-surface font-body-medium">13.4 / 20.0 Hours</span>). 6.6 hours remaining in current billing cycle (resets in 11 days).
-      </>
-    ),
-    body: {
-      type: "progress",
-      barClass: "bg-primary-container h-full w-[67%] rounded-full transition-all",
-      used: "0.0h Used",
-      limit: "Limit: 20.0h",
-    },
-    footer: {
-      type: "quota",
-      wrapperClass: "flex items-center justify-between",
-      button: {
-        label: "Upgrade Allocation",
-        icon: "arrow_upward",
-        iconClass: "text-primary",
-        className:
-          "bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-body-medium text-body-sm px-space-md py-1.5 rounded-lg transition-colors flex items-center gap-1",
-      },
-      tier: "Pro Tier",
-    },
-  },
-  {
-    category: "agent",
-    barClass: "bg-tertiary-container",
-    icon: "record_voice_over",
-    iconClass: "text-tertiary",
-    title: "Voice Calibration Synced",
-    badge: { label: "Optimized", className: "font-label-caps text-label-caps bg-tertiary-fixed text-on-tertiary-fixed px-space-xs py-0.5 rounded uppercase" },
-    description: (
-      <>
-        Real-Time Vector Embeddings Wave updated with <span className="text-on-surface font-body-medium">3 newly approved founder essays</span>. Drift variance reduced to <span className="text-tertiary font-body-medium">±0.02%</span>.
-      </>
-    ),
-    body: { type: "wave" },
-    footer: {
-      type: "wave",
-      wrapperClass: "flex items-center justify-between text-on-surface-variant font-caption-bold text-[11px] pt-space-xs",
-      persona: "Target Persona: Elena Vance (Clean Architectural)",
-      link: "Inspect Weights",
-    },
-  },
-];
 
 function renderBody(body: NotificationBody) {
   switch (body.type) {
@@ -323,5 +158,3 @@ export default function NotificationCard({ category, barClass, icon, iconClass, 
     </div>
   );
 }
-
-export { NOTIFICATIONS };

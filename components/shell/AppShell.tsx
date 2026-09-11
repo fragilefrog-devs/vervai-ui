@@ -8,15 +8,20 @@ import Icon from "@/components/ui/Icon";
 import { ButtonLink } from "@/components/ui/Button";
 import Avatar from "@/components/ui/Avatar";
 import SignOutButton from "@/components/auth/SignOutButton";
-import { NAV_SECTIONS, BOTTOM_NAV, activeKeyForPath, USER } from "@/lib/nav";
-import DropdownMenu from "@/components/ui/DropdownMenu";
+import { NAV_SECTIONS, BOTTOM_NAV, activeKeyForPath } from "@/lib/nav";
 
 function SidebarNav({
   activeKey,
   onNavigate,
+  userEmail,
+  userName,
+  userAvatar,
 }: {
   activeKey: string | null;
   onNavigate?: () => void;
+  userEmail?: string;
+  userName?: string;
+  userAvatar?: string;
 }) {
   const base = (active: boolean) =>
     `flex items-center gap-space-sm px-space-sm py-1.5 rounded transition-colors ${
@@ -75,12 +80,20 @@ function SidebarNav({
 
         <div className="flex items-center justify-between p-space-sm rounded bg-surface-container-low/70 border border-outline-variant/30 mt-space-xs">
           <Link href="/account" className="flex items-center gap-space-sm min-w-0 group">
-            <Avatar src={USER.avatar} name={USER.name} size={32} />
+            <Avatar
+              src={userAvatar ?? ""}
+              name={userName ?? userEmail ?? "Account"}
+              size={32}
+            />
             <div className="min-w-0 flex-1">
               <p className="font-caption-bold text-caption-bold text-on-surface truncate leading-tight">
-                {USER.name}
+                {userName ?? userEmail ?? "Account"}
               </p>
-              <p className="font-label-caps text-[10px] text-secondary truncate">{USER.role}</p>
+              {userEmail ? (
+                <p className="font-label-caps text-[10px] text-secondary truncate">
+                  {userName ? userEmail : "Signed in"}
+                </p>
+              ) : null}
             </div>
           </Link>
           <SignOutButton className="text-outline hover:text-error transition-colors p-1 rounded hover:bg-surface-container-high" />
@@ -106,7 +119,21 @@ function BrandRow() {
   );
 }
 
-export default function AppShell({ children }: { children: React.ReactNode }) {
+export default function AppShell({
+  children,
+  userEmail,
+  userName,
+  userAvatar,
+  planLabel,
+  creditsLabel,
+}: {
+  children: React.ReactNode;
+  userEmail?: string;
+  userName?: string;
+  userAvatar?: string;
+  planLabel?: string;
+  creditsLabel?: string;
+}) {
   const pathname = usePathname() ?? "/";
   const activeKey = activeKeyForPath(pathname);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -116,7 +143,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       {/* Desktop sidebar */}
       <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-64 bg-surface-container-lowest border-r border-outline-variant/40 z-40 flex-col justify-between select-none">
         <BrandRow />
-        <SidebarNav activeKey={activeKey} />
+        <SidebarNav
+          activeKey={activeKey}
+          userEmail={userEmail}
+          userName={userName}
+          userAvatar={userAvatar}
+        />
       </aside>
       <div
         className={`fixed inset-0 z-50 lg:hidden ${mobileOpen ? "" : "pointer-events-none"}`}
@@ -134,7 +166,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           }`}
         >
           <BrandRow />
-          <SidebarNav activeKey={activeKey} onNavigate={() => setMobileOpen(false)} />
+          <SidebarNav
+            activeKey={activeKey}
+            onNavigate={() => setMobileOpen(false)}
+            userEmail={userEmail}
+            userName={userName}
+            userAvatar={userAvatar}
+          />
         </aside>
       </div>
 
@@ -150,25 +188,16 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               <Icon name="menu" size={20} />
             </button>
             <div className="items-center gap-space-md hidden lg:flex">
-            <DropdownMenu
-              align="left"
-              trigger={
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container border border-outline-variant/40 hover:bg-surface-container-high transition-colors">
-                  <span className="font-caption-bold text-caption-bold text-on-surface">Acme Studio</span>
-                  <Icon name="expand_more" size={16} className="text-secondary" />
-                </div>
-              }
-              items={[
-                { key: "acme", label: "Acme Studio", icon: "workspaces" },
-                { key: "vervai", label: "VervAI Labs", icon: "science" },
-                { key: "manage", label: "Manage organizations", icon: "settings" },
-              ]}
-            />
-            <span className="text-outline-variant hidden sm:block">/</span>
-            <span className="font-body-sm text-body-sm text-secondary font-medium hidden sm:block">
-              Autonomous Suite
-            </span>
-          </div>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container border border-outline-variant/40">
+                <span className="font-caption-bold text-caption-bold text-on-surface">
+                  Workspace
+                </span>
+              </div>
+              <span className="text-outline-variant hidden sm:block">/</span>
+              <span className="font-body-sm text-body-sm text-secondary font-medium hidden sm:block">
+                Autonomous Suite
+              </span>
+            </div>
           </div>
 
           <div className="flex-1 max-w-md mx-space-lg hidden md:block">
@@ -186,10 +215,21 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="flex items-center gap-space-md">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-high border border-outline-variant/40 hidden sm:inline-flex">
-              <span className="w-1.5 h-1.5 rounded-full bg-tertiary" />
-              <span className="font-caption-bold text-caption-bold text-on-surface">12 / 20 Credits</span>
-            </div>
+            {planLabel ? (
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-high border border-outline-variant/40 hidden sm:inline-flex">
+                <span className="w-1.5 h-1.5 rounded-full bg-tertiary" />
+                <span className="font-caption-bold text-caption-bold text-on-surface">
+                  {planLabel}
+                </span>
+              </div>
+            ) : null}
+            {creditsLabel ? (
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-high border border-outline-variant/40 hidden sm:inline-flex">
+                <span className="font-caption-bold text-caption-bold text-on-surface">
+                  {creditsLabel}
+                </span>
+              </div>
+            ) : null}
             <ButtonLink href="/source-intake" size="sm">
               <Icon name="add" size={16} />
               <span>Create</span>
@@ -203,7 +243,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-primary ring-2 ring-surface" />
             </Link>
             <Link href="/account" className="flex items-center pl-1 shrink-0" aria-label="Account">
-              <Avatar src={USER.avatar} name={USER.name} size={32} />
+              <Avatar
+                src={userAvatar ?? ""}
+                name={userName ?? userEmail ?? "Account"}
+                size={32}
+              />
             </Link>
           </div>
         </header>

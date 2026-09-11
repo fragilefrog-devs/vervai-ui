@@ -14,11 +14,11 @@ export default function ApplyBar() {
   return (
     <div className="flex items-center justify-between p-space-md bg-surface-container-lowest rounded-xl shadow-sm">
       <div className="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
-        <span className="material-symbols-outlined text-tertiary text-[18px]">cloud_done</span>
+        <span className="material-symbols-outlined text-tertiary text-[18px]">cloud_off</span>
         <span>
           {applied
-            ? "Preferences deployed to production workers."
-            : "All system configurations are cached to session state. Press save to finalize deployment to production workers."}
+            ? "Applied to this session only."
+            : "Preferences are not persisted to the server yet. Changes apply to the current session only."}
         </span>
       </div>
       <div className="flex items-center gap-space-sm">
@@ -37,7 +37,7 @@ export default function ApplyBar() {
           type="button"
           onClick={apply}
         >
-          {applied ? "✓ Applied" : "Apply Workspace Preferences"}
+          {applied ? "✓ Applied" : "Apply Preferences"}
         </button>
       </div>
     </div>

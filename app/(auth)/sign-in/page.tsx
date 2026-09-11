@@ -26,7 +26,7 @@ export default function Page() {
               <div className="pt-4">
                 <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-surface-container-highest text-secondary text-caption-bold font-caption-bold mb-4">
                   <span className="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
-                  Node v4.18 Active • Sovereign Auth
+                  Sovereign Auth
                 </div>
                 <h2 className="font-headline-lg text-headline-lg text-on-surface tracking-tight leading-snug">
                   Autonomous workflows, calibrated under Swiss discipline.
@@ -36,37 +36,37 @@ export default function Page() {
                 </p>
               </div>
             </div>
-            <div className="relative z-10 my-8 bg-surface-container-lowest rounded-lg p-5 shadow-sm space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="font-label-caps text-label-caps uppercase text-outline tracking-wider">Cluster State</span>
-                <span className="font-caption-bold text-caption-bold text-tertiary flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-tertiary-fixed-dim animate-pulse"></span>
-                  99.98% Healthy
-                </span>
-              </div>
-              <div className="space-y-2">
-                <div className="flex justify-between font-caption-bold text-caption-bold text-on-surface-variant">
-                  <span>Buffer Sync Relay</span>
-                  <span className="text-primary font-caption-bold">Ultra-Low Latency</span>
+            <div className="relative z-10 my-8 bg-surface-container-lowest rounded-lg p-5 shadow-sm space-y-3">
+              <span className="font-label-caps text-label-caps uppercase text-outline tracking-wider">
+                Inside your workspace
+              </span>
+              <div className="space-y-2.5 pt-1">
+                <div className="flex items-start gap-2.5">
+                  <span className="material-symbols-outlined text-[16px] text-tertiary mt-0.5">graphic_eq</span>
+                  <span className="font-caption-bold text-caption-bold text-on-surface-variant">
+                    Ingest podcasts, videos, and transcripts into a searchable library.
+                  </span>
                 </div>
-                <div className="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
-                  <div className="bg-primary h-full rounded-full w-[88%]"></div>
+                <div className="flex items-start gap-2.5">
+                  <span className="material-symbols-outlined text-[16px] text-tertiary mt-0.5">auto_awesome</span>
+                  <span className="font-caption-bold text-caption-bold text-on-surface-variant">
+                    Agents draft posts, newsletters, scripts, and threads from your sources.
+                  </span>
                 </div>
-              </div>
-              <div className="pt-2 flex items-center justify-between text-on-surface-variant font-caption-bold text-caption-bold">
-                <span className="flex items-center gap-1.5">
-                  <span className="material-symbols-outlined text-[16px] text-tertiary">verified_user</span>
-                  FIDO2 Hardware Ready
-                </span>
-                <span className="text-outline">TLS 1.3 Strict</span>
+                <div className="flex items-start gap-2.5">
+                  <span className="material-symbols-outlined text-[16px] text-tertiary mt-0.5">send</span>
+                  <span className="font-caption-bold text-caption-bold text-on-surface-variant">
+                    Approve and schedule distribution across connected channels.
+                  </span>
+                </div>
               </div>
             </div>
             <div className="relative z-10 pt-2 flex items-center justify-between text-on-surface-variant">
               <div className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[18px] text-outline">domain_verification</span>
-                <span className="font-caption-bold text-caption-bold text-secondary">SOC-2 Type II Certified</span>
+                <span className="font-caption-bold text-caption-bold text-secondary">SOC 2 Certified</span>
               </div>
-              <span className="font-label-caps text-label-caps uppercase text-outline">Zero Leak</span>
+              <span className="font-label-caps text-label-caps uppercase text-outline">Server Rendered</span>
             </div>
           </div>
           <div className="lg:col-span-7 p-8 lg:p-12 flex flex-col justify-between bg-surface-container-lowest">
