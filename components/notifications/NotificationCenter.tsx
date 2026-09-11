@@ -1,0 +1,64 @@
+"use client";
+
+import { useState } from "react";
+import Icon from "@/components/ui/Icon";
+import NotificationCard, { NOTIFICATIONS } from "./NotificationCard";
+import NotificationFilters, { FILTER_TABS } from "./NotificationFilters";
+import LiveRelays from "./LiveRelays";
+
+export default function NotificationCenter() {
+  const [activeFilter, setActiveFilter] = useState("all");
+  const [allRead, setAllRead] = useState(false);
+
+  const visible =
+    activeFilter === "all"
+      ? NOTIFICATIONS
+      : NOTIFICATIONS.filter((n) => n.category === activeFilter);
+
+  return (
+    <aside className="fixed top-14 right-0 bottom-0 w-[540px] max-w-[calc(100vw-16rem)] bg-surface-container-lowest shadow-2xl z-50 flex flex-col justify-between overflow-hidden">
+      <div className="bg-surface-container-lowest shrink-0">
+        <div className="px-space-lg py-space-md flex items-center justify-between bg-surface-container-lowest">
+          <div className="flex items-center gap-space-sm">
+            <div className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></div>
+            <div className="flex flex-col">
+              <h2 className="font-headline-md text-headline-md text-on-surface tracking-tight">
+                Notifications & Feed
+              </h2>
+              <span className="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
+                Autonomous Engine Telemetry
+              </span>
+            </div>
+          </div>
+          <div className="flex items-center gap-space-xs">
+            <button
+              className="text-primary hover:text-on-primary-fixed-variant font-caption-bold text-caption-bold px-space-sm py-1.5 rounded-lg hover:bg-secondary-container/40 transition-colors flex items-center gap-1"
+              type="button"
+              onClick={() => setAllRead(true)}
+            >
+              <Icon name="done_all" size={16} />
+              <span>{allRead ? "All caught up" : "Mark all as read"}</span>
+            </button>
+          </div>
+        </div>
+        <NotificationFilters activeId={activeFilter} onChange={setActiveFilter} />
+        <div className="h-[1px] w-full bg-surface-container-highest"></div>
+      </div>
+      <div className="flex-1 overflow-y-auto px-space-lg py-space-md space-y-space-md bg-surface-container-low/40">
+        {visible.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-12 text-center gap-2">
+            <Icon name="inbox" size={28} className="text-outline" />
+            <p className="font-body-medium text-body-medium text-on-surface-variant">
+              No {activeFilter} notifications.
+            </p>
+          </div>
+        ) : (
+          visible.map((notification) => (
+            <NotificationCard key={notification.title} {...notification} />
+          ))
+        )}
+      </div>
+      <LiveRelays />
+    </aside>
+  );
+}
