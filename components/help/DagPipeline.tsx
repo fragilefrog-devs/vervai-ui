@@ -77,9 +77,10 @@ export default function DagPipeline() {
                 </span>
               </div>
               <button
-                className="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"
-                title="Copy endpoint"
+                className="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Coming soon"
                 type="button"
+                disabled
               >
                 <span className="material-symbols-outlined text-[16px]">content_copy</span>
               </button>
@@ -93,10 +94,10 @@ export default function DagPipeline() {
         </div>
       </div>
       <div className="px-space-lg py-3 bg-surface-container-low flex items-center justify-between">
-        <a className="font-body-medium text-body-medium text-primary hover:underline flex items-center gap-1" href="#">
+        <span className="font-body-medium text-body-medium text-primary flex items-center gap-1 cursor-default">
           <span>Read complete DAG specification</span>
           <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-        </a>
+        </span>
       </div>
     </div>
   );

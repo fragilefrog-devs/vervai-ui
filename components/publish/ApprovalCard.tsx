@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
+import ApproveScheduleButton from "./ApproveScheduleButton";
+
 export type ApprovalPreview =
   | { kind: "image"; src: string; alt: string; text: string }
   | { kind: "document"; icon: string; text: string }
@@ -18,6 +20,8 @@ export type ApprovalCardItem = {
   validation: { icon: string; label: string };
   secondaryAction: string;
   secondaryActionIcon?: string;
+  jobId: string;
+  scheduledAt?: string | null;
 };
 
 const TONE = {
@@ -131,8 +135,10 @@ export default function ApprovalCard({ item }: { item: ApprovalCardItem }) {
         </div>
         <div className="flex items-center gap-2">
           <button
-            className="px-3 py-1.5 rounded bg-surface-container text-on-surface font-caption-bold text-caption-bold hover:bg-surface-container-high transition-colors active:scale-[0.98] inline-flex items-center gap-1"
+            className="px-3 py-1.5 rounded bg-surface-container text-on-surface font-caption-bold text-caption-bold hover:bg-surface-container-high transition-colors active:scale-[0.98] inline-flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
             type="button"
+            disabled
+            title="Coming soon"
           >
             {item.secondaryActionIcon ? (
               <span className="material-symbols-outlined text-[16px]">
@@ -141,12 +147,11 @@ export default function ApprovalCard({ item }: { item: ApprovalCardItem }) {
             ) : null}
             {item.secondaryAction}
           </button>
-          <button
-            className="px-3.5 py-1.5 rounded bg-primary text-on-primary font-caption-bold text-caption-bold hover:bg-primary-container transition-all active:scale-[0.98] shadow-sm"
-            type="button"
-          >
-            Approve &amp; Schedule
-          </button>
+          <ApproveScheduleButton
+            jobId={item.jobId}
+            title={item.title}
+            scheduledAt={item.scheduledAt}
+          />
         </div>
       </div>
     </article>

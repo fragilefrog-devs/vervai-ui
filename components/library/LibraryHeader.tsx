@@ -16,7 +16,7 @@ export default function LibraryHeader({
               Autonomous Pipeline • Repository
             </span>
           </div>
-          <h1 className="font-display-2xl text-display-2xl text-on-surface tracking-tight">
+          <h1 className="font-headline-xl text-headline-xl text-on-surface tracking-tight">
             Content Library
           </h1>
           <p className="font-body-base text-body-base text-secondary mt-1">
@@ -34,11 +34,14 @@ export default function LibraryHeader({
             </span>
           </div>
           <button
-            className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-lg bg-primary text-on-primary font-caption-bold text-caption-bold shadow-xs hover:bg-primary-container active:scale-[0.98] transition-all"
+            className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-lg bg-primary text-on-primary font-caption-bold text-caption-bold shadow-xs hover:bg-primary-container active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             type="button"
+            disabled
+            title="Coming soon"
           >
             <span className="material-symbols-outlined text-[16px]">auto_awesome</span>
             <span>+ New Extraction</span>
+            <span className="font-label-caps text-[10px] text-on-surface-variant uppercase ml-1">Coming soon</span>
           </button>
         </div>
       </div>

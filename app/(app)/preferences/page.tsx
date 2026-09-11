@@ -6,6 +6,7 @@ import NotificationSettings from "@/components/preferences/NotificationSettings"
 import DataSovereignty from "@/components/preferences/DataSovereignty";
 import PreferencesTabs from "@/components/preferences/PreferencesTabs";
 import ApplyBar from "@/components/preferences/ApplyBar";
+import PreferencesManager from "@/components/preferences/PreferencesManager";
 
 function metadataName(user: { user_metadata?: unknown } | null): string | null {
   if (!user) return null;
@@ -33,7 +34,7 @@ export default async function Page() {
 
   return (
     <div className="flex flex-col w-full">
-      <div className="max-w-[1440px] w-full mx-auto space-y-space-xl">
+      <div className="max-w-7xl w-full mx-auto space-y-space-xl">
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-2 text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider">
             <span>Account</span>
@@ -41,7 +42,7 @@ export default async function Page() {
             <span className="text-primary font-semibold">Configuration & System Preferences</span>
           </div>
           <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2 mt-1">
-            <h1 className="font-display-2xl text-display-2xl text-on-surface tracking-tight">
+            <h1 className="font-headline-xl text-headline-xl text-on-surface tracking-tight">
               Preferences & Workspace Settings
             </h1>
             <div className="flex items-center gap-2">
@@ -56,14 +57,16 @@ export default async function Page() {
             editorial safeguards, and data retention settings.
           </p>
         </div>
-        <PreferencesTabs />
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
-          <ProfileSection email={email} name={name} userId={userId} plan={plan} />
-          <AgentDefaults prefs={prefs} />
-          <NotificationSettings />
-          <DataSovereignty />
-        </div>
-        <ApplyBar />
+        <PreferencesManager prefs={prefs}>
+          <PreferencesTabs />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+            <ProfileSection email={email} name={name} userId={userId} plan={plan} />
+            <AgentDefaults />
+            <NotificationSettings />
+            <DataSovereignty />
+          </div>
+          <ApplyBar />
+        </PreferencesManager>
       </div>
     </div>
   );

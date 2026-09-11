@@ -6,7 +6,7 @@ type DangerAction = {
   title: string;
   titleClass: string;
   description: ReactNode;
-  action: { icon: string; label: string; className: string };
+  action: { icon: string; label: string; className: string; chip?: boolean };
 };
 
 const DANGER_ACTIONS: DangerAction[] = [
@@ -21,7 +21,7 @@ const DANGER_ACTIONS: DangerAction[] = [
       icon: "download",
       label: "Export Workspace Archive",
       className:
-        "flex items-center gap-2 bg-surface-container-highest hover:bg-surface-dim text-on-surface font-body-medium text-body-medium px-4 py-2 rounded-lg transition-all active:scale-[0.98] shadow-sm",
+        "flex items-center gap-2 bg-surface-container-highest hover:bg-surface-dim text-on-surface font-body-medium text-body-medium px-4 py-2 rounded-lg transition-all active:scale-[0.98] shadow-sm disabled:opacity-50 disabled:cursor-not-allowed",
     },
   },
   {
@@ -35,7 +35,8 @@ const DANGER_ACTIONS: DangerAction[] = [
       icon: "close",
       label: "Close Account & Revoke Access",
       className:
-        "flex items-center gap-1.5 bg-error text-on-error hover:bg-on-error-container font-body-medium text-body-medium px-4 py-2 rounded-lg transition-all active:scale-[0.98] shadow-sm",
+        "flex items-center gap-1.5 bg-error text-on-error hover:bg-on-error-container font-body-medium text-body-medium px-4 py-2 rounded-lg transition-all active:scale-[0.98] shadow-sm disabled:opacity-50 disabled:cursor-not-allowed",
+      chip: true,
     },
   },
 ];
@@ -62,9 +63,14 @@ export default function DangerZone() {
             </div>
             <p className="font-body-sm text-body-sm text-on-surface-variant">{item.description}</p>
             <div className="mt-2">
-              <button className={item.action.className} type="button">
+              <button className={item.action.className} type="button" disabled title="Coming soon">
                 <span className="material-symbols-outlined text-[18px]">{item.action.icon}</span>
-                <span>{item.action.label}</span>
+                <span>
+                  {item.action.label}
+                  {item.action.chip ? (
+                    <span className="font-label-caps text-[10px] text-on-surface-variant uppercase ml-1">Coming soon</span>
+                  ) : null}
+                </span>
               </button>
             </div>
           </div>

@@ -123,8 +123,10 @@ export default function ConnectorCard({
         )}
       </div>
       <button
-        className={`mt-space-md w-full ${compact ? "py-2 px-space-md rounded-lg font-body-medium text-body-medium" : "h-9 rounded font-caption-bold text-caption-bold"} transition-colors flex items-center justify-center gap-1.5 ${ACTION_CLASSES[item.action.tone][variant]}`}
+        className={`mt-space-md w-full ${compact ? "py-2 px-space-md rounded-lg font-body-medium text-body-medium" : "h-9 rounded font-caption-bold text-caption-bold"} transition-colors flex items-center justify-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed ${ACTION_CLASSES[item.action.tone][variant]}`}
         type="button"
+        disabled
+        title="Coming soon"
       >
         {item.action.icon ? (
           <span className="material-symbols-outlined text-[16px]">{item.action.icon}</span>

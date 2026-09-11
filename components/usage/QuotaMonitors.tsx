@@ -68,7 +68,7 @@ export default function QuotaMonitors({
             </div>
           </div>
           <div className="mt-4 flex items-baseline gap-2">
-            <span className="font-display-2xl text-display-2xl text-on-surface font-bold tracking-tight">
+            <span className="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">
               {totalSources}
             </span>
             <span className="font-headline-md text-headline-md text-secondary">
@@ -122,7 +122,7 @@ export default function QuotaMonitors({
             </div>
           </div>
           <div className="mt-4 flex items-baseline gap-2">
-            <span className="font-display-2xl text-display-2xl text-on-surface font-bold tracking-tight">
+            <span className="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">
               {totalOutputs}
             </span>
             <span className="font-headline-md text-headline-md text-secondary">
@@ -171,7 +171,7 @@ export default function QuotaMonitors({
             </div>
           </div>
           <div className="mt-4 flex items-baseline gap-2">
-            <span className="font-display-2xl text-display-2xl text-on-surface font-bold tracking-tight">
+            <span className="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">
               {publishedCount}
             </span>
             <span className="font-headline-md text-headline-md text-secondary">
@@ -216,7 +216,7 @@ export default function QuotaMonitors({
             </div>
           </div>
           <div className="mt-4 flex items-baseline gap-2">
-            <span className="font-display-2xl text-display-2xl text-on-surface font-bold tracking-tight">
+            <span className="font-headline-xl text-headline-xl text-on-surface font-bold tracking-tight">
               {totalIdeas}
             </span>
             <span className="font-headline-md text-headline-md text-secondary">

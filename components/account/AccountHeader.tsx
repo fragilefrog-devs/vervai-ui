@@ -58,10 +58,13 @@ export default function AccountHeader({
           </div>
           {isFree === true && (
             <button
-              className="flex items-center gap-1.5 bg-primary hover:bg-primary-container text-on-primary px-3 py-1.5 rounded-lg font-body-sm text-body-sm transition-all shadow-sm active:scale-[0.98]"
+              className="flex items-center gap-1.5 bg-primary hover:bg-primary-container text-on-primary px-3 py-1.5 rounded-lg font-body-sm text-body-sm transition-all shadow-sm active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
               type="button"
+              disabled
+              title="Coming soon"
             >
               Upgrade
+              <span className="font-label-caps text-[10px] text-on-surface-variant uppercase ml-1">Coming soon</span>
             </button>
           )}
         </div>

@@ -15,7 +15,7 @@ export default function PublishHeader({
           <span>/</span>
           <span className="text-primary font-bold">Orchestration &amp; Relays</span>
         </div>
-        <h1 className="font-display-2xl text-display-2xl text-on-surface tracking-tight">
+        <h1 className="font-headline-xl text-headline-xl text-on-surface tracking-tight">
           Distribution &amp; Publishing
         </h1>
         <p className="font-body-medium text-body-medium text-on-surface-variant max-w-2xl">

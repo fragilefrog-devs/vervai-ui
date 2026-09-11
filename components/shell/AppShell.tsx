@@ -252,7 +252,7 @@ export default function AppShell({
           </div>
         </header>
 
-        <main className="flex-1 w-full bg-surface px-gutter-mobile sm:px-gutter lg:px-space-lg py-space-lg max-w-[1440px] mx-auto">
+        <main className="flex-1 w-full bg-surface px-gutter-mobile sm:px-gutter lg:px-space-lg py-space-md max-w-7xl mx-auto">
           {children}
         </main>
       </div>

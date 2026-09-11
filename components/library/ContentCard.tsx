@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
+import DeleteOutputMenu from "@/components/library/DeleteOutputMenu";
+
 export type ContentCardStatus =
   | { kind: "scheduled"; label: string }
   | { kind: "review"; label: string }
@@ -40,6 +42,7 @@ export type ContentCardItem = {
   source: string;
   actionLabel: string;
   actionIcon: string;
+  outputId?: string | null;
 };
 
 function StatusBadge({ status }: { status: ContentCardStatus }) {
@@ -138,7 +141,12 @@ export default function ContentCard({ item }: { item: ContentCardItem }) {
       <div className="space-y-space-sm">
         <div className="flex items-center justify-between">
           <TypeBadge item={item} />
-          <StatusBadge status={item.status} />
+          <div className="flex items-center gap-1">
+            <StatusBadge status={item.status} />
+            {item.outputId ? (
+              <DeleteOutputMenu outputId={item.outputId} title={item.title} />
+            ) : null}
+          </div>
         </div>
         <Preview item={item} />
         <div>
@@ -162,8 +170,10 @@ export default function ContentCard({ item }: { item: ContentCardItem }) {
           From: {item.source}
         </span>
         <button
-          className="inline-flex items-center gap-1 text-primary font-caption-bold text-caption-bold hover:underline"
+          className="inline-flex items-center gap-1 text-primary font-caption-bold text-caption-bold hover:underline disabled:opacity-50 disabled:cursor-not-allowed"
           type="button"
+          disabled
+          title="Coming soon"
         >
           <span>{item.actionLabel}</span>
           <span className="material-symbols-outlined text-[16px]">{item.actionIcon}</span>

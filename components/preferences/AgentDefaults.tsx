@@ -2,77 +2,133 @@
 
 import { useState } from "react";
 import Toggle from "@/components/ui/Toggle";
-import type { AgentPreferencesRow } from "@/lib/data";
 
+type Patch = {
+  autoMode?: boolean;
+  tone?: string;
+  forbidden?: string[];
+  examples?: string[];
+  samples?: string[];
+};
+
+// Props are typed optional (with bare-render defaults) because the
+// preferences page is a server component and cannot hold client state to pass
+// them. PreferencesManager always injects the full controlled prop set into
+// this component via cloneElement at runtime; the defaults below only keep the
+// bare-render path safe (e.g. Storybook/isolated previews).
 type AgentDefaultsProps = {
-  prefs?: AgentPreferencesRow | null;
+  autoMode?: boolean;
+  tone?: string;
+  forbidden?: string[];
+  examples?: string[];
+  samples?: string[];
+  onChange?: (patch: Patch) => void;
+  onReset?: () => void;
 };
 
 type ListMode = "phrases" | "examples" | "samples";
 
-export default function AgentDefaults({ prefs }: AgentDefaultsProps) {
-  const [autoMode, setAutoMode] = useState(prefs?.auto_mode ?? false);
-  const [tone, setTone] = useState(prefs?.brand_tone ?? "");
-  const [forbidden, setForbidden] = useState<string[]>(prefs?.brand_forbidden_phrases ?? []);
-  const [examples, setExamples] = useState<string[]>(prefs?.brand_examples ?? []);
-  const [samples, setSamples] = useState<string[]>(prefs?.brand_samples ?? []);
+type ListSectionProps = {
+  mode: ListMode;
+  items: string[];
+  onChange?: (patch: Patch) => void;
+};
 
-  const reset = () => {
-    setAutoMode(false);
-    setTone("");
-    setForbidden([]);
-    setExamples([]);
-    setSamples([]);
+function ListSection({ mode, items, onChange }: ListSectionProps) {
+  const [draft, setDraft] = useState("");
+
+  const title =
+    mode === "phrases"
+      ? "Forbidden Phrases"
+      : mode === "examples"
+        ? "Brand Examples"
+        : "Brand Samples";
+  const singular = mode === "phrases" ? "phrase" : mode === "examples" ? "example" : "sample";
+
+  const emit = (next: string[]) => {
+    if (mode === "phrases") onChange?.({ forbidden: next });
+    else if (mode === "examples") onChange?.({ examples: next });
+    else onChange?.({ samples: next });
   };
 
-  const ListSection = ({ mode }: { mode: ListMode }) => {
-    const items = mode === "phrases" ? forbidden : mode === "examples" ? examples : samples;
-    const setItems =
-      mode === "phrases" ? setForbidden : mode === "examples" ? setExamples : setSamples;
-    const title =
-      mode === "phrases"
-        ? "Forbidden Phrases"
-        : mode === "examples"
-          ? "Brand Examples"
-          : "Brand Samples";
-    const singular = mode === "phrases" ? "phrase" : mode === "examples" ? "example" : "sample";
+  const removeItem = (item: string) => {
+    emit(items.filter((i) => i !== item));
+  };
 
-    return (
-      <div className="flex flex-col p-space-md bg-surface-container-low rounded-xl gap-2">
-        <div className="flex items-center justify-between">
-          <span className="font-headline-sm text-headline-sm text-on-surface">{title}</span>
-          <span className="font-caption-bold text-caption-bold text-primary font-semibold">
-            {items.length}
-          </span>
-        </div>
-        {items.length > 0 ? (
-          <div className="flex flex-wrap gap-1.5">
-            {items.map((item) => (
-              <span
-                key={item}
-                className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container-highest text-on-surface font-caption-bold text-caption-bold"
-              >
-                {item}
-                <button
-                  className="text-outline hover:text-error transition-colors"
-                  type="button"
-                  aria-label={`Remove ${item}`}
-                  onClick={() => setItems(items.filter((i) => i !== item))}
-                >
-                  <span className="material-symbols-outlined text-[14px]">close</span>
-                </button>
-              </span>
-            ))}
-          </div>
-        ) : (
-          <p className="font-body-sm text-body-sm text-on-surface-variant">
-            No {singular}s configured.
-          </p>
-        )}
+  const addItem = () => {
+    const value = draft.trim();
+    if (!value) return;
+    emit([...items, value]);
+    setDraft("");
+  };
+
+  return (
+    <div className="flex flex-col p-space-md bg-surface-container-low rounded-xl gap-2">
+      <div className="flex items-center justify-between">
+        <span className="font-headline-sm text-headline-sm text-on-surface">{title}</span>
+        <span className="font-caption-bold text-caption-bold text-primary font-semibold">
+          {items.length}
+        </span>
       </div>
-    );
-  };
+      {items.length > 0 ? (
+        <div className="flex flex-wrap gap-1.5">
+          {items.map((item) => (
+            <span
+              key={item}
+              className="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container-highest text-on-surface font-caption-bold text-caption-bold"
+            >
+              {item}
+              <button
+                className="text-outline hover:text-error transition-colors"
+                type="button"
+                aria-label={`Remove ${item}`}
+                onClick={() => removeItem(item)}
+              >
+                <span className="material-symbols-outlined text-[14px]">close</span>
+              </button>
+            </span>
+          ))}
+        </div>
+      ) : (
+        <p className="font-body-sm text-body-sm text-on-surface-variant">
+          No {singular}s configured.
+        </p>
+      )}
+      <form
+        className="flex items-center gap-2"
+        onSubmit={(e) => {
+          e.preventDefault();
+          addItem();
+        }}
+      >
+        <input
+          className="flex-1 min-w-0 px-3 py-2 bg-surface-container-lowest text-on-surface font-body-sm text-body-sm rounded-lg outline-none focus:shadow-sm focus:bg-surface-container-highest transition-all placeholder:text-outline"
+          type="text"
+          value={draft}
+          aria-label={`Add ${singular}`}
+          placeholder={`Add a ${singular}…`}
+          onChange={(e) => setDraft(e.target.value)}
+        />
+        <button
+          className="shrink-0 px-3 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium transition-colors"
+          type="submit"
+        >
+          Add
+        </button>
+      </form>
+    </div>
+  );
+}
 
+export default function AgentDefaults({
+  autoMode = false,
+  tone = "",
+  forbidden = [],
+  examples = [],
+  samples = [],
+  onChange,
+  onReset,
+}: AgentDefaultsProps) {
   return (
     <section
       id="agent-defaults"
@@ -105,7 +161,7 @@ export default function AgentDefaults({ prefs }: AgentDefaultsProps) {
               </span>
             </div>
             <div className="shrink-0 mt-1">
-              <Toggle checked={autoMode} onChange={setAutoMode} />
+              <Toggle checked={autoMode} onChange={(v) => onChange?.({ autoMode: v })} />
             </div>
           </div>
           <div className="flex flex-col p-space-md bg-surface-container-low rounded-xl gap-2">
@@ -124,22 +180,22 @@ export default function AgentDefaults({ prefs }: AgentDefaultsProps) {
               rows={3}
               placeholder="No brand tone configured"
               value={tone}
-              onChange={(e) => setTone(e.target.value)}
+              onChange={(e) => onChange?.({ tone: e.target.value })}
             />
           </div>
-          <ListSection mode="phrases" />
-          <ListSection mode="examples" />
-          <ListSection mode="samples" />
+          <ListSection mode="phrases" items={forbidden} onChange={onChange} />
+          <ListSection mode="examples" items={examples} onChange={onChange} />
+          <ListSection mode="samples" items={samples} onChange={onChange} />
         </div>
       </div>
       <div className="pt-2 flex flex-wrap items-center justify-end gap-space-sm">
         <span className="font-body-sm text-[12px] text-on-surface-variant mr-auto">
-          Changes are applied locally and are not saved to the server yet.
+          Saved to your workspace when you apply.
         </span>
         <button
           className="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium transition-all"
           type="button"
-          onClick={reset}
+          onClick={onReset}
         >
           Revert to System Defaults
         </button>

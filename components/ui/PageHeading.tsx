@@ -28,7 +28,7 @@ export default function PageHeading({
             ) : null}
           </div>
         )}
-        <h1 className="font-display-2xl text-display-2xl text-on-surface tracking-tight">{title}</h1>
+        <h1 className="font-headline-xl text-headline-xl text-on-surface tracking-tight">{title}</h1>
         {subtitle && <p className="font-body-base text-body-base text-secondary">{subtitle}</p>}
       </div>
       {actions && <div className="flex items-center gap-space-sm self-start md:self-end">{actions}</div>}

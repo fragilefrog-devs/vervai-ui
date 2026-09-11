@@ -95,8 +95,10 @@ function TodayDay({ day }: { day: Extract<CalendarDay, { kind: "today" }> }) {
           </p>
         </div>
         <button
-          className="mt-2 text-[11px] font-caption-bold text-primary hover:underline flex items-center gap-0.5"
+          className="mt-2 text-[11px] font-caption-bold text-primary hover:underline flex items-center gap-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
           type="button"
+          disabled
+          title="Coming soon"
         >
           <span className="material-symbols-outlined text-[14px]">add</span>
           Add impromptu post
@@ -142,7 +144,12 @@ function ScheduledDay({ day }: { day: Extract<CalendarDay, { kind: "scheduled" }
             <span className="material-symbols-outlined text-[14px]">{day.status.icon}</span>
             {day.status.label}
           </span>
-          <button className="text-secondary hover:text-on-surface p-1" type="button">
+          <button
+            className="text-secondary hover:text-on-surface p-1 disabled:opacity-50 disabled:cursor-not-allowed"
+            type="button"
+            disabled
+            title="Coming soon"
+          >
             <span className="material-symbols-outlined text-[16px]">more_vert</span>
           </button>
         </div>
@@ -172,8 +179,10 @@ export default function ContentCalendar({
         <div className="flex items-center gap-space-xs self-start sm:self-auto">
           <div className="inline-flex rounded-lg bg-surface-container p-0.5 shadow-xs">
             <button
-              className="px-3 py-1 rounded-md bg-surface-container-lowest font-caption-bold text-caption-bold text-on-surface shadow-xs"
+              className="px-3 py-1 rounded-md bg-surface-container-lowest font-caption-bold text-caption-bold text-on-surface shadow-xs disabled:opacity-50 disabled:cursor-not-allowed"
               type="button"
+              disabled
+              title="Coming soon"
             >
               Queue View
             </button>

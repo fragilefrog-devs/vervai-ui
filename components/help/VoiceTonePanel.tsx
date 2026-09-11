@@ -72,10 +72,10 @@ export default function VoiceTonePanel() {
         </div>
       </div>
       <div className="px-space-lg py-3 bg-surface-container-low flex items-center justify-between">
-        <a className="font-body-medium text-body-medium text-primary hover:underline flex items-center gap-1" href="#">
+        <span className="font-body-medium text-body-medium text-primary flex items-center gap-1 cursor-default">
           <span>Tune Voice Calibration Vector</span>
           <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-        </a>
+        </span>
       </div>
     </div>
   );

@@ -12,9 +12,11 @@ export default function UrlFetchBar() {
           type="url"
         />
         <button
-          className="absolute right-1.5 h-8 px-4 rounded bg-primary text-on-primary font-caption-bold text-caption-bold hover:bg-primary-container transition-colors shadow-xs active:scale-[0.98] flex items-center gap-1.5"
+          className="absolute right-1.5 h-8 px-4 rounded bg-primary text-on-primary font-caption-bold text-caption-bold hover:bg-primary-container transition-colors shadow-xs active:scale-[0.98] flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
           id="fetch-btn"
           type="button"
+          disabled
+          title="Coming soon"
         >
           <span>Fetch &amp; Analyze</span>
           <span className="material-symbols-outlined text-[15px]">arrow_forward</span>

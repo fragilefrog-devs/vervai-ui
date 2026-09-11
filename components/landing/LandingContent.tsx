@@ -27,20 +27,20 @@ export default function LandingContent() {
         
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto justify-center mb-16">
-          <a className="w-full sm:w-auto h-12 px-8 rounded-lg bg-primary-container text-on-primary font-headline-sm text-headline-sm flex items-center justify-center gap-2 hover:bg-primary shadow-sm transition-all active:scale-[0.98]" data-path="start-free-trial" href="/sign-up">
+          <a className="w-full sm:w-auto h-11 px-8 rounded-lg bg-primary-container text-on-primary font-headline-sm text-headline-sm flex items-center justify-center gap-2 hover:bg-primary shadow-sm transition-all active:scale-[0.98]" data-path="start-free-trial" href="/sign-up">
             <span>Start Free Trial
             </span>
             <span className="material-symbols-outlined text-[18px]">arrow_forward
             </span>
           </a>
-          <button className="w-full sm:w-auto h-12 px-6 rounded-lg bg-surface-container-lowest text-on-surface font-headline-sm text-headline-sm shadow-sm flex items-center justify-center gap-3 hover:bg-surface-container-low transition-all active:scale-[0.98]" type="button">
+          <a className="w-full sm:w-auto h-11 px-6 rounded-lg bg-surface-container-lowest text-on-surface font-headline-sm text-headline-sm shadow-sm flex items-center justify-center gap-3 hover:bg-surface-container-low transition-all active:scale-[0.98]" href="/sign-up">
             <span className="material-symbols-outlined text-[20px] text-primary">play_circle
             </span>
             <span>Explore Interactive Demo
             </span>
             <span className="px-1.5 py-0.5 rounded bg-surface-variant text-[11px] font-caption-bold text-on-surface-variant uppercase tracking-wider">⌘K
             </span>
-          </button>
+          </a>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full max-w-3xl pt-8 bg-surface-container-low/50 rounded-xl p-4 shadow-sm">
           <div className="text-left px-3">
@@ -74,7 +74,7 @@ export default function LandingContent() {
           One workspace for voice, video, and document-led content
         
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-14 opacity-75">
+        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-14 opacity-75">
           <div className="flex items-center gap-2 font-headline-md text-headline-md tracking-tighter text-on-surface">
             <span className="w-3.5 h-3.5 rounded bg-on-surface">
             </span> Voice Memos
@@ -748,11 +748,11 @@ export default function LandingContent() {
           </p>
         </div>
         <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
-          <a className="w-full sm:w-auto h-12 px-8 rounded-lg bg-primary-container text-on-primary font-headline-sm text-headline-sm flex items-center justify-center hover:bg-primary shadow-sm transition-all active:scale-[0.98]" data-path="start-free-trial" href="/sign-up">
+          <a className="w-full sm:w-auto h-11 px-8 rounded-lg bg-primary-container text-on-primary font-headline-sm text-headline-sm flex items-center justify-center hover:bg-primary shadow-sm transition-all active:scale-[0.98]" data-path="start-free-trial" href="/sign-up">
             Start Free Trial
           
           </a>
-          <a className="w-full sm:w-auto h-12 px-6 rounded-lg bg-surface-container-highest/20 text-on-primary font-headline-sm text-headline-sm flex items-center justify-center hover:bg-surface-container-highest/30 transition-all active:scale-[0.98]" data-path="workflows" href="/workspace">
+          <a className="w-full sm:w-auto h-11 px-6 rounded-lg bg-surface-container-highest/20 text-on-primary font-headline-sm text-headline-sm flex items-center justify-center hover:bg-surface-container-highest/30 transition-all active:scale-[0.98]" data-path="workflows" href="/workspace">
             Read Workflow Codex
           
           </a>

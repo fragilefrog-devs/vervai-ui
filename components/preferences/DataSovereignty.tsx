@@ -53,8 +53,10 @@ export default function DataSovereignty() {
           </div>
           <div className="pt-2">
             <button
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-space-lg py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium shadow-sm transition-all active:scale-[0.98]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-space-lg py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium shadow-sm transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
               type="button"
+              disabled
+              title="Coming soon"
             >
               <span className="material-symbols-outlined text-[20px] text-primary">download</span>
               <span>Export Workspace Content</span>
@@ -86,11 +88,14 @@ export default function DataSovereignty() {
           </div>
           <div className="pt-2">
             <button
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-space-lg py-2.5 rounded-lg bg-error text-on-error font-body-medium text-body-medium shadow-md hover:bg-on-error-container transition-all active:scale-[0.98]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-space-lg py-2.5 rounded-lg bg-error text-on-error font-body-medium text-body-medium shadow-md hover:bg-on-error-container transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
               type="button"
+              disabled
+              title="Coming soon"
             >
               <span className="material-symbols-outlined text-[18px]">delete_forever</span>
               <span>Delete Workspace</span>
+              <span className="font-label-caps text-[10px] text-on-surface-variant uppercase ml-1">Coming soon</span>
             </button>
           </div>
         </div>

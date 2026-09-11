@@ -79,7 +79,7 @@ export type AgentRunRow = {
 };
 
 export type AgentPreferencesRow = {
-  auto_mode: boolean;
+  auto_mode: "assist" | "execute" | "automate";
   brand_tone: string | null;
   brand_forbidden_phrases: string[] | null;
   brand_examples: string[] | null;

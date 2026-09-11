@@ -1,3 +1,5 @@
+import ApproveQueueButton from "@/components/library/ApproveQueueButton";
+
 export type FeaturedSource = {
   title: string;
   sourceTypeLabel: string;
@@ -6,6 +8,7 @@ export type FeaturedSource = {
   minutes: number;
   outputCount: number;
   needsReview: boolean;
+  featuredIdeaId: string | null;
 };
 
 export default function FeaturedExtraction({
@@ -95,23 +98,22 @@ export default function FeaturedExtraction({
       <div className="pt-space-md mt-space-md flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest relative z-10">
         <div className="flex items-center gap-space-xs">
           <button
-            className="inline-flex items-center gap-1.5 h-9 px-4 rounded-lg bg-primary text-on-primary font-caption-bold text-caption-bold shadow-xs hover:bg-primary-container active:scale-[0.98] transition-all"
+            className="inline-flex items-center gap-1.5 h-9 px-4 rounded-lg bg-primary text-on-primary font-caption-bold text-caption-bold shadow-xs hover:bg-primary-container active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             type="button"
+            disabled
+            title="Coming soon"
           >
             <span className="material-symbols-outlined text-[16px]">edit_note</span>
             <span>Open in Editor</span>
+            <span className="font-label-caps text-[10px] text-on-surface-variant uppercase ml-1">Coming soon</span>
           </button>
-          <button
-            className="inline-flex items-center gap-1.5 h-9 px-3.5 rounded-lg bg-surface-container-high text-on-surface font-caption-bold text-caption-bold hover:bg-surface-container-highest transition-colors"
-            type="button"
-          >
-            <span className="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
-            <span>Approve &amp; Queue</span>
-          </button>
+          <ApproveQueueButton ideaId={source.featuredIdeaId} />
         </div>
         <button
-          className="inline-flex items-center gap-1 text-secondary hover:text-on-surface font-caption-bold text-caption-bold transition-colors"
+          className="inline-flex items-center gap-1 text-secondary hover:text-on-surface font-caption-bold text-caption-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           type="button"
+          disabled
+          title="Coming soon"
         >
           <span className="material-symbols-outlined text-[16px]">account_tree</span>
           <span>Compare with Source Node</span>

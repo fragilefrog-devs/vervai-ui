@@ -84,8 +84,10 @@ export default function ApiExtensibilityPanel() {
               </div>
             </div>
             <button
-              className="w-full py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium transition-colors flex items-center justify-center gap-1.5"
+              className="w-full py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium transition-colors flex items-center justify-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed"
               type="button"
+              disabled
+              title="Coming soon"
             >
               <span className="material-symbols-outlined text-[16px]">menu_book</span>
               <span>Explore Interactive Swagger API Specs</span>

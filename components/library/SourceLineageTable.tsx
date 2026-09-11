@@ -67,15 +67,19 @@ export default function SourceLineageTable({ rows }: { rows: LineageRow[] }) {
         </div>
         <div className="flex items-center gap-2">
           <button
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface font-caption-bold text-caption-bold hover:bg-surface-container-highest transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface font-caption-bold text-caption-bold hover:bg-surface-container-highest transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             type="button"
+            disabled
+            title="Coming soon"
           >
             <span className="material-symbols-outlined text-[16px]">file_download</span>
             <span>Bulk Export</span>
           </button>
           <button
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface font-caption-bold text-caption-bold hover:bg-surface-container-highest transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-high text-on-surface font-caption-bold text-caption-bold hover:bg-surface-container-highest transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             type="button"
+            disabled
+            title="Coming soon"
           >
             <span className="material-symbols-outlined text-[16px]">tune</span>
             <span>Batch Action</span>
@@ -127,8 +131,10 @@ export default function SourceLineageTable({ rows }: { rows: LineageRow[] }) {
                   </td>
                   <td className="py-3 px-3 text-right">
                     <button
-                      className="p-1 rounded text-secondary hover:text-on-surface hover:bg-surface-container-high transition-colors"
+                      className="p-1 rounded text-secondary hover:text-on-surface hover:bg-surface-container-high transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                       type="button"
+                      disabled
+                      title="Coming soon"
                     >
                       <span className="material-symbols-outlined text-[18px]">more_horiz</span>
                     </button>

@@ -28,7 +28,7 @@ export default function Page() {
             <span className="w-2 h-2 rounded-full bg-tertiary-container"></span>
             <span>Read-only Documentation</span>
           </div>
-          <button className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-medium text-body-medium shadow-sm transition-all active:scale-[0.98]">
+          <button className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-body-medium text-body-medium shadow-sm transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed" disabled title="Coming soon">
             <span className="material-symbols-outlined text-[16px] text-primary">download</span>
             <span>PDF Schemas</span>
           </button>
@@ -43,7 +43,7 @@ export default function Page() {
                 Engineering Codex
               </span>
             </div>
-            <h1 className="font-display-2xl text-display-2xl text-on-surface tracking-tight">
+            <h1 className="font-headline-xl text-headline-xl text-on-surface tracking-tight">
               Documentation & Knowledge Base
             </h1>
             <p className="font-body-base text-body-base text-on-surface-variant max-w-2xl">
@@ -69,8 +69,10 @@ export default function Page() {
                 {FREQUENT_QUERIES.map((query) => (
                   <button
                     key={query.label}
-                    className="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-caption-bold text-caption-bold transition-colors flex items-center gap-1"
+                    className="px-3 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-caption-bold text-caption-bold transition-colors flex items-center gap-1 disabled:opacity-50 disabled:cursor-not-allowed"
                     type="button"
+                    disabled
+                    title="Coming soon"
                   >
                     <span className={`material-symbols-outlined text-[14px] ${query.iconClass}`}>
                       {query.icon}
@@ -107,20 +109,14 @@ export default function Page() {
             </div>
           </div>
           <div className="flex items-center gap-space-sm shrink-0 w-full md:w-auto justify-end">
-            <a
-              className="px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium flex items-center gap-2 transition-colors"
-              href="#"
-            >
+            <span className="px-4 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium flex items-center gap-2 transition-colors cursor-default">
               <span className="material-symbols-outlined text-[18px]">forum</span>
               <span>Community Forum</span>
-            </a>
-            <a
-              className="px-4 py-2 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-body-medium text-body-medium flex items-center gap-2 transition-all shadow-sm active:scale-[0.98]"
-              href="#"
-            >
+            </span>
+            <span className="px-4 py-2 rounded-lg bg-primary-container hover:bg-primary text-on-primary font-body-medium text-body-medium flex items-center gap-2 transition-all shadow-sm active:scale-[0.98] cursor-default">
               <span className="material-symbols-outlined text-[18px]">headset_mic</span>
               <span>Contact Support</span>
-            </a>
+            </span>
           </div>
         </div>
       </div>

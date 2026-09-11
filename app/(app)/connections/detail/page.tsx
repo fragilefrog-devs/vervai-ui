@@ -204,11 +204,14 @@ export default async function Page() {
         <div className="flex items-center gap-space-sm shrink-0">
           <CheckAllStatuses />
           <button
-            className="inline-flex items-center gap-1.5 h-10 px-4 rounded-lg bg-primary text-on-primary font-caption-bold text-caption-bold shadow-sm hover:bg-primary-container transition-colors active:scale-[0.98]"
+            className="inline-flex items-center gap-1.5 h-10 px-4 rounded-lg bg-primary text-on-primary font-caption-bold text-caption-bold shadow-sm hover:bg-primary-container transition-colors active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
             type="button"
+            disabled
+            title="Coming soon"
           >
             <span className="material-symbols-outlined text-[18px]">add_link</span>
             <span>Add Integration</span>
+            <span className="font-label-caps text-[10px] text-on-surface-variant uppercase ml-1">Coming soon</span>
           </button>
         </div>
       </section>
@@ -450,20 +453,19 @@ export default async function Page() {
           </div>
         </div>
         <div className="flex items-center gap-space-sm shrink-0 w-full md:w-auto justify-end">
-          <a
-            className="inline-flex items-center gap-1.5 h-9 px-4 rounded bg-surface-container-low text-on-surface font-caption-bold text-caption-bold hover:bg-surface-container-high transition-colors"
-            href="#"
+          <span
+            className="inline-flex items-center gap-1.5 h-9 px-4 rounded bg-surface-container-low text-on-surface font-caption-bold text-caption-bold cursor-default"
           >
             <span className="material-symbols-outlined text-[16px]">code</span>
             <span>View Developer SDK</span>
-          </a>
-          <a
-            className="inline-flex items-center gap-1.5 h-9 px-4 rounded bg-primary text-on-primary font-caption-bold text-caption-bold hover:bg-primary-container transition-colors shadow-sm"
-            href="#"
+          </span>
+          <span
+            className="inline-flex items-center gap-1.5 h-9 px-4 rounded bg-primary text-on-primary font-caption-bold text-caption-bold shadow-sm cursor-default"
+            title="Coming soon"
           >
             <span className="material-symbols-outlined text-[16px]">contact_support</span>
             <span>Request Connector</span>
-          </a>
+          </span>
         </div>
       </section>
     </div>

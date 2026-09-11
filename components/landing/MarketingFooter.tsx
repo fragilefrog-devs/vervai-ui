@@ -36,7 +36,7 @@ export default function MarketingFooter() {
   return (
     <footer className="w-full bg-surface-container-low pt-16 pb-12 mt-auto">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 pb-12">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-6 pb-12">
           <div className="col-span-2 flex flex-col justify-between pr-4">
             <div className="space-y-4">
               <div className="flex items-center gap-3">

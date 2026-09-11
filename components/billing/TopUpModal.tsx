@@ -27,7 +27,7 @@ export default function TopUpModal() {
 
   return (
     <>
-      <Button variant="secondary" onClick={() => setOpen(true)}>
+      <Button variant="secondary" disabled title="Coming soon" onClick={() => setOpen(true)}>
         <Icon name="add_circle" size={18} className="text-primary" />
         <span>Add On-Demand Credits</span>
       </Button>

@@ -166,7 +166,7 @@ export default async function Page() {
                 Integration &amp; Relay Ecosystem
               </span>
             </div>
-            <h1 className="font-display-2xl text-display-2xl text-on-surface tracking-tight">
+            <h1 className="font-headline-xl text-headline-xl text-on-surface tracking-tight">
               System Connections &amp; Infrastructure
             </h1>
             <p className="font-body-medium text-body-medium text-on-surface-variant leading-relaxed">
@@ -177,12 +177,15 @@ export default async function Page() {
           <div className="flex items-center gap-space-sm shrink-0">
             <CheckAllStatuses />
             <button
-              className="flex items-center gap-2 px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary font-body-medium text-body-medium hover:bg-primary transition-all active:scale-[0.98] shadow-md"
+              className="flex items-center gap-2 px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary font-body-medium text-body-medium hover:bg-primary transition-all active:scale-[0.98] shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
               id="addIntegrationBtn"
               type="button"
+              disabled
+              title="Coming soon"
             >
               <span className="material-symbols-outlined text-[18px]">add</span>
               <span>+ Add Integration</span>
+              <span className="font-label-caps text-[10px] text-on-surface-variant uppercase ml-1">Coming soon</span>
             </button>
           </div>
         </div>
@@ -352,8 +355,10 @@ export default async function Page() {
                   <span>Per-user RLS via auth session</span>
                 </div>
                 <button
-                  className="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium transition-colors flex items-center gap-2"
+                  className="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   type="button"
+                  disabled
+                  title="Coming soon"
                 >
                   <span>Open Content Library</span>
                   <span className="material-symbols-outlined text-[16px]">query_stats</span>
@@ -418,8 +423,10 @@ export default async function Page() {
                   <span>Queryable across {Object.keys(FORMAT_LABEL).length} output formats</span>
                 </div>
                 <button
-                  className="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium transition-colors flex items-center gap-2"
+                  className="px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   type="button"
+                  disabled
+                  title="Coming soon"
                 >
                   <span>Open Publish Queue</span>
                   <span className="material-symbols-outlined text-[16px]">sync_lock</span>
@@ -445,14 +452,18 @@ export default async function Page() {
           </div>
           <div className="flex items-center gap-space-sm shrink-0">
             <button
-              className="px-space-md py-2 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium transition-colors"
+              className="px-space-md py-2 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface font-body-medium text-body-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               type="button"
+              disabled
+              title="Coming soon"
             >
               View Setup Guide
             </button>
             <button
-              className="px-space-md py-2 rounded-lg bg-primary-container text-on-primary font-body-medium text-body-medium hover:bg-primary transition-colors"
+              className="px-space-md py-2 rounded-lg bg-primary-container text-on-primary font-body-medium text-body-medium hover:bg-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               type="button"
+              disabled
+              title="Coming soon"
             >
               Request Connector
             </button>

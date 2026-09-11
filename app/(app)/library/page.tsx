@@ -86,6 +86,7 @@ export default async function Page() {
           : 0,
         outputCount: featuredSource.outputs?.length ?? 0,
         needsReview: sources.length > 0 && sources.filter((s) => s.status === "generating").length > 0,
+        featuredIdeaId: ideas.find((i) => !i.approved)?.id ?? null,
       }
     : null;
 
@@ -177,6 +178,7 @@ export default async function Page() {
       source: o.sourceTitle,
       actionLabel: "View Output",
       actionIcon: "open_in_new",
+      outputId: o.id,
     };
   });
 

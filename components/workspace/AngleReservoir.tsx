@@ -1,4 +1,5 @@
 import { timeAgo, type IdeaRow } from "@/lib/data";
+import IdeaApproveButton from "@/components/workspace/IdeaApproveButton";
 
 export default function AngleReservoir({ ideas }: { ideas: IdeaRow[] }) {
   const count = ideas.length;
@@ -16,8 +17,10 @@ export default function AngleReservoir({ ideas }: { ideas: IdeaRow[] }) {
           </p>
         </div>
         <button
-          className="font-caption-bold text-caption-bold text-primary hover:text-primary-container transition-colors flex items-center gap-1 self-start md:self-auto"
+          className="font-caption-bold text-caption-bold text-primary hover:text-primary-container transition-colors flex items-center gap-1 self-start md:self-auto disabled:opacity-50 disabled:cursor-not-allowed"
           type="button"
+          disabled
+          title="Coming soon"
         >
           <span>View Full Transcription Analysis</span>
           <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
@@ -62,12 +65,7 @@ export default function AngleReservoir({ ideas }: { ideas: IdeaRow[] }) {
                   {approved ? (
                     <span className="material-symbols-outlined text-[16px] text-primary">check</span>
                   ) : (
-                    <button
-                      className="font-label-caps text-[10px] font-bold text-primary hover:underline"
-                      type="button"
-                    >
-                      Add to Plan
-                    </button>
+                    <IdeaApproveButton ideaId={idea.id} />
                   )}
                 </div>
               </div>

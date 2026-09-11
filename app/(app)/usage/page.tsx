@@ -78,7 +78,7 @@ export default async function Page() {
       </div>
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md mb-space-lg pb-space-sm">
         <div className="max-w-2xl">
-          <h1 className="font-display-2xl text-display-2xl text-on-surface tracking-tight">
+          <h1 className="font-headline-xl text-headline-xl text-on-surface tracking-tight">
             Usage &amp; Telemetry
           </h1>
           <p className="font-body-base text-body-base text-secondary mt-1">
@@ -99,15 +99,17 @@ export default async function Page() {
             </span>
           </div>
           {isFree && (
-            <a
-              href="#"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-on-primary font-caption-bold text-caption-bold hover:bg-primary-container shadow-md active:scale-[0.98] transition-all"
+            <button
+              type="button"
+              disabled
+              title="Coming soon"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-primary text-on-primary font-caption-bold text-caption-bold shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span className="material-symbols-outlined text-[18px]">
                 bolt
               </span>
               <span>Upgrade Plan</span>
-            </a>
+            </button>
           )}
         </div>
       </div>

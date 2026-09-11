@@ -48,8 +48,10 @@ function InFlightRow({ source }: { source: SourceRow }) {
             <span className="font-caption-bold text-caption-bold text-primary">In progress</span>
           </div>
           <button
-            className="px-3 py-1.5 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-caption-bold text-caption-bold transition-colors shadow-xs"
+            className="px-3 py-1.5 rounded bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-caption-bold text-caption-bold transition-colors shadow-xs disabled:opacity-50 disabled:cursor-not-allowed"
             type="button"
+            disabled
+            title="Coming soon"
           >
             Inspect Agent Log
           </button>

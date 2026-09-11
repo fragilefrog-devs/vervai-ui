@@ -108,8 +108,10 @@ export default function ConnectedAccounts({ connections }: ConnectedAccountsProp
         </span>
         {rows.length === 0 && (
           <button
-            className="flex items-center gap-1.5 bg-surface-container-highest hover:bg-surface-dim text-on-surface font-caption-bold text-caption-bold px-3 py-1.5 rounded-lg active:scale-[0.98] transition-all"
+            className="flex items-center gap-1.5 bg-surface-container-highest hover:bg-surface-dim text-on-surface font-caption-bold text-caption-bold px-3 py-1.5 rounded-lg active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             type="button"
+            disabled
+            title="Coming soon"
           >
             <span className="material-symbols-outlined text-[16px]">add_link</span>
             <span>Link Platform</span>

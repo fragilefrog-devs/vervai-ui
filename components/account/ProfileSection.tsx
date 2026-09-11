@@ -56,10 +56,13 @@ export default function ProfileSection({
           </div>
           {isFree === true && (
             <button
-              className="flex-1 sm:flex-none px-3 py-1.5 bg-primary hover:bg-primary-container text-on-primary font-caption-bold text-caption-bold rounded-lg transition-all active:scale-[0.98] text-center"
+              className="flex-1 sm:flex-none px-3 py-1.5 bg-primary hover:bg-primary-container text-on-primary font-caption-bold text-caption-bold rounded-lg transition-all active:scale-[0.98] text-center disabled:opacity-50 disabled:cursor-not-allowed"
               type="button"
+              disabled
+              title="Coming soon"
             >
               Upgrade Plan
+              <span className="font-label-caps text-[10px] text-on-surface-variant uppercase ml-1">Coming soon</span>
             </button>
           )}
         </div>
@@ -96,11 +99,14 @@ export default function ProfileSection({
         </span>
         {isFree === true && (
           <button
-            className="flex items-center gap-1.5 bg-primary hover:bg-primary-container text-on-primary font-body-medium text-body-medium px-4 py-2 rounded-lg active:scale-[0.98] transition-all shadow-sm"
+            className="flex items-center gap-1.5 bg-primary hover:bg-primary-container text-on-primary font-body-medium text-body-medium px-4 py-2 rounded-lg active:scale-[0.98] transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
             type="button"
+            disabled
+            title="Coming soon"
           >
             <span className="material-symbols-outlined text-[18px]">upgrade</span>
             <span>Upgrade</span>
+            <span className="font-label-caps text-[10px] text-on-surface-variant uppercase ml-1">Coming soon</span>
           </button>
         )}
       </div>

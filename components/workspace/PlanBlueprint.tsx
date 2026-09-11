@@ -94,24 +94,31 @@ export default function PlanBlueprint({
       </div>
       <div className="flex items-center justify-between pt-space-md mt-space-md bg-surface-container-low -mx-space-lg -mb-space-lg px-space-lg py-space-sm rounded-b-xl">
         <button
-          className="inline-flex items-center gap-1.5 text-secondary hover:text-on-surface font-caption-bold text-caption-bold transition-colors"
+          className="inline-flex items-center gap-1.5 text-secondary hover:text-on-surface font-caption-bold text-caption-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           type="button"
+          disabled
+          title="Coming soon"
         >
           <span className="material-symbols-outlined text-[16px]">tune</span>
           <span>Modify Plan Prompts</span>
         </button>
         <div className="flex items-center gap-space-sm">
           <button
-            className="px-3 py-1.5 rounded bg-surface-container-high text-on-surface font-caption-bold text-caption-bold hover:bg-surface-container-highest transition-colors"
+            className="px-3 py-1.5 rounded bg-surface-container-high text-on-surface font-caption-bold text-caption-bold hover:bg-surface-container-highest transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             type="button"
+            disabled
+            title="Coming soon"
           >
             Regenerate Plan
           </button>
           <button
-            className="px-4 py-1.5 rounded bg-primary text-on-primary font-caption-bold text-caption-bold hover:bg-primary-container transition-colors shadow-sm"
+            className="px-4 py-1.5 rounded bg-primary text-on-primary font-caption-bold text-caption-bold hover:bg-primary-container transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
             type="button"
+            disabled
+            title="Coming soon"
           >
             Approve Plan
+            <span className="font-label-caps text-[10px] text-on-surface-variant uppercase ml-1">Coming soon</span>
           </button>
         </div>
       </div>

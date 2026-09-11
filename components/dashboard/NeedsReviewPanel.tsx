@@ -34,6 +34,8 @@ function ReviewRow({ review }: { review: Review }) {
         variant="secondary"
         size="sm"
         className="shrink-0 bg-surface-container-lowest text-primary hover:bg-primary hover:text-on-primary shadow-sm text-xs"
+        disabled
+        title="Coming soon"
       >
         Review
       </Button>

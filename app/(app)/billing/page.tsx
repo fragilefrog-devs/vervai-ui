@@ -24,7 +24,7 @@ export default async function Page() {
 
   return (
     <div className="flex flex-col w-full">
-      <div className="w-full max-w-[1440px] mx-auto px-space-lg py-space-xl flex flex-col gap-space-xl">
+      <div className="w-full max-w-7xl mx-auto px-space-lg py-space-xl flex flex-col gap-space-xl">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
           <div className="flex flex-col gap-1">
             <div className="flex items-center gap-space-xs text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider">
@@ -32,7 +32,7 @@ export default async function Page() {
               <span className="material-symbols-outlined text-[13px]">chevron_right</span>
               <span className="text-primary font-caption-bold">Billing &amp; Plan</span>
             </div>
-            <h1 className="font-display-2xl text-display-2xl text-on-surface tracking-tight">
+            <h1 className="font-headline-xl text-headline-xl text-on-surface tracking-tight">
               Credits &amp; Subscription
             </h1>
             <p className="font-body-sm text-body-sm text-on-surface-variant">
@@ -42,11 +42,14 @@ export default async function Page() {
           <div className="flex items-center gap-space-sm shrink-0">
             <TopUpModal />
             <button
-              className="flex items-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary font-body-medium text-body-medium px-space-md py-2.5 rounded-lg transition-all active:scale-[0.98] shadow-sm"
+              className="flex items-center gap-space-xs bg-primary-container hover:bg-primary text-on-primary font-body-medium text-body-medium px-space-md py-2.5 rounded-lg transition-all active:scale-[0.98] shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
               type="button"
+              disabled
+              title="Coming soon"
             >
               <span className="material-symbols-outlined text-[18px]">upgrade</span>
               <span>Upgrade Plan</span>
+              <span className="font-label-caps text-[10px] text-on-surface-variant uppercase ml-1">Coming soon</span>
             </button>
           </div>
         </div>
@@ -114,7 +117,11 @@ export default async function Page() {
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-space-sm pt-space-md mt-space-sm">
-              <button className="bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-body-medium text-body-medium px-space-md py-2 rounded-lg transition-colors active:scale-[0.98]">
+              <button
+                className="bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-body-medium text-body-medium px-space-md py-2 rounded-lg transition-colors active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled
+                title="Coming soon"
+              >
                 Change Plan
               </button>
             </div>

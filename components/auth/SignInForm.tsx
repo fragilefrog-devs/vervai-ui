@@ -63,7 +63,7 @@ export default function SignInForm() {
           placeholder="you@company.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="h-11 [&_input]:py-2.5 [&_input]:rounded-lg [&_input]:bg-surface-container-lowest"
+          className="[&_input]:rounded-lg [&_input]:bg-surface-container-lowest"
         />
       </div>
 
@@ -94,7 +94,7 @@ export default function SignInForm() {
           placeholder="Enter your password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="h-11 [&_input]:py-2.5 [&_input]:rounded-lg [&_input]:bg-surface-container-lowest"
+          className="[&_input]:rounded-lg [&_input]:bg-surface-container-lowest"
         />
       </div>
 

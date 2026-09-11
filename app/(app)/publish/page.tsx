@@ -74,6 +74,8 @@ export default async function Page() {
     const content = out?.content ?? "";
     const tone = CHANNEL_TONE[job.platform] ?? "blue";
     return {
+      jobId: job.id,
+      scheduledAt: job.scheduled_at,
       channel: PLATFORM_LABEL[job.platform] ?? job.platform,
       channelTone: tone,
       channelIcon: CHANNEL_ICON[job.platform] ?? "send",

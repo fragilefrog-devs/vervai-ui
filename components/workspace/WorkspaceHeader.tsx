@@ -50,18 +50,23 @@ export default function WorkspaceHeader({
       </div>
       <div className="flex items-center gap-space-sm shrink-0 self-start md:self-auto">
         <button
-          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded bg-surface-container-high text-on-surface-variant font-caption-bold text-caption-bold hover:bg-surface-container-highest hover:text-on-surface transition-colors shadow-sm active:scale-[0.98]"
+          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded bg-surface-container-high text-on-surface-variant font-caption-bold text-caption-bold hover:bg-surface-container-highest hover:text-on-surface transition-colors shadow-sm active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
           type="button"
+          disabled
+          title="Coming soon"
         >
           <span className="material-symbols-outlined text-[16px]">close</span>
           <span>Cancel Run</span>
         </button>
         <button
-          className="inline-flex items-center gap-2 px-4 py-2 rounded bg-primary text-on-primary font-caption-bold text-caption-bold hover:bg-primary-container transition-all shadow-md active:scale-[0.98]"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded bg-primary text-on-primary font-caption-bold text-caption-bold hover:bg-primary-container transition-all shadow-md active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
           type="button"
+          disabled
+          title="Coming soon"
         >
           <span className="material-symbols-outlined text-[18px]">verified</span>
           <span>Approve &amp; Generate All</span>
+          <span className="font-label-caps text-[10px] text-on-surface-variant uppercase ml-1">Coming soon</span>
         </button>
       </div>
     </div>

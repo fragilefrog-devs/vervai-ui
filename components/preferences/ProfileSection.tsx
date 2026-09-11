@@ -135,11 +135,14 @@ export default function ProfileSection({ email, name, userId, plan }: ProfileSec
             </p>
             {isFree === true && (
               <button
-                className="flex items-center gap-2 px-space-lg py-2.5 rounded-lg font-body-medium text-body-medium bg-primary text-on-primary hover:bg-primary-container shadow-md transition-all active:scale-[0.98] shrink-0"
+                className="flex items-center gap-2 px-space-lg py-2.5 rounded-lg font-body-medium text-body-medium bg-primary text-on-primary hover:bg-primary-container shadow-md transition-all active:scale-[0.98] shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
                 type="button"
+                disabled
+                title="Coming soon"
               >
                 <span className="material-symbols-outlined text-[18px]">upgrade</span>
                 <span>Upgrade Plan</span>
+                <span className="font-label-caps text-[10px] text-on-surface-variant uppercase ml-1">Coming soon</span>
               </button>
             )}
           </div>

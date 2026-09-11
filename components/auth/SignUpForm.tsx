@@ -53,7 +53,7 @@ export default function SignUpForm() {
             placeholder="Jane Doe"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
-            className="h-11 [&_input]:py-2.5 [&_input]:rounded-lg [&_input]:bg-surface-container-low [&_input]:focus:bg-surface-container"
+            className="[&_input]:rounded-lg [&_input]:bg-surface-container-low [&_input]:focus:bg-surface-container"
           />
         </div>
         <div>
@@ -67,7 +67,7 @@ export default function SignUpForm() {
             placeholder="you@company.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="h-11 [&_input]:py-2.5 [&_input]:rounded-lg [&_input]:bg-surface-container-low [&_input]:focus:bg-surface-container"
+            className="[&_input]:rounded-lg [&_input]:bg-surface-container-low [&_input]:focus:bg-surface-container"
           />
         </div>
       </div>
@@ -82,7 +82,7 @@ export default function SignUpForm() {
           placeholder="At least 8 characters"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="h-11 [&_input]:py-2.5 [&_input]:rounded-lg [&_input]:bg-surface-container-low [&_input]:focus:bg-surface-container"
+          className="[&_input]:rounded-lg [&_input]:bg-surface-container-low [&_input]:focus:bg-surface-container"
         />
       </div>
 
